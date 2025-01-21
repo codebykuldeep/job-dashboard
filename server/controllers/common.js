@@ -37,14 +37,28 @@ export async function handleLogin(req,res) {
     if(!email && !password){
         return res.json(new ApiResponse(401,{message:'Required Field are missing'},false));
     }
+
+    console.log(body);
+    console.log(ADMIN);
+    console.log((password), ADMIN.password);
+    console.log(email.trim().toLowerCase() === ADMIN.email , String(password) === ADMIN.password);
+    
     
     try {
-        if(email.toLowerCase() === ADMIN.email && password === ADMIN.password){
-            const user = ADMIN;
-            delete user.password;
-            const token = generateToken(user);
-            return res.json(new UserResponse(200,user,true,token));
+        if(email.trim().toLowerCase() === ADMIN.email){
+            if(String(password) === ADMIN.password){
+                const user = {...ADMIN};
+                delete user.password;
+                
+                const token = generateToken(user);
+                return res.json(new UserResponse(200,user,true,token));
+            }
+            else{
+                return res.json(new UserResponse(401,{message:'Password is incorrect'},false))
+            }
+            
         }
+        
     
         const user = await findUser(email);
         if(!user){
@@ -83,9 +97,10 @@ export async function handleUserVerification(req,res) {
         
         let user;
         if(email.toLowerCase() === ADMIN.email && role === "admin"){
-            user = ADMIN;
+            user = {...ADMIN};
             user.role = 'admin';
             delete user.password;
+            
         }
     
         if(role === 'employer'){

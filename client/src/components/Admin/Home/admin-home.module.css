@@ -1,0 +1,15 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bodyBg);
+    color: var(--grey-color);
+}
+
+.welcome{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}

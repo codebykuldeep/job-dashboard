@@ -25,7 +25,7 @@ export async function auth(req,res,next){
         const {email,role} = data;
        
         if(email.toLowerCase() === ADMIN.email && role === 'admin'){
-            user = ADMIN;
+            user = {...ADMIN};
             delete user.password;
         }
         else{
@@ -41,4 +41,15 @@ export async function auth(req,res,next){
     }
     req.user = user;
     next();
+}
+
+
+export function adminAuth(req,res,next){
+  if(!req.user){
+    return res.json(new UserResponse(401,{message:'User not authenticated.Only Admin allowed'},false));
+  }
+  if(!req.user.role || req.user.role !== 'admin'){
+    return res.json(new UserResponse(401,{message:'User not authenticated.Only Admin allowed'},false));
+  }
+  next();
 }

@@ -1,4 +1,3 @@
-import axios from "axios";
 import constant from "../helper/constant";
 import { ReqBody } from "../types/formTypes";
 import { getToken } from "./utilsFunctions";
