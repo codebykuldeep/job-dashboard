@@ -19,7 +19,7 @@ export async function handleRegistration(req,res) {
         }
         else if(role === 'employer'){
             const result = await registerEmployer(body);
-            return res.status(200).json(new ApiResponse(401,result,true))
+            return res.status(200).json(new ApiResponse(200,result,true))
         }
         else{
             return res.json(new ApiResponse(401,{message:'Unknown role registration failed'},false))
@@ -37,7 +37,7 @@ export async function handleLogin(req,res) {
     if(!email && !password){
         return res.json(new ApiResponse(401,{message:'Required Field are missing'},false));
     }
-
+    
     try {
         if(email.toLowerCase() === ADMIN.email && password === ADMIN.password){
             const user = ADMIN;
@@ -48,7 +48,7 @@ export async function handleLogin(req,res) {
     
         const user = await findUser(email);
         if(!user){
-            return res.json(new UserResponse(404,user,false));
+            return res.json(new UserResponse(404,{message:'Users donot exists'},false));
         }
 
         const passwordCheck = await bcrypt.compare(password, user.password);

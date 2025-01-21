@@ -36,7 +36,7 @@ function Login({handleFormChange}:LoginProps) {
         }
         async function handleSubmit(event: FormEvent<HTMLFormElement>) {
           event.preventDefault();
-            setSubmit(prev=>({...prev,loading:true}));
+          setSubmit(prev=>({...prev,loading:true}));
           if (checkValidFormState(formState)) {
             const formData = new FormData(event.target as HTMLFormElement);
             const body = Object.fromEntries(formData.entries()) as ReqBody;

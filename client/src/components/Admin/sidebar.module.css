@@ -1,11 +1,39 @@
-.sidebar{
+.sidebar_open{
     position: sticky;
-    width: 150px;
+    min-width: 150px;
+    max-width: 250px;
     height: 100vh;
     background-color: var(--dashBg);
     color: var(--dash-gray-color);
     font-family: monospace;
     font-size: 18px;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    transition: width 2s smooth;
+}
+.sidebar_close{
+    position: sticky;
+    width: 50px;
+    height: 100vh;
+    background-color: var(--dashBg);
+    color: var(--dash-gray-color);
+    font-family: monospace;
+    font-size: 18px;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    transition: width 2s smooth;
+}
+
+.open_btn{
+    padding: 0.5rem 0;
+    background-color: var(--dashBg);
+    position: sticky;
+    top: 0;
+    z-index: 99;
+
 }
 
 .open_btn button{
@@ -30,6 +58,10 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 0 12px;
+    margin-left: 12px;
     gap: 10px;
+}
+
+.icon{
+    margin-top: 5px;
 }

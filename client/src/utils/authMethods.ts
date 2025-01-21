@@ -5,11 +5,14 @@ import { getToken } from "./utilsFunctions";
 
 export async function UserRegistration(body:ReqBody){
     try {
-         const {data}  = await axios.post(constant.SERVER+'/register',body,{
+         const response  = await fetch(constant.SERVER+'/register',{
+            method:'POST',
+            body:JSON.stringify(body),
             headers:{
                 'Content-Type':'application/json',
             }
          })
+         const data = await response.json();
          console.log(data);
          return data
     } catch (error) {
@@ -20,11 +23,14 @@ export async function UserRegistration(body:ReqBody){
 
 export async function UserLogin(body:ReqBody) {
     try {
-        const {data}  = await axios.post(constant.SERVER+'/login',body,{
+        const response  = await fetch(constant.SERVER+'/login',{
+            method:'POST',
+            body:JSON.stringify(body),
            headers:{
                'Content-Type':'application/json',
            }
         })
+        const data = await response.json();
         console.log(data);
         return data
    } catch (error) {
@@ -35,11 +41,13 @@ export async function UserLogin(body:ReqBody) {
 
 export async function UserVerify() {
     try {
-        const {data}  = await axios.get(constant.SERVER+'/verify',{
+        const response  = await fetch(constant.SERVER+'/verify',{
+            method:'GET',
            headers:{
                'Authorization':getToken(),
            }
         })
+        const data = await response.json();
         console.log(data);
         return data
    } catch (error) {

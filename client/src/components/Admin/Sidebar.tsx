@@ -7,23 +7,23 @@ import { Link } from 'react-router-dom';
 
 const list=[
     {
-        icon:<AccountIcon/>,
+        icon:<AccountIcon fontSize='large'/>,
         name:'Home',
         link:''
         
     },
     {
-        icon:<AccountIcon/>,
+        icon:<AccountIcon fontSize='large'/>,
         name:'Employers',
         link:'employers'
     },
     {
-        icon:<AccountIcon/>,
+        icon:<AccountIcon fontSize='large'/>,
         name:'Pendings',
         link:'employers'
     },
     {
-        icon:<AccountIcon/>,
+        icon:<AccountIcon fontSize='large'/>,
         name:'Acccount',
         link:'account'
     }
@@ -37,8 +37,7 @@ function Sidebar() {
     }
   return (
     <div
-      style={{ width: open ? "50px" : undefined }}
-      className={classes.sidebar}
+      className={!open ? classes.sidebar_open : classes.sidebar_close }
     >
       <div className={classes.open_btn}>
       <button onClick={handleSideBar}>{open ?  <ArrowForward/> : <ArrowBack/>}</button>
@@ -46,10 +45,16 @@ function Sidebar() {
       <div className={classes.item_container}>
         {list.map(({ icon, name,link }) => (
           <Link to={link!} key={name} className={classes.item}>
-            <span>{icon}</span>
+            <span className={classes.icon}>{icon}</span>
             {!open && <span>{name}</span>}
           </Link>
         ))}
+        {/* {(new Array(100).fill(0)).map((val,ind) => (
+          <Link to={''} key={ind} className={classes.item}>
+            <span className={classes.icon}>I</span>
+            {!open && <span>{ind}</span>}
+          </Link>
+        ))} */}
       </div>
     </div>
   );
