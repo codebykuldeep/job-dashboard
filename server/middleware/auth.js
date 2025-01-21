@@ -1,5 +1,4 @@
 import { verifyToken } from "../auth/auth.js";
-import { ADMIN } from "../constant.js";
 import { findUser } from "../lib/users.js";
 import { UserResponse } from "../utils/response.js";
 
@@ -22,17 +21,11 @@ export async function auth(req,res,next){
     let user;
     try {
         const data = verifyToken(JWT_TOKEN);
-        const {email,role} = data;
-       
-        if(email.toLowerCase() === ADMIN.email && role === 'admin'){
-            user = {...ADMIN};
-            delete user.password;
-        }
-        else{
-            user = await findUser(email);
-            if(!user){
-                return res.json(new UserResponse(401,{message:'User not authenticated'},false));
-            }
+        const {email} = data;
+    
+        user = await findUser(email);
+        if(!user){
+          return res.json(new UserResponse(401,{message:'User not authenticated'},false));
         }
     
        

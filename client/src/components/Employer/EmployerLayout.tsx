@@ -44,13 +44,13 @@ const list=[
   },
   {
       icon:<AccountIcon fontSize='large'/>,
-      name:'Employers',
-      link:'employers'
+      name:'Posts',
+      link:'posts'
   },
   {
       icon:<AccountIcon fontSize='large'/>,
-      name:'Pendings',
-      link:'pendings'
+      name:'Add Posts',
+      link:'add-posts'
   },
   {
       icon:<AccountIcon fontSize='large'/>,
