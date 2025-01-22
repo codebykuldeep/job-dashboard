@@ -1,16 +1,29 @@
 import db from './db.js';
 
 
+
+async function adminsSchema() {
+    await db.query(`CREATE TABLE IF NOT EXISTS admins (
+        admin_id SERIAL PRIMARY KEY,
+        name VARCHAR NOT NULL, 
+        email VARCHAR NOT NULL UNIQUE,
+        password VARCHAR,
+        created_at VARCHAR DEFAULT CURRENT_TIMESTAMP
+      )`)
+    
+}
+
+
 async function employersSchema() {
     await db.query(`CREATE TABLE IF NOT EXISTS employers (
         emp_id SERIAL PRIMARY KEY,
         name VARCHAR NOT NULL, 
-        email VARCHAR NOT NULL,
+        email VARCHAR NOT NULL UNIQUE,
         summary TEXT,
         password VARCHAR,
         phone INTEGER,
         company_name VARCHAR,
-        status BOOLEAN DEFAULT false,
+        status BOOLEAN DEFAULT NULL,
         created_at VARCHAR DEFAULT CURRENT_TIMESTAMP
       )`)
     
@@ -20,7 +33,7 @@ async function usersSchema() {
     await db.query(`CREATE TABLE IF NOT EXISTS users (
         user_id SERIAL PRIMARY KEY,
         name VARCHAR NOT NULL, 
-        email VARCHAR NOT NULL,
+        email VARCHAR NOT NULL UNIQUE,
         summary TEXT,
         password VARCHAR,
         phone INTEGER,
@@ -68,6 +81,7 @@ async function applicationSchema() {
 
 async function setupDb(){
     try {
+        await adminsSchema();
         await employersSchema();
         await usersSchema() ;
         await postingSchema();

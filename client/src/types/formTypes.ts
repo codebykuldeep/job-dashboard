@@ -20,3 +20,8 @@ export interface SnackBarType{
 export interface ReqBody{
     [index:string]:string;
 }
+
+
+export interface ParamsType{
+    [index:string]:string;
+}

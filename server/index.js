@@ -4,13 +4,14 @@ import { connectDb } from './db/initDb.js';
 import db from './db/db.js';
 import { logger } from './middleware/utils middleware.js';
 import cors from 'cors';
-
+import { adminAuth, auth } from './middleware/auth.js';
 
 
 //ROUTES IMPORT
 import commonRouter from './routes/common.js'
 import employersRouter from './routes/employers.js'
 import userRouter from './routes/users.js'
+import adminRouter from './routes/admin.js'
 
 
 const app = express();
@@ -28,8 +29,9 @@ app.use(express.urlencoded({extended:false}));
 
 
 app.use('/',commonRouter);
-app.use('/users',userRouter);
-app.use('/employers',employersRouter);
+app.use('/users',auth,userRouter);
+app.use('/employers',auth,employersRouter);
+app.use('/admin',auth,adminAuth,adminRouter);
 
 
 app.get('/',async (req,res)=>{

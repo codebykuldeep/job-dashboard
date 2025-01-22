@@ -1,5 +1,5 @@
 import { generateToken, verifyToken } from "../auth/auth.js";
-import { ADMIN } from "../constant.js";
+import { getAdmin } from "../lib/admins.js";
 import { getEmployerByEmail, registerEmployer } from "../lib/employers.js";
 import { findUser, getUserByEmail, registerUser } from "../lib/users.js";
 import { ApiResponse, UserResponse } from "../utils/response.js";
@@ -37,16 +37,11 @@ export async function handleLogin(req,res) {
     if(!email && !password){
         return res.json(new ApiResponse(401,{message:'Required Field are missing'},false));
     }
-    
+
     try {
-        if(email.toLowerCase() === ADMIN.email && password === ADMIN.password){
-            const user = ADMIN;
-            delete user.password;
-            const token = generateToken(user);
-            return res.json(new UserResponse(200,user,true,token));
-        }
     
         const user = await findUser(email);
+        
         if(!user){
             return res.json(new UserResponse(404,{message:'Users donot exists'},false));
         }
@@ -82,8 +77,8 @@ export async function handleUserVerification(req,res) {
         console.log(data);
         
         let user;
-        if(email.toLowerCase() === ADMIN.email && role === "admin"){
-            user = ADMIN;
+        if(role === "admin"){
+            user = await getAdmin(email);
             user.role = 'admin';
             delete user.password;
         }

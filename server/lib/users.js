@@ -1,4 +1,5 @@
 import db from "../db/db.js";
+import { getAdmin } from "./admins.js";
 import { getEmployerByEmail } from "./employers.js";
 
 export async function registerUser(body) {
@@ -17,6 +18,11 @@ export async function getUserByEmail(email) {
 
 
 export async function findUser(email) {
+    const admin = await getAdmin(email);
+    if(admin){
+        return {...admin,role:'admin'};
+    }
+
     const employer = await getEmployerByEmail(email);
     
     if(employer){

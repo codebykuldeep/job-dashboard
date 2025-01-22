@@ -9,4 +9,13 @@ export interface IUser {
     [index:string]:string;
 }
 
+export interface IEmployer {
+    emp_id:string;
+    email:string;
+    phone:string;
+    summary:string;
+    status:string;
+    [index:string]:string;
+}
+
 

@@ -1,41 +1,16 @@
 import React, { useState } from 'react'
 import classes from './sidebar.module.css'
-import AccountIcon from '@mui/icons-material/AccountCircle';
 import ArrowBack from '@mui/icons-material/ArrowBackIos';
 import ArrowForward from '@mui/icons-material/ArrowForwardIos';
 import { Link } from 'react-router-dom';
-
-const list=[
-    {
-        icon:<AccountIcon fontSize='large'/>,
-        name:'Home',
-        link:''
-        
-    },
-    {
-        icon:<AccountIcon fontSize='large'/>,
-        name:'Employers',
-        link:'employers'
-    },
-    {
-        icon:<AccountIcon fontSize='large'/>,
-        name:'Pendings',
-        link:'pendings'
-    },
-    {
-        icon:<AccountIcon fontSize='large'/>,
-        name:'Acccount',
-        link:'account'
-    },
-    {
-      icon:<AccountIcon fontSize='large'/>,
-      name:'Logout',
-      link:'/logout'
-  }
-    ]
+import { SidebarListType } from '../../types/tableTypes';
 
 
-function Sidebar() {
+interface SideBarProps{
+    list:SidebarListType
+}
+
+function Sidebar({list}:SideBarProps) {
     const [open,setOpen]= useState(false);
     function handleSideBar(){
         setOpen(prev=>!prev);
