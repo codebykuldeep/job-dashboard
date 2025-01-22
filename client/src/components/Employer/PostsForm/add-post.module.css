@@ -1,0 +1,17 @@
+.container{
+    padding: 2rem;
+    width: 100%;
+}
+.form{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.btn{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+

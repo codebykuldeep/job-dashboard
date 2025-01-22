@@ -12,7 +12,7 @@ import commonRouter from './routes/common.js'
 import employersRouter from './routes/employers.js'
 import userRouter from './routes/users.js'
 import adminRouter from './routes/admin.js'
-
+import postingsRouter from './routes/postings.js'
 
 const app = express();
 const PORT  = constant.PORT || 8000 ;
@@ -32,6 +32,7 @@ app.use('/',commonRouter);
 app.use('/users',auth,userRouter);
 app.use('/employers',auth,employersRouter);
 app.use('/admin',auth,adminAuth,adminRouter);
+app.use('/posts',auth,postingsRouter);
 
 
 app.get('/',async (req,res)=>{
