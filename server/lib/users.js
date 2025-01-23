@@ -9,6 +9,11 @@ export async function registerUser(body) {
     return result.rows;
 }
 
+export async function getUserById(id) {
+    const res = await db.query(`SELECT * FROM users WHERE user_id = $1 ;`,[id]);
+    
+    return res.rows[0];
+}
 
 export async function getUserByEmail(email) {
     const res = await db.query(`SELECT * FROM users WHERE LOWER(email) = $1 ;`,[email.toLowerCase()]);

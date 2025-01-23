@@ -12,7 +12,7 @@ interface RightFormProps{
 function RightForm({formState,onChange}:RightFormProps) {
     function handleDropdown(value:string| null,name:string){
         const obj ={
-            target:{name:name,value:value}
+            target:{name:name,value:value ? value : ''}
         }
         onChange(obj as React.ChangeEvent<HTMLInputElement>)
     }
@@ -24,7 +24,9 @@ function RightForm({formState,onChange}:RightFormProps) {
         id="location"
         freeSolo
         options={location.map((option) => option.title)}
-        
+        value={formState['location'].value}
+        inputValue={formState['location'].value}
+        onInputChange={(event,value)=>handleDropdown(value,'location')}
         onChange={(event,value)=>handleDropdown(value,'location')}
         renderInput={(params) =>
              <TextField name='location'
@@ -41,11 +43,12 @@ function RightForm({formState,onChange}:RightFormProps) {
             disablePortal
             id="job_type"
             options={jobType.map((option) => option.title)}
-            
+            value={formState['job_type'].value}
+            inputValue={formState['job_type'].value}
+            onInputChange={(event,value)=>handleDropdown(value,'job_type')}
             onChange={(event,value)=>handleDropdown(value,'job_type')}
             renderInput={(params) =>
                  <TextField name='job_type' 
-                 defaultValue={formState['job_type'].value}
                  error={formState['job_type'].status}
                  helperText={formState['job_type'].message}
                   {...params} />
@@ -57,11 +60,13 @@ function RightForm({formState,onChange}:RightFormProps) {
             <Autocomplete
             disablePortal
             id="education"
+            value={formState['education'].value}
+            inputValue={formState['education'].value}
+            onInputChange={(event,value)=>handleDropdown(value,'education')}
             onChange={(event,value)=>handleDropdown(value,'education')}
             options={educationType.map((option) => option.title)}
             renderInput={(params) =>
                  <TextField  name='education' 
-                 defaultValue={formState['education'].value}
                  error={formState['education'].status}
                  helperText={formState['education'].message}
                  {...params} />

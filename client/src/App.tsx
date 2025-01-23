@@ -17,6 +17,9 @@ import Home from './components/Common/Home/Home';
 import EmployerHome from './components/Employer/Home/EmployerHome';
 import Posts from './components/Employer/Posts/Posts';
 import AddPost from './components/Employer/PostsForm/AddPost';
+import PostDetail from './components/Employer/PostsDetails/PostDetail';
+import EmpAccount from './components/Employer/Account/EmpAccount';
+import EditPost from './components/Employer/PostsForm/EditPost';
 
 
 
@@ -64,8 +67,20 @@ const router = createBrowserRouter([
             element: <Posts/>,
           },
           {
+            path:'posts/:id',
+            element: <PostDetail/>,
+          },
+          {
             path:'add-post',
             element: <AddPost/>,
+          },
+          {
+            path:'posts/edit/:id',
+            element: <EditPost/>,
+          },
+          {
+            path:'account',
+            element: <EmpAccount/>,
           }
         ]
       },

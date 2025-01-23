@@ -5,7 +5,7 @@ export interface ColumnType {
   label: string;
   minWidth?: number;
   align?: "right" | "center" | "left";
-  format?: (value: string) => string;
+  format?: (value: string) => string | React.ReactNode;
 }
 
 

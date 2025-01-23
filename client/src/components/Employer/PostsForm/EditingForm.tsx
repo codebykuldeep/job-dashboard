@@ -5,16 +5,22 @@ import RightForm from './RightForm';
 import classes from './add-post.module.css'
 import { checkValidFormState, populateFormState, validation } from '../../../utils/validation';
 import { FormStateType, ReqBody } from '../../../types/formTypes';
-import {  postsMethod} from '../../../utils/http-methods/employersMethods';
+import { postsMethod } from '../../../utils/http-methods/employersMethods';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
 import SnackBar from '../../Common/AuthPage/SnackBar';
+import { initialformState } from './AddPost';
+import { IPost } from '../../../types/dataTypes';
 
-function AddPost() {
-  const user = useSelector((state:RootState)=>state.userSlice.user);
+interface EditingFormProps{
+    formStateFromData:FormStateType,
+    post:IPost,
+}
+
+function EditingForm({post,formStateFromData}:EditingFormProps) {
   const [snackState,setSnackState] = useState({open:false,status:false,message:''})
 
-  const [formState,setFormState] = useState<FormStateType>(initialformState);
+  const [formState,setFormState] = useState<FormStateType>(formStateFromData);
 
 
   function snackClose(){
@@ -42,12 +48,12 @@ function AddPost() {
     if (checkValidFormState(formState)) {
       const formData = new FormData(event.target as HTMLFormElement);
       const body = Object.fromEntries(formData.entries());
-      const result = await postsMethod('add',{...body,emp_id:user!.emp_id} as ReqBody);
+      const result = await postsMethod('update',{...body,post_id:post.post_id} as ReqBody);
       if(result){
-        setSnackState(({open:true,status:true,message:'Job post added successful'}));
+        setSnackState(({open:true,status:true,message:'Job post updated successful'}));
       }
       else{
-        setSnackState(({open:true,status:false,message:'Failed to add Job post'}));
+        setSnackState(({open:true,status:false,message:'Failed to update Job post'}));
       }
       
       
@@ -63,8 +69,8 @@ function AddPost() {
     
   }
   return (
-    <Box className={classes.container}>
-        <Box component={'h1'}>Post a job</Box>
+    <>
+    <Box component={'h1'}>Update job Details</Box>
         <form className={classes.form_container} onSubmit={handleSubmit} onReset={handleReset}>
             <div className={classes.form}>
                 <LeftForm formState={formState} onChange={handleChange}/>
@@ -76,48 +82,8 @@ function AddPost() {
             </div>
         </form>
         <SnackBar state={snackState} handleClose={snackClose}/>
-    </Box>
+    </>
   )
 }
 
-export default AddPost;
-
-
-
-export const initialformState={
-  title:{
-      value:'',
-      status:false,
-      message:''
-  },
-  experience:{
-    value:'',
-    status:false,
-    message:''
-  },
-  description:{
-      value:'',
-      status:false,
-      message:''
-  },
-  education:{
-      value:'',
-      status:false,
-      message:''
-  },
-  location:{
-      value:'',
-      status:false,
-      message:''
-  },
-  job_type:{
-      value:'',
-      status:false,
-      message:''
-  },
-  date:{
-    value:'',
-    status:false,
-    message:''
-  }
-}
+export default EditingForm;

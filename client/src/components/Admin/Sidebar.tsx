@@ -5,20 +5,26 @@ import ArrowBack from '@mui/icons-material/ArrowBackIos';
 import ArrowForward from '@mui/icons-material/ArrowForwardIos';
 import { Link } from 'react-router-dom';
 
+
+import BadgeIcon from '@mui/icons-material/Badge';
+import PendingActionsIcon from '@mui/icons-material/PendingActions';
+import LogoutIcon from '@mui/icons-material/Logout';
+import HomeIcon from '@mui/icons-material/Home';
+
 const list=[
     {
-        icon:<AccountIcon fontSize='large'/>,
+        icon:<HomeIcon fontSize='large'/>,
         name:'Home',
         link:''
         
     },
     {
-        icon:<AccountIcon fontSize='large'/>,
+        icon:<BadgeIcon fontSize='large'/>,
         name:'Employers',
         link:'employers'
     },
     {
-        icon:<AccountIcon fontSize='large'/>,
+        icon:<PendingActionsIcon fontSize='large'/>,
         name:'Pendings',
         link:'pendings'
     },
@@ -28,7 +34,7 @@ const list=[
         link:'account'
     },
     {
-      icon:<AccountIcon fontSize='large'/>,
+      icon:<LogoutIcon fontSize='large'/>,
       name:'Logout',
       link:'/logout'
   }

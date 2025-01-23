@@ -1,6 +1,45 @@
 .card{
     padding: 1rem;
-    width: 400px;
     height: 200px;
-    border: 1px solid black;
+    background-color: white;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 10px 30px -15px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 10px 30px -15px rgba(0,0,0,0.75);
+    box-shadow: 4px 10px 30px -15px rgba(0,0,0,0.75);
+    font-family: "Poppins", monospace,serif;
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+.date{
+    color: var(--grey-color);
+    font-size: 12px;
+}
+.heading{
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.heading i{
+    cursor: pointer;
+}
+.action{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+.view:hover{
+    color: rgba(86, 86, 228, 0.897);
+}
+.edit:hover{
+    color: rgb(229, 247, 65);
+}
+.del_btn:hover{
+    color: var(--errorColor);
+    cursor: pointer;
+} 

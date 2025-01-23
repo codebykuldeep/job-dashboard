@@ -37,12 +37,13 @@ function fieldValidation(value:string):[string,boolean]{
     return ['',false];
 }
 
-function dateValidation(value:string):[string,boolean]{
+export function dateValidation(value:string):[string,boolean]{
     if(!value){
         return ['This field is required',true];
     }
     const d1 = new Date(value).toISOString().split('T')[0];
-    const d2 = new Date().toDateString().split('T')[0];
+    const d2 = new Date().toISOString().split('T')[0];
+    
     if(new Date(d1).getTime() - new Date(d2).getTime() < 0){
         return ['Select a valid date',true]
     }

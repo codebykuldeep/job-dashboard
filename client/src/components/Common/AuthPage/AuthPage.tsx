@@ -3,7 +3,8 @@ import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 import Register from './Register';
 import Login from './Login';
-import classes from './auth-page.module.css'
+import classes from './auth-page.module.css';
+import authImage from '../../../assets/authImage.jpg'
 
 function AuthPage() {
     const [ seachParams,setSeachParams]= useSearchParams();
@@ -14,7 +15,9 @@ function AuthPage() {
     }
   return (
     <Box className={classes.container}>
-        <Box className={classes.image}>IMAGE</Box>
+        <Box className={classes.image}>
+          <img src={authImage} alt="auth side img" />
+        </Box>
         <Box className={classes.form}>
             {auth === 'register' ? <Register handleFormChange={handleFormChange}/> : <Login handleFormChange={handleFormChange}/>}
         </Box>

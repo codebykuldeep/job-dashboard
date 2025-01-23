@@ -4,6 +4,9 @@
 // import { findUser, registerUser } from "../lib/users.js";
 // import { ApiResponse, UserResponse } from "../utils/response.js";
 
+import { getUserById } from "../lib/users.js";
+import { ApiResponse } from "../utils/response.js";
+
 
 // export async function handleRegistration(req,res) {
 //     const body = req.body;
@@ -57,3 +60,15 @@
 //         return res.json(new UserResponse(500,error,false))
 //     }
 // }
+
+
+
+export async function handleGetUser(req, res) {
+  const { id } = req.params;
+  try {
+    const data = await getUserById(id);
+    return res.json(new ApiResponse(200, data, true));
+  } catch (error) {
+    return res.json(new ApiResponse(500, error, false));
+  }
+}
