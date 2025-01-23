@@ -37,6 +37,18 @@ function fieldValidation(value:string):[string,boolean]{
     return ['',false];
 }
 
+function dateValidation(value:string):[string,boolean]{
+    if(!value){
+        return ['This field is required',true];
+    }
+    const d1 = new Date(value).toISOString().split('T')[0];
+    const d2 = new Date().toDateString().split('T')[0];
+    if(new Date(d1).getTime() - new Date(d2).getTime() < 0){
+        return ['Select a valid date',true]
+    }
+    return ['',false];
+}
+
 
 export function validation(title:string,value:string):[string,boolean]{
    
@@ -62,11 +74,15 @@ export function validation(title:string,value:string):[string,boolean]{
         }
         return ['',false];
     }
-    if(title === 'amount'){
+    if(title === 'amount' || title === 'experience'){
         if(!value || Number(value) < 0){
             return [`Please enter valid amount`,true];
         }
         return ['',false];
+    }
+
+    if(title === 'date'){
+        return dateValidation(value);
     }
     
     return fieldValidation(value);

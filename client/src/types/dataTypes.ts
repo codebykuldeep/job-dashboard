@@ -19,3 +19,19 @@ export interface IEmployer {
 }
 
 
+export interface IPost {
+  created_at: string;
+  date: string;
+  description: string;
+  education: string;
+  emp_id: string;
+  experience: string;
+  job_type: string;
+  location: string;
+  post_id: string;
+  status: string;
+  title: string;
+}
+
+
+

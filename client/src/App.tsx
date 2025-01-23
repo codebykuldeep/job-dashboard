@@ -13,6 +13,10 @@ import PendingEmps from './components/Admin/Employers/PendingEmps';
 import Logout from './components/Common/Logout';
 import AdminAccount from './components/Admin/Account/AdminAccount';
 import EmpDetails from './components/Admin/Employers/Details/EmpDetails';
+import Home from './components/Common/Home/Home';
+import EmployerHome from './components/Employer/Home/EmployerHome';
+import Posts from './components/Employer/Posts/Posts';
+import AddPost from './components/Employer/PostsForm/AddPost';
 
 
 
@@ -24,7 +28,7 @@ const router = createBrowserRouter([
     children:[
       {
         path:'',
-        element: <h1>Home</h1>,
+        element: <Home/>,
       },
       {
         path:'auth',
@@ -53,7 +57,15 @@ const router = createBrowserRouter([
         [
           {
             path:'',
-            element: <div>EMPLOYER HOME</div>,
+            element: <EmployerHome/>,
+          },
+          {
+            path:'posts',
+            element: <Posts/>,
+          },
+          {
+            path:'add-post',
+            element: <AddPost/>,
           }
         ]
       },

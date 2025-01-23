@@ -26,7 +26,7 @@ function EmployerLayout() {
   }
   return (
     <div className={classes.container}>
-    <Sidebar list={list}/>
+    <Sidebar list={Boolean(user?.status) ? list : unApprovedList}/>
     <Outlet/>
     </div>
   )
@@ -34,6 +34,23 @@ function EmployerLayout() {
 
 export default EmployerLayout;
 
+const unApprovedList =[
+  {
+    icon:<AccountIcon fontSize='large'/>,
+    name:'Logout',
+    link:'/logout'
+  },
+  {
+    icon:<AccountIcon fontSize='large'/>,
+    name:'Acccount',
+    link:'account'
+  },
+  {
+    icon:<AccountIcon fontSize='large'/>,
+    name:'Logout',
+    link:'/logout'
+  }
+]
 
 const list=[
   {
@@ -50,7 +67,7 @@ const list=[
   {
       icon:<AccountIcon fontSize='large'/>,
       name:'Add Posts',
-      link:'add-posts'
+      link:'add-post'
   },
   {
       icon:<AccountIcon fontSize='large'/>,

@@ -52,11 +52,11 @@ async function postingSchema() {
         description TEXT NOT NULL,
         location VARCHAR NOT NULL,
         experience INTEGER NOT NULL,
-        work_type TEXT NOT NULL,
         job_type TEXT NOT NULL,
         education VARCHAR,
         status BOOLEAN DEFAULT true,
         emp_id INTEGER NOT NULL,
+        date VARCHAR,
         created_at VARCHAR DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY(emp_id) REFERENCES employers(emp_id) ON DELETE CASCADE
       )`)
