@@ -35,9 +35,9 @@ app.use('/admin',auth,adminAuth,adminRouter);
 app.use('/posts',auth,postingsRouter);
 
 
-app.get('/',async (req,res)=>{
-    const data = await db.query('SELECT * FROM employers;')
-    return res.json({data:data});
+app.get('/',(req,res)=>{
+    // const data = await db.query('SELECT * FROM employers;')
+    return res.json({message:"SERVER IS RUNNING"});
 })
 
 app.listen(PORT,()=>{
