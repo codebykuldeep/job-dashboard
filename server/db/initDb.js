@@ -48,6 +48,7 @@ async function usersSchema() {
 async function postingSchema() {
     await db.query(`CREATE TABLE IF NOT EXISTS postings (
         post_id SERIAL PRIMARY KEY,
+        company_name VARCHAR NOT NULL,
         title VARCHAR NOT NULL, 
         description TEXT NOT NULL,
         location VARCHAR NOT NULL,
@@ -69,7 +70,7 @@ async function applicationSchema() {
         user_id INTEGER NOT NULL,
         post_id INTEGER NOT NULL, 
         user_data TEXT NOT NULL,
-        status BOOLEAN DEFAULT true,
+        status BOOLEAN DEFAULT NULL,
         created_at VARCHAR DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE CASCADE,
         FOREIGN KEY(post_id) REFERENCES postings(post_id) ON DELETE CASCADE

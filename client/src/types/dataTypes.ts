@@ -33,5 +33,15 @@ export interface IPost {
   title: string;
 }
 
+export interface IApplicant {
+  created_at: string;
+  user_data: string;
+  post_id: string;
+  user_id: string;
+  app_id: string;
+  status: string;
+  [index:string]:string;
+}
+
 
 

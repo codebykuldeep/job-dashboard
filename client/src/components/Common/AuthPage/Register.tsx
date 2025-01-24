@@ -86,7 +86,7 @@ function Register({handleFormChange}:RegisterProps) {
                     <Button type='submit' variant='contained'>Register</Button>
                 </div>
             </form>
-            <Box className={classes.switch}>New to our platform ! Click <button onClick={()=>handleFormChange('login')}>here</button></Box>
+            <Box className={classes.switch}>Already registered ! Click <button onClick={()=>handleFormChange('login')}>here</button></Box>
         </Box>
     </>
   )

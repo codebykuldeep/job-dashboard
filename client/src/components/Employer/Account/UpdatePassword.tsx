@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './details.module.css'
+import classes from './emp-account.module.css'
 import { Button, TextField } from '@mui/material'
 function UpdatePassword() {
   return (

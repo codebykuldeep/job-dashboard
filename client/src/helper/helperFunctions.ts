@@ -5,3 +5,13 @@ export function nameFormatter(value:string){
 }
 
 
+export function dateFormatter(value:string){
+    const date = new Date(value).toLocaleString('en-US',{
+        day:'2-digit',
+        month:'2-digit',
+        year:'numeric'
+    })
+    return date;
+}
+
+

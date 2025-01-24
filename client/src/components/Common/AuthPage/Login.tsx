@@ -47,11 +47,11 @@ function Login({handleFormChange}:LoginProps) {
                 dispatch(userActions.setUser(data));
                 navigate(redirectToDashboard(data));
             } else {
-                alert('Failed')
                 setSubmit(prev=>({status:true,message:result.data.message,loading:false}));
             }
           } else {
             setFormState(populateFormState(formState));
+            setSubmit(prev=>({...prev,loading:false}));
           }
         }
   return (
@@ -60,7 +60,7 @@ function Login({handleFormChange}:LoginProps) {
         <Box className={classes.container}>
             <form className={classes.form} onSubmit={handleSubmit}>
                 <InputField label='Email' type='text' name='email' formState={formState} onChange={handleChange}/>
-                <InputField label='Password' type='text' name='password' formState={formState} onChange={handleChange}/>
+                <InputField label='Password' type='password' name='password' formState={formState} onChange={handleChange}/>
                 {
                     submit.status && (
                         <p className={classes.error}>{submit.message}</p>

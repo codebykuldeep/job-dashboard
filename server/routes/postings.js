@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { handleGetPosts, handleNewPost } from '../controllers/postings.js';
+import { handleDeletePost, handleGetPostApplications, handleGetPosts, handleGetSinglePost, handleNewPost, handleUpdatePost } from '../controllers/postings.js';
 
 
 const router = Router();
@@ -7,6 +7,15 @@ const router = Router();
 router.get('/',handleGetPosts)
 
 router.post('/add',handleNewPost)
+
+router.post('/update',handleUpdatePost)
+
+router.get('/data/:id',handleGetPostApplications)
+
+router.get('/:id',handleGetSinglePost)
+
+router.delete('/:id',handleDeletePost)
+
 
 
 export default router;
