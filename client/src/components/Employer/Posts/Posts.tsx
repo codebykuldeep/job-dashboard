@@ -8,7 +8,6 @@ import { IPost } from '../../../types/dataTypes';
 import PostCard from './PostCard';
 import { Box, Container } from '@mui/material';
 import Grid from '@mui/material/Grid2';
-import SnackBar from '../../Common/AuthPage/SnackBar';
 import { deletePostMethod } from '../../../utils/http-methods/employersMethods';
 
 function Posts() {

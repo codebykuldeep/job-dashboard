@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useFetch } from '../../../utils/custom-hooks/useFetch';
-import { IApplicant, IPost, IUser } from '../../../types/dataTypes';
+import { IApplicant, IUser } from '../../../types/dataTypes';
 import Loading from '../../Common/Loading';
 import { ColumnType } from '../../../types/tableTypes';
 import ApplicantTable from './ApplicantTable';

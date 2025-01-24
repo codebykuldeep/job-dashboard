@@ -1,4 +1,4 @@
-import { Autocomplete, Box, FormLabel, SelectChangeEvent, TextField } from '@mui/material'
+import { Autocomplete, FormLabel, TextField } from '@mui/material'
 import React, { ChangeEvent } from 'react'
 import classes from './input.module.css'
 import InputField from './InputField'

@@ -13,7 +13,7 @@ interface DetailsProps{
     user:IUser;
 }
 function Details({user}:DetailsProps) {
-    const userData = Object.entries(user)
+    
   return (
     <div className={classes.container}>
       <div className={classes.heading}>ACCOUNT DETAILS</div>

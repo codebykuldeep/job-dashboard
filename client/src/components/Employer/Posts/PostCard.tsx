@@ -1,8 +1,6 @@
 import React from 'react'
 import classes from './postcard.module.css'
 import { IPost } from '../../../types/dataTypes'
-import Menu from '@mui/icons-material/MoreHoriz';
-import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { dateFormatter } from '../../../helper/helperFunctions';
 

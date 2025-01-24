@@ -11,7 +11,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import AccountIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ArticleIcon from '@mui/icons-material/Article';
-import AddIcon from '@mui/icons-material/Add';
 import WorkIcon from '@mui/icons-material/Work';
 import Sidebar from '../Common/SideBar';
 

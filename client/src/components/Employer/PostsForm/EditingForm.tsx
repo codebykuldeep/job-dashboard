@@ -6,8 +6,7 @@ import classes from './add-post.module.css'
 import { checkValidFormState, populateFormState, validation } from '../../../utils/validation';
 import { FormStateType, ReqBody } from '../../../types/formTypes';
 import { postsMethod } from '../../../utils/http-methods/employersMethods';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
+
 import SnackBar from '../../Common/AuthPage/SnackBar';
 import { initialformState } from './AddPost';
 import { IPost } from '../../../types/dataTypes';
