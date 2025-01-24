@@ -11,7 +11,7 @@ export async function handleNewPost(req, res) {
   //     education,
   //     date
   //   } = req.body;
-
+    body.company_name = req.user.company_name || req.user.name;
   try {
     await createPost(body);
     return res.json(new ApiResponse(200, { message: "job post added" }, true));

@@ -1,17 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classes from './user-account.module.css';
 import defaultUser from '../../../assets/dummy-user.jpg'
 import { Container } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 import Profile from './Profile';
+import EditPage from './EditPage/EditPage';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
 
 function UserAccount() {
+    const user = useSelector((state:RootState)=>state.userSlice.user);
     const [ query,setQuery] = useSearchParams();
+    const [selected,setSelected] = useState('profile')
     const view = query.get('view');
     function handleView(event:React.MouseEvent<HTMLInputElement>){
         let value = (event.target as HTMLInputElement).value ;
         if(value){
             setQuery({view:value})
+            setSelected(value);
         }
     }
   return (
@@ -25,14 +31,17 @@ function UserAccount() {
         </Container>
         <Container maxWidth={'md'} className={classes.content}>
             <div className={classes.btn} onClick={handleView}>
-                <button value={'profile'}>Profile</button>
-                <button value={'update'}>Update Details</button>
-                <button value={'setting'}>Settings</button>
+                
+                {
+                    button.map(({value,label})=>(
+                        <button key={value} value={value} className={selected === value ? classes.op : undefined}>{label}</button>
+                    ))
+                }
             </div>
             <div className={classes.view}>
-                {view  === 'profile' && <Profile/>}
+                {view  === 'profile' && <Profile user={user!}/>}
                 {view  === 'setting' && <div>Setting</div>}
-                {view  === 'update' && <div>Update</div>}
+                {view  === 'update' && <EditPage/>}
             </div>
         </Container>
     </div>
@@ -40,6 +49,21 @@ function UserAccount() {
 }
 
 export default UserAccount
+
+const button =[
+    {
+        value:'profile',
+        label:'Profile'
+    },
+    {
+        value:'update',
+        label:'Update Details'
+    },
+    {
+        value:'setting',
+        label:'Settings'
+    },
+]
 
 
 
