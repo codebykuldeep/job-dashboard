@@ -97,26 +97,28 @@ async function setupDb(){
 }
 
 async function connectDb() {
-    if(process.env.NODE_ENV === 'production'){
-        db.connect({
-            host:DB_CRED.PGHOST,
-            port:5432,
-            database:DB_CRED.PGDATABASE,
-            user:DB_CRED.PGUSER,
-            password:DB_CRED.PGPASSWORD
-        })
-    }
-    else{
-        db.connect({
-            host:'localhost',
-            port:5432,
-            database:'job-db',
-            user:'postgres',
-            password:'root'
-        })
-    }
+    db.connect({
+        host:DB_CRED.PGHOST,
+        port:5432,
+        database:DB_CRED.PGDATABASE,
+        user:DB_CRED.PGUSER,
+        password:DB_CRED.PGPASSWORD,
+        ssl: {
+            require:true
+        },
+    })
     console.log('DB CONNECTED!');
     setupDb();
 }
 
 export {connectDb};
+
+
+
+// db.connect({
+//     host:'localhost',
+//     port:5432,
+//     database:'job-db',
+//     user:'postgres',
+//     password:'root'
+// })
