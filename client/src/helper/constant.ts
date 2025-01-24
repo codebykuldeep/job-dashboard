@@ -1,5 +1,5 @@
 const constant ={
-    SERVER:'http://localhost:8000'
+    SERVER:process.env.REACT_APP_SERVER
 }
 
 

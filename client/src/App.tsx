@@ -20,6 +20,9 @@ import AddPost from './components/Employer/PostsForm/AddPost';
 import PostDetail from './components/Employer/PostsDetails/PostDetail';
 import EmpAccount from './components/Employer/Account/EmpAccount';
 import EditPost from './components/Employer/PostsForm/EditPost';
+import JobsPage from './components/User/JobsPage';
+import Applications from './components/User/Applications/Applications';
+import UserAccount from './components/User/Account/UserAccount';
 
 
 
@@ -50,6 +53,18 @@ const router = createBrowserRouter([
           {
             path:'',
             element: <div>USER HOME</div>,
+          },
+          {
+            path:'jobs',
+            element: <JobsPage/>,
+          },
+          {
+            path:'applications',
+            element: <Applications/>,
+          },
+          {
+            path:'account',
+            element: <UserAccount/>,
           }
         ]
       },

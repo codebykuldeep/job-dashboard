@@ -12,8 +12,15 @@ const constant ={
 export const ADMIN ={
     name:"ADMIN",
     email:'admin@email.com',
-    password:'123456',
+    password:'',
     role:'admin'
+}
+
+export const DB_CRED ={
+    PGHOST:process.env.PGHOST,
+    PGDATABASE:process.env.PGDATABASE,
+    PGUSER:process.env.PGUSER,
+    PGPASSWORD:process.env.PGPASSWORD,
 }
 
 export default constant;

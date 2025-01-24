@@ -1,5 +1,6 @@
+import { DB_CRED } from '../constant.js';
 import db from './db.js';
-
+import process from 'node:process';
 
 
 async function adminsSchema() {
@@ -38,6 +39,7 @@ async function usersSchema() {
         password VARCHAR,
         phone INTEGER,
         education VARCHAR,
+        image VARCHAR,
         resume VARCHAR,
         status BOOLEAN DEFAULT true,
         created_at VARCHAR DEFAULT CURRENT_TIMESTAMP
@@ -95,13 +97,24 @@ async function setupDb(){
 }
 
 async function connectDb() {
-    db.connect({
-        host:'localhost',
-        port:5432,
-        database:'job-db',
-        user:'postgres',
-        password:'root'
-    })
+    if(process.env.NODE_ENV === 'production'){
+        db.connect({
+            host:DB_CRED.PGHOST,
+            port:5432,
+            database:DB_CRED.PGDATABASE,
+            user:DB_CRED.PGUSER,
+            password:DB_CRED.PGPASSWORD
+        })
+    }
+    else{
+        db.connect({
+            host:'localhost',
+            port:5432,
+            database:'job-db',
+            user:'postgres',
+            password:'root'
+        })
+    }
     console.log('DB CONNECTED!');
     setupDb();
 }
