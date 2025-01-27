@@ -43,3 +43,21 @@ export async function findUser(email) {
     return undefined;
 
 }
+
+
+export async function updateUser(body,id) {
+    const {name ,email,education,summary} = body;
+  
+    const res = await db.query('UPDATE users SET name = $1 ,email = $2 ,education = $3, summary =$4  WHERE user_id = $5 ;',[name,email,education,summary,id])
+    return res.rows;
+}
+
+export async function updateResume(link , user_id){
+    const res = await db.query('UPDATE users SET resume = $1  WHERE user_id = $2 ;',[link,user_id])
+    return res.rows;
+}
+
+export async function updatePhoto(link , user_id){
+    const res = await db.query('UPDATE users SET image = $1  WHERE user_id = $2 ;',[link,user_id])
+    return res.rows;
+}

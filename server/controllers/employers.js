@@ -1,4 +1,4 @@
-import { getAllEmployers, getEmployer, updateEmployerStatus } from "../lib/employers.js";
+import { getAllEmployers, getEmployer, updateEmployer, updateEmployerStatus } from "../lib/employers.js";
 import { ApiResponse } from "../utils/response.js";
 
 
@@ -42,4 +42,15 @@ export async function handleEmployerStatusUpdate(req,res){
     } catch (error) {
         return res.status(500).json(new ApiResponse(500,error,false));
     }
+}
+
+export async function handleEmployerUpdate(req,res) {
+    try {
+        const {emp_id} = req.user;
+        const body = req.body;
+        const data = await updateEmployer(body,emp_id);
+        return res.json(new ApiResponse(200, data, true));
+      } catch (error) {
+        return res.json(new ApiResponse(500, {message:'failed to update',error}, false));
+      }
 }

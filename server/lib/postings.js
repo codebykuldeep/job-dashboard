@@ -31,3 +31,15 @@ export async function deletePost(id) {
     const res = await db.query('DELETE FROM postings WHERE post_id = $1 ;',[id])
     return res.rows[0];
 }
+
+
+export async function searchAvailablePostForUser(query,user_id){
+    const value = `%${query.toLowerCase()}%`;
+    const res = await db.query(`SELECT * FROM
+         ( SELECT * FROM postings WHERE post_id NOT IN ( SELECT post_id FROM applications WHERE user_id = $1 )) AS postings
+           WHERE LOWER(postings.title) LIKE $2 OR 
+           LOWER(postings.company_name) LIKE $3 ;`,[user_id,value,value]);
+    console.log(res.rows);
+    
+    return res.rows;
+}

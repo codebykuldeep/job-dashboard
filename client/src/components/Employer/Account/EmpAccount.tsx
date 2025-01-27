@@ -1,40 +1,84 @@
-import React from 'react';
-import classes from './emp-account.module.css'
+import React, { useState } from 'react'
+import classes from './user-account.module.css';
+import defaultUser from '../../../assets/dummy-user.jpg'
+import { Container } from '@mui/material';
+import { useSearchParams } from 'react-router-dom';
+import Profile from './Profile';
+import EditPage from './EditPage/EditPage';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
-import { useSearchParams } from 'react-router-dom';
-import { Box } from '@mui/material';
-import UpdatePassword from './UpdatePassword';
-import Details from './Details';
 
 function EmpAccount() {
-  const user = useSelector((state:RootState)=>state.userSlice.user);
-  const [searchParams,setSearchParams] = useSearchParams();
-  const view = searchParams.get('view');
-
-  function handleView(view:string){
-    setSearchParams({view:view});
-  }
+    const user = useSelector((state:RootState)=>state.userSlice.user);
+    const [ query,setQuery] = useSearchParams();
+    const [selected,setSelected] = useState('profile')
+    const view = query.get('view');
+    function handleView(event:React.MouseEvent<HTMLInputElement>){
+        let value = (event.target as HTMLInputElement).value ;
+        if(value){
+            setQuery({view:value})
+            setSelected(value);
+        }
+    }
   return (
     <div className={classes.container}>
-      <div className={classes.content}>
-      <Box className={classes.left}>
-        <Box className={classes.show_box}>
-          <Box className={classes.image}><img src={''} alt='admin icon'/></Box>
-          <Box>{user!.name}</Box>
-        </Box>
-        <Box className={classes.option}>
-          <button onClick={()=>handleView('details')}>Details</button>
-          {/* <button>Update Details</button> */}
-          <button onClick={()=>handleView('password')}>Update Password</button>
-        </Box>
-      </Box>
-      <Box className={classes.right}>
-        {view === 'password' ? <UpdatePassword/> : <Details user={user!}/>}
-      </Box>
-      </div>
+        <Container maxWidth={'md'}  className={classes.profile}>
+            <div className={classes.image}><img src={user!.image || defaultUser} alt="default user" /></div>
+            <div className={classes.detail}>
+                <h2>{user!.name}</h2>
+                <p>{user!.email}</p>
+            </div>
+        </Container>
+        <Container maxWidth={'md'} className={classes.content}>
+            <div className={classes.btn} onClick={handleView}>
+                
+                {
+                    button.map(({value,label})=>(
+                        <button key={value} value={value} className={selected === value ? classes.op : undefined}>{label}</button>
+                    ))
+                }
+            </div>
+            <div className={classes.view}>
+                {view  !== 'update' && view  !== 'setting' && <Profile user={user!}/>}
+                {view  === 'setting' && <div>Setting</div>}
+                {view  === 'update' && <EditPage/>}
+            </div>
+        </Container>
     </div>
   )
 }
 
 export default EmpAccount
+
+const button =[
+    {
+        value:'profile',
+        label:'Profile'
+    },
+    {
+        value:'update',
+        label:'Update Details'
+    },
+    {
+        value:'setting',
+        label:'Settings'
+    },
+]
+
+
+
+/*
+
+<div className={classes.container}>
+        <div className={classes.section}>
+            <div className={classes.header}>
+                <h3>Account</h3>
+            </div>
+            <div className={classes.account}>
+                <div className={classes.action}>Options</div>
+                <div className={classes.content}>Content</div>
+            </div>
+        </div>
+    </div>
+
+*/

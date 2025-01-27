@@ -4,7 +4,9 @@
 // import { findUser, registerUser } from "../lib/users.js";
 // import { ApiResponse, UserResponse } from "../utils/response.js";
 
-import { getUserById } from "../lib/users.js";
+import { getApplicationsWithPostByUserID } from "../lib/applications.js";
+import { getUserById, updatePhoto, updateResume, updateUser } from "../lib/users.js";
+import { uploadFileToCloudinary } from "../services/cloudinary.js";
 import { ApiResponse } from "../utils/response.js";
 
 
@@ -70,5 +72,62 @@ export async function handleGetUser(req, res) {
     return res.json(new ApiResponse(200, data, true));
   } catch (error) {
     return res.json(new ApiResponse(500, error, false));
+  }
+}
+
+
+export async function handleUserDataUpdate(req,res) {
+  try {
+    const {user_id} = req.user;
+    const body = req.body;
+    const data = await updateUser(body,user_id);
+    return res.json(new ApiResponse(200, data, true));
+  } catch (error) {
+    return res.json(new ApiResponse(500, {message:'failed to update',error}, false));
+  }
+}
+
+export async function handleResumeUpdate(req,res) {
+  if(!req.file){
+    return res.json(new ApiResponse(500, {message:'failed to upload resume'}, false));
+  }
+
+  try {
+    const {user_id} = req.user;
+    const filePath = req.file.path;
+    const uploadLink = await uploadFileToCloudinary(filePath);
+    await updateResume(uploadLink,user_id);
+    return res.json(new ApiResponse(200,{message:'resume update'}, true));
+  } catch (error) {
+    return res.json(new ApiResponse(500, {message:'failed to upload resume',error}, false));
+  }
+  
+}
+
+export async function handlePhotoUpdate(req,res) {
+  if(!req.file){
+    return res.json(new ApiResponse(500, {message:'failed to upload resume'}, false));
+  }
+
+  try {
+    const {user_id} = req.user;
+    const filePath = req.file.path;
+    const uploadLink = await uploadFileToCloudinary(filePath);
+    await updatePhoto(uploadLink,user_id);
+    return res.json(new ApiResponse(200,{message:'photo updated'}, true));
+  } catch (error) {
+    return res.json(new ApiResponse(500, {message:'failed to upload photo',error}, false));
+  }
+  
+}
+
+
+export async function handleGetUserApplications(req,res) {
+  try {
+    const {user_id} = req.user;
+    const data = await getApplicationsWithPostByUserID(user_id);
+    return res.json(new ApiResponse(200, data, true));
+  } catch (error) {
+    return res.json(new ApiResponse(500, {message:'failed to get data',error}, false));
   }
 }

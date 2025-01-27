@@ -31,6 +31,8 @@ export interface IPost {
   post_id: string;
   status: string;
   title: string;
+  company_name:string;
+  applied:string;
 }
 
 export interface IApplicant {
@@ -43,5 +45,12 @@ export interface IApplicant {
   [index:string]:string;
 }
 
+
+export interface  IApplications extends IPost{
+  app_id:string;
+  app_status:string;
+  applied_date:string;
+  user_data:string;
+}
 
 

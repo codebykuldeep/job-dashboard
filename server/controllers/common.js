@@ -96,9 +96,16 @@ export async function handleUserVerification(req,res) {
         }
 
         const token = generateToken(user);
+        //await wait(5000);
         return res.json(new UserResponse(200,user,true,token));
        
     } catch (error) {
         return res.json(new UserResponse(500,error,false))
     }
 }
+
+// function wait(d){
+//     return new Promise((resolve)=>{
+//         setTimeout(()=>{resolve();},[d])
+//     })
+// }

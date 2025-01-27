@@ -7,6 +7,9 @@ env.config();
 const constant ={
     PORT:process.env.PORT,
     JWT_SECRET:'HELLO WORLD',
+    CLOUD_NAME:process.env.CLOUD_NAME,
+    CLOUD_KEY:process.env.CLOUD_KEY,
+    CLOUD_SECRET:process.env.CLOUD_SECRET,
 };
 
 export const ADMIN ={
@@ -22,5 +25,6 @@ export const DB_CRED ={
     PGUSER:process.env.PGUSER,
     PGPASSWORD:process.env.PGPASSWORD,
 }
+
 
 export default constant;

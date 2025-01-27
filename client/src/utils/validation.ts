@@ -68,7 +68,7 @@ export function validation(title:string,value:string):[string,boolean]{
         }
         return ['',false];
     }
-    if(title === 'number'){
+    if(title === 'number' || title === 'phone'){
         
         if(Number(value) <  0 || value.length !== 10){
             return [`Please enter valid number`,true];
@@ -76,7 +76,7 @@ export function validation(title:string,value:string):[string,boolean]{
         return ['',false];
     }
     if(title === 'amount' || title === 'experience'){
-        if(!value || Number(value) < 0){
+        if(value === null || value === '' || Number(value) < 0){
             return [`Please enter valid amount`,true];
         }
         return ['',false];

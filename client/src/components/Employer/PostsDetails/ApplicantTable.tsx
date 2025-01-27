@@ -8,21 +8,20 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { ColumnType } from '../../../types/tableTypes';
-import { IApplicant, IUser } from '../../../types/dataTypes';
+import { IApplicant } from '../../../types/dataTypes';
 
 
 
 interface DataTableProps{
   columns:ColumnType[],
   rows:IApplicant[],
-  openModal?:(row:IUser)=>void;
+  openModal?:(row:IApplicant)=>void;
 }
 
 export default function ApplicantTable({columns,rows,openModal}:DataTableProps) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   
-
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -34,11 +33,10 @@ export default function ApplicantTable({columns,rows,openModal}:DataTableProps) 
 
   function handleRow(row:any){
     if(openModal){
-      openModal(row.user_data);
+      openModal(row);
     }
     else{
       console.log(row);
-      alert(JSON.stringify(row.user_data))
     }
     
   }

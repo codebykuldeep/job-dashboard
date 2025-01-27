@@ -1,7 +1,6 @@
 import express from 'express';
 import constant from './constant.js';
 import { connectDb } from './db/initDb.js';
-import db from './db/db.js';
 import { logger } from './middleware/utils middleware.js';
 import cors from 'cors';
 import { adminAuth, auth } from './middleware/auth.js';

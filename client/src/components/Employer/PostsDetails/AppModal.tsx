@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { IUser } from '../../../types/dataTypes';
+import { IApplicant, IUser } from '../../../types/dataTypes';
 import classes from './app-modal.module.css'
-import { Button } from '@mui/material';
+import { Alert, Button } from '@mui/material';
 import { nameFormatter } from '../../../helper/helperFunctions';
 import CallIcon from '@mui/icons-material/CallMade';
+import { userServerConnect } from '../../../utils/http-methods/userMethods';
 
 const style = {
   position: 'absolute',
@@ -21,29 +22,31 @@ const style = {
 };
 
 interface EmpModalProps{
-    data:IUser,
+    data:IApplicant,
     open:boolean;
     handleClose:()=>void;
-    update?:()=>void;
+    update:()=>void;
 }
 
 export default function AppModal({data,open,handleClose,update}:EmpModalProps) {
     const [errorState,setErrorState] = useState(false);
-    
+    const [submit,setSubmit] =useState(false);
+    const user = data.user_data as unknown as IUser;
     const EmpDetails = ['user_id','name','email','phone','summary'];
-    //const status = data.status === null ? "Not Approved" : Boolean(data.status) ? 'approved' : 'rejected';
-
-
+    
     async function handleStatusUpdate(status:boolean){
-      //const emp_id = data.emp_id;
-      const result = true;//await updateEmployerStatus(emp_id,status);
-      if(result){
-        // update();
+      setSubmit(true);
+      console.log(data.app_id);
+      
+      const result = await userServerConnect('POST','posts/status',undefined,{status:String(status),id:data.app_id});
+      if(Boolean(result.success)){
+        update();
         handleClose();
       }
       else{
         setErrorState(true)
       }
+      setSubmit(false);
     }
   
   return (
@@ -58,22 +61,27 @@ export default function AppModal({data,open,handleClose,update}:EmpModalProps) {
               {EmpDetails.map((key, index) => (
                 <p key={key}>
                   <span>{nameFormatter(key)} :</span>
-                  <span>{data[key] || "Not Available"}</span>
+                  <span>{user[key] || "Not Available"}</span>
                 </p>
               ))}
               <p>
                   <span>Resume :</span>
-                  <span><a href={data.resume} target='_blank' rel="noreferrer"><Button>Open <CallIcon/></Button></a></span>
+                  <span><a href={user.resume} target='_blank' rel="noreferrer"><Button>Open <CallIcon/></Button></a></span>
                 </p>
             </Box>
             {errorState && (
               <div className={classes.error}>
-                Failed to update employer status right now, Try later.
+                Failed to update applicant status right now, Try later.
+              </div>
+            )}
+            {submit && (
+              <div className={classes.submit}>
+                <Alert severity="info">Updating Status. Please wait !</Alert>
               </div>
             )}
             <Box className={classes.button}>
-              <Button variant="contained" onClick={()=>handleStatusUpdate(true)}>Looks Good</Button>
-              <Button variant="contained" onClick={()=>handleStatusUpdate(false)}>Reject</Button>
+              <Button disabled={submit} variant="contained" onClick={()=>handleStatusUpdate(true)}>Looks Good</Button>
+              <Button variant="contained" disabled={submit} onClick={()=>handleStatusUpdate(false)}>Reject</Button>
               <Button variant="contained" onClick={handleClose}>
                 Close
               </Button>

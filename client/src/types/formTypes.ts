@@ -25,3 +25,9 @@ export interface ReqBody{
 export interface ParamsType{
     [index:string]:string;
 }
+
+export interface SnackType{
+    open:boolean;
+    status:boolean;
+    message:string;
+}

@@ -18,9 +18,9 @@ import EmployerHome from './components/Employer/Home/EmployerHome';
 import Posts from './components/Employer/Posts/Posts';
 import AddPost from './components/Employer/PostsForm/AddPost';
 import PostDetail from './components/Employer/PostsDetails/PostDetail';
-import EmpAccount from './components/Employer/Account/EmpAccount';
+import EmpAccount from './components/Employer/Account/EmpAccount'
 import EditPost from './components/Employer/PostsForm/EditPost';
-import JobsPage from './components/User/JobsPage';
+import JobsPage from './components/User/JobsPage/JobsPage';
 import Applications from './components/User/Applications/Applications';
 import UserAccount from './components/User/Account/UserAccount';
 
