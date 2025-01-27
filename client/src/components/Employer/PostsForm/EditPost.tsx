@@ -5,7 +5,7 @@ import Loading from '../../Common/Loading';
 import classes from './edit-post.module.css'
 import { initialformState } from './AddPost';
 import { FormStateType } from '../../../types/formTypes';
-import { IPost, IUser } from '../../../types/dataTypes';
+import { IPost } from '../../../types/dataTypes';
 import EditingForm from './EditingForm';
 import { Button } from '@mui/material';
 
