@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { IEmployer, IUser } from '../../../types/dataTypes';
+import { IUser } from '../../../types/dataTypes';
 import classes from './app-modal.module.css'
 import { Button } from '@mui/material';
 import { nameFormatter } from '../../../helper/helperFunctions';
-import { updateEmployerStatus } from '../../../utils/http-methods/adminMethods';
 import CallIcon from '@mui/icons-material/CallMade';
 
 const style = {
@@ -36,7 +35,7 @@ export default function AppModal({data,open,handleClose,update}:EmpModalProps) {
 
 
     async function handleStatusUpdate(status:boolean){
-      const emp_id = data.emp_id;
+      //const emp_id = data.emp_id;
       const result = true;//await updateEmployerStatus(emp_id,status);
       if(result){
         // update();

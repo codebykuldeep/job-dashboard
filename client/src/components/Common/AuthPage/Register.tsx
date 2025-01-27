@@ -13,6 +13,7 @@ interface RegisterProps{
 
 function Register({handleFormChange}:RegisterProps) {
     const [formState,setFormState] = useState<FormStateType>(initialformState);
+    const [submit,setSubmit] = useState(false);
     const [snackBar,setSnackBar] =useState({
         open:false,
         status:false,
@@ -39,7 +40,7 @@ function Register({handleFormChange}:RegisterProps) {
     
     async function handleSubmit(event:FormEvent<HTMLFormElement>){
         event.preventDefault();
-        
+        setSubmit(true);
         if(checkValidFormState(formState)){ 
             const formData = new FormData(event.target as HTMLFormElement)
             const body = Object.fromEntries(formData.entries()) as ReqBody;
@@ -58,6 +59,7 @@ function Register({handleFormChange}:RegisterProps) {
         else{
             setFormState(populateFormState(formState));
         }
+        setSubmit(false);
     }
     
   return (
@@ -83,7 +85,7 @@ function Register({handleFormChange}:RegisterProps) {
                     </RadioGroup>
                 </Box>
                 <div>
-                    <Button type='submit' variant='contained'>Register</Button>
+                    <Button disabled={submit} type='submit' variant='contained'>Register</Button>
                 </div>
             </form>
             <Box className={classes.switch}>Already registered ! Click <button onClick={()=>handleFormChange('login')}>here</button></Box>
