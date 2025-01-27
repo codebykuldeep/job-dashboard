@@ -18,7 +18,7 @@ export async function applyApplication(user_id,post_id) {
 
 
 export async function getApplicationsWithPostByUserID(user_id){
-    const res = await db.query('SELECT * , applications.created_at AS applied_date,applications.status AS  app_status  FROM applications INNER JOIN postings ON applications.post_id = postings.post_id AND applications.user_id = $1 ;',[user_id]);
+    const res = await db.query('SELECT * , applications.created_at AS applied_date , applications.status AS app_status  FROM applications INNER JOIN postings ON applications.post_id = postings.post_id AND applications.user_id = $1 ;',[user_id]);
     if(res.rows.length > 0){
         res.rows.forEach((row)=>{
             row.user_data = JSON.parse(row.user_data);
