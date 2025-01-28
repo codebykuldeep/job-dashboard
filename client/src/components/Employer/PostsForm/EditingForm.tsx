@@ -67,6 +67,8 @@ function EditingForm({post,formStateFromData}:EditingFormProps) {
     setFormState(initialformState)
     
   }
+  console.log(formState);
+  
   return (
     <>
     <Box component={'h1'} className={classes.heading}>Update job Details</Box>
@@ -76,7 +78,7 @@ function EditingForm({post,formStateFromData}:EditingFormProps) {
                 <RightForm formState={formState} onChange={handleChange}/>
             </div>
             <div className={classes.btn}>
-                <Button type='submit' variant='contained' disabled={submit}>Update</Button>
+                <Button type='submit' variant='contained' loading={submit} loadingPosition='end'>Update</Button>
                 <Button type='reset' variant='contained' disabled={submit}>Reset</Button>
             </div>
         </form>

@@ -10,7 +10,7 @@ interface ProfileProps{
 
 
 function Profile({user}:ProfileProps) {
-  const views = ['name','email','comapny_name','summary',]
+  const views = ['name','email','company_name','summary',]
   return (
     <div className={classes.container}>
       <div className={classes.header}>

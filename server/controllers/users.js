@@ -5,7 +5,7 @@
 // import { ApiResponse, UserResponse } from "../utils/response.js";
 
 import { getApplicationsWithPostByUserID } from "../lib/applications.js";
-import { getUserById, updatePhoto, updateResume, updateUser } from "../lib/users.js";
+import { getUserAnalytics, getUserById, updatePhoto, updateResume, updateUser } from "../lib/users.js";
 import { uploadFileToCloudinary } from "../services/cloudinary.js";
 import { ApiResponse } from "../utils/response.js";
 
@@ -79,6 +79,8 @@ export async function handleGetUser(req, res) {
 export async function handleUserDataUpdate(req,res) {
   try {
     const {user_id} = req.user;
+    console.log(req.body);
+    
     const body = req.body;
     const data = await updateUser(body,user_id);
     return res.json(new ApiResponse(200, data, true));
@@ -126,6 +128,17 @@ export async function handleGetUserApplications(req,res) {
   try {
     const {user_id} = req.user;
     const data = await getApplicationsWithPostByUserID(user_id);
+    return res.json(new ApiResponse(200, data, true));
+  } catch (error) {
+    return res.json(new ApiResponse(500, {message:'failed to get data',error}, false));
+  }
+}
+
+
+export async function handleUserDetailAnalysis(req,res) {
+  try {
+    const {user_id} = req.user;
+    const data = await getUserAnalytics(user_id);
     return res.json(new ApiResponse(200, data, true));
   } catch (error) {
     return res.json(new ApiResponse(500, {message:'failed to get data',error}, false));

@@ -4,6 +4,13 @@
     background-color: var(--dashBg);
     padding: 0.5rem 0;
     font-family: monospace,sans-serif,serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 15px;
+}
+.heading span{
+    cursor: pointer;
 }
 .content{
     width: 100%;

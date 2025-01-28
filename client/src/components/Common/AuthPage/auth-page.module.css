@@ -3,6 +3,8 @@
     height: 100vh;
     display: flex;
     align-items: center;
+    font-family: "Wix Madefor Display", "Wix Madefor Display Fallback", monospace,
+    serif;
 }
 
 .image{

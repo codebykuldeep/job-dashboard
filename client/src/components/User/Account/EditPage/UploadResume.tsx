@@ -2,12 +2,16 @@ import React, { FormEvent, useState } from 'react'
 import classes from './upload-photo.module.css'
 import { Button } from '@mui/material';
 import { uploadFile } from '../../../../utils/http-methods/userMethods';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../../../store/store';
+import { updateUser } from '../../../../store/userSlice';
 
 interface Props{
   snackOpen:(status:boolean,message:string)=>void;
 }
 
 function UploadResume({snackOpen}:Props) {
+  const dispatch = useDispatch<AppDispatch>();
   const [submit,setSubmit] = useState(false);
   const [file,setFile] = useState<File | null>(null);
 
@@ -23,6 +27,7 @@ function UploadResume({snackOpen}:Props) {
     const formData = new FormData(event.target as HTMLFormElement);
     const result = await uploadFile('users/resume',formData);
     if(Boolean(result.success)){
+      dispatch(updateUser());
       snackOpen(true,'Resume updated !')
     }
     else{
@@ -60,7 +65,7 @@ function UploadResume({snackOpen}:Props) {
               )
             }
             <div className={classes.upload_btn}>
-                <Button variant='contained' type='submit' disabled={submit}>{submit ? 'Updating' : 'Update'}</Button>
+                <Button variant='contained' type='submit' loading={submit} loadingPosition='end'>{submit ? 'Updating' : 'Update'}</Button>
             </div>
             
         </form>
