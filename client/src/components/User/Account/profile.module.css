@@ -13,3 +13,6 @@
 .line span:first-child{
     font-weight: 600;
 }
+.line span:last-child{
+    text-transform: capitalize;
+}

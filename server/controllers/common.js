@@ -1,7 +1,7 @@
 import { generateToken, verifyToken } from "../auth/auth.js";
 import { getAdmin } from "../lib/admins.js";
 import { getEmployerByEmail, registerEmployer } from "../lib/employers.js";
-import { findUser, getUserByEmail, registerUser } from "../lib/users.js";
+import { findUser, getUserByEmail, registerUser, updatePassword } from "../lib/users.js";
 import { ApiResponse, UserResponse } from "../utils/response.js";
 import bcrypt from 'bcrypt';
 
@@ -25,6 +25,8 @@ export async function handleRegistration(req,res) {
             return res.json(new ApiResponse(401,{message:'Unknown role registration failed'},false))
         }
     } catch (error) {
+        console.log(error);
+        
         return res.json(new ApiResponse(500,error,false))
     }
 }
@@ -104,8 +106,26 @@ export async function handleUserVerification(req,res) {
     }
 }
 
-// function wait(d){
-//     return new Promise((resolve)=>{
-//         setTimeout(()=>{resolve();},[d])
-//     })
-// }
+export async function handleResetPassword(req,res) {
+    try {
+        const {role,email}  = req.user;
+        let {old_password,password} = req.body;
+        password = await bcrypt.hash(password,3);
+        const result = await findUser(email);
+        const db_password = result.password;
+        console.log(result);
+        console.log(req.body);
+        
+        const passwordCheck = await bcrypt.compare(old_password, db_password);
+        console.log(old_password,db_password,passwordCheck,password);
+        
+        if(passwordCheck){
+            await updatePassword(role,email,password);
+            return res.json(new ApiResponse(200,{message:'Password Update successful'},true));
+        }
+        
+        return res.json(new ApiResponse(400,{message:'Password mismatch occurred'},false))
+    } catch (error) {
+        return res.json(new ApiResponse(500,{message:'Update successful',error},false))
+    }
+}

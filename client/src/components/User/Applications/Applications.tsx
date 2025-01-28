@@ -72,13 +72,14 @@ export const ApplicationsColumn:ColumnType[] = [
     id:'app_status',
     label:'Status',
     format:(value)=>{
+      let output = "selected"
       if(value === null){
-        return 'pending'
+        output = 'pending'
       }
-      if(Boolean(value) === false){
-        return 'Rejected'
+      else if(Boolean(value) === false){
+        output = 'rejected'
       }
-      return "selected";
+      return <span className={classes[output]}>{output}</span>;
     }
   }
 ]

@@ -60,3 +60,20 @@
     border-bottom: 1px solid rgb(39, 39, 39) !important;
     font-weight: 600 !important;
 }
+
+
+
+.setting{
+    margin: 1rem 0;
+}
+
+.setting_form{
+    margin: 1rem 0;
+}
+.inp_form{
+    padding: 0.5rem 0;
+}
+
+.setting_error ,.setting_success{
+    padding: 0.5rem 0;
+}

@@ -41,10 +41,19 @@ function FilterBar() {
         </div>
         <div>
             <div>Locations</div>
-            <FormGroup onChange={handleLocation}>
+            <FormGroup onChange={handleLocation} className={classes.location}>
+                <div>
                 <FormControlLabel control={<Checkbox value={'Noida'} />} label="Noida" />
                 <FormControlLabel control={<Checkbox  value={"Gurugram"}/>} label="Gurugram" />
+                </div>
+                <div>
                 <FormControlLabel control={<Checkbox  value={'Banglore'}/>} label="Banglore" />
+                <FormControlLabel control={<Checkbox  value={'Delhi'}/>} label="Delhi" />
+                </div>
+                <div>
+                <FormControlLabel control={<Checkbox value={'Pune'} />} label="Pune" />
+                <FormControlLabel control={<Checkbox  value={"Gurugram"}/>} label="Kolkata" />
+                </div>
             </FormGroup>
         </div>
         <div>

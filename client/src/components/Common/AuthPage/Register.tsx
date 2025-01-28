@@ -84,8 +84,8 @@ function Register({handleFormChange}:RegisterProps) {
                         <FormControlLabel value="user" control={<Radio />} label="Jobseeker" />
                     </RadioGroup>
                 </Box>
-                <div>
-                    <Button disabled={submit} type='submit' variant='contained'>Register</Button>
+                <div className={classes.auth_btn}>
+                    <Button loading={submit} loadingPosition='end' type='submit' variant='contained'>Register</Button>
                 </div>
             </form>
             <Box className={classes.switch}>Already registered ! Click <button onClick={()=>handleFormChange('login')}>here</button></Box>

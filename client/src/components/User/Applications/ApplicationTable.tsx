@@ -48,12 +48,12 @@ export default function ApplicationTable({columns,rows,openModal}:DataTableProps
       <TableContainer sx={{ maxHeight: 440,width:'100%', }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
-            <TableRow>
+            <TableRow >
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth }}
+                  style={{ minWidth: column.minWidth,fontWeight:'600' }}
                 >
                   {column.label}
                 </TableCell>

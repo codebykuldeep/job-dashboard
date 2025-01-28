@@ -74,7 +74,7 @@ function AddPost() {
                 <RightForm formState={formState} onChange={handleChange}/>
             </div>
             <div className={classes.btn}>
-                <Button type='submit' variant='contained' disabled={submit}>Submit</Button>
+                <Button type='submit' variant='contained' loading={submit} loadingPosition='end'>Submit</Button>
                 <Button type='reset' variant='contained' disabled={submit}>Reset</Button>
             </div>
         </form>

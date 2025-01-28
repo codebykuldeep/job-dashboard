@@ -6,6 +6,7 @@ import classes from './emp-modal.module.css'
 import { Button } from '@mui/material';
 import { nameFormatter } from '../../../helper/helperFunctions';
 import { updateEmployerStatus } from '../../../utils/http-methods/adminMethods';
+import CloseIcon from '@mui/icons-material/Close';
 
 const style = {
   position: 'absolute',
@@ -52,6 +53,7 @@ export default function EmpModal({data,open,handleClose,update}:EmpModalProps) {
         <Box sx={style} className={classes.modal}>
           <Box className={classes.heading}>
             <h1>Employer Details</h1>
+            <span onClick={handleClose}><CloseIcon/></span>
           </Box>
           <Box className={classes.content}>
             <Box className={classes.detail}>
@@ -73,9 +75,6 @@ export default function EmpModal({data,open,handleClose,update}:EmpModalProps) {
             <Box className={classes.button}>
               <Button variant="contained" onClick={()=>handleStatusUpdate(true)}>Approve</Button>
               <Button variant="contained" onClick={()=>handleStatusUpdate(false)}>Reject</Button>
-              <Button variant="contained" onClick={handleClose}>
-                Close
-              </Button>
             </Box>
           </Box>
         </Box>

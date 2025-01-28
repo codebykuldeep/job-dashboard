@@ -66,8 +66,10 @@ function Login({handleFormChange}:LoginProps) {
                         <p className={classes.error}>{submit.message}</p>
                     )
                 }
-                <div>
-                    <Button disabled={submit.loading} type='submit' variant='contained'>Login</Button>
+                <div className={classes.auth_btn}>
+                    <Button type='submit' variant='contained' loading={submit.loading} loadingPosition="end"> 
+                      Login
+                    </Button>
                 </div>
             </form>
             <Box className={classes.switch}>New to our platform ! Click <button onClick={()=>handleFormChange('register')}>here</button></Box>

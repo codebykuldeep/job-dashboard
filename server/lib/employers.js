@@ -21,8 +21,10 @@ export async function getEmployerByEmail(email) {
 }
 
 export async function registerEmployer(body){
+    console.log(body);
+    
     const {name,email,password,phone} = body;
-    const result = await db.query(`INSERT INTO employers(name,email,password,phone) VALUES( $1 , $2 , $3 ,$4 ) RETURNING * ;`,[name,email,password,phone])
+    const result = await db.query(`INSERT INTO employers (name , email , password , phone ) VALUES( $1 , $2 , $3 , $4 ) RETURNING * ;`,[name,email,password,phone])
     return result.rows;
 }
 
@@ -37,4 +39,20 @@ export async function updateEmployer(body,id) {
   
     const res = await db.query('UPDATE employers SET name = $1 , email = $2 ,company_name = $3, phone =$4 , summary = $5 WHERE emp_id = $6 ;',[name,email,company_name,phone,summary,id])
     return res.rows;
+}
+
+
+export async function getReportForEmployer(emp_id){
+    const res = await db.query(`
+        SELECT 
+        (SELECT COUNT(*) FROM postings WHERE emp_id = $1) AS job_posted ,
+        (SELECT COUNT(*) FROM postings WHERE emp_id = $2 AND date::date >= CURRENT_DATE ) AS job_active,
+        (SELECT COUNT(*) FROM postings WHERE emp_id = $3 AND date::date < CURRENT_DATE ) AS job_expired,
+        (SELECT COUNT(*) FROM applications INNER JOIN postings ON applications.post_id = postings.post_id AND postings.emp_id = $4 ) AS app_recieved ,
+        (SELECT COUNT(*) FROM applications INNER JOIN postings ON applications.post_id = postings.post_id AND postings.emp_id = $5 AND applications.status = 'true' ) AS app_accepted,
+        (SELECT COUNT(*) FROM applications INNER JOIN postings ON applications.post_id = postings.post_id AND postings.emp_id = $6 AND applications.status IS NULL ) AS app_pending ,
+        (SELECT COUNT(*) FROM applications INNER JOIN postings ON applications.post_id = postings.post_id AND postings.emp_id = $7 AND applications.status = 'false') AS app_rejected 
+        ;
+        `,[emp_id,emp_id,emp_id,emp_id,emp_id,emp_id,emp_id]);
+    return res.rows[0];
 }

@@ -10,7 +10,7 @@ interface ProfileProps{
 
 
 function Profile({user}:ProfileProps) {
-  const views = ['name','email','education','summary']
+  const views = ['name','email','education','summary','skill']
   return (
     <div className={classes.container}>
       <div className={classes.header}>
@@ -20,9 +20,13 @@ function Profile({user}:ProfileProps) {
         {views.map((view) => (
           <p key={view} className={classes.line}>
             <span>{nameFormatter(view)}</span> :{" "}
-            <span>{nameFormatter(user[view])}</span>
+            <span>{user[view]}</span>
           </p>
         ))}
+        <p className={classes.line}>
+            <span>{nameFormatter('experience')}</span> :{" "}
+            <span>{user['experience']} years</span>
+          </p>
       </div>
       {user?.resume && (
         <div>

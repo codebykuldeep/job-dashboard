@@ -8,13 +8,13 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { ColumnType } from '../../../types/tableTypes';
-import { IApplicant } from '../../../types/dataTypes';
+import { IApplicant, IUser } from '../../../types/dataTypes';
 
 
 
 interface DataTableProps{
   columns:ColumnType[],
-  rows:IApplicant[],
+  rows:IApplicant[] | IUser[],
   openModal?:(row:IApplicant)=>void;
 }
 

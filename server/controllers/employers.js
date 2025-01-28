@@ -1,4 +1,5 @@
-import { getAllEmployers, getEmployer, updateEmployer, updateEmployerStatus } from "../lib/employers.js";
+import { getAllEmployers, getEmployer, getReportForEmployer, updateEmployer, updateEmployerStatus } from "../lib/employers.js";
+import { searchJobseekersByEmp } from "../lib/users.js";
 import { ApiResponse } from "../utils/response.js";
 
 
@@ -53,4 +54,28 @@ export async function handleEmployerUpdate(req,res) {
       } catch (error) {
         return res.json(new ApiResponse(500, {message:'failed to update',error}, false));
       }
+}
+
+
+export async function handleReportForEmployerDashboard(req,res) {
+    try {
+        const {emp_id} = req.user;
+        const data = await getReportForEmployer(emp_id);
+        return res.json(new ApiResponse(200, data, true))
+    } catch (error) {
+        return res.json(new ApiResponse(500, {message:'failed to update',error}, false));
+    }
+}
+
+
+export async function handleJobSeekerSearch(req,res) {
+    const {experience,skill} = req.query;
+    console.log(req.query);
+    
+    try {
+        const data = await searchJobseekersByEmp(experience,skill);
+        return res.json(new ApiResponse(200, data, true))
+    } catch (error) {
+        return res.json(new ApiResponse(500, {message:'failed to search job seekers',error}, false));
+    }
 }

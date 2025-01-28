@@ -42,7 +42,7 @@
 }
 
 
-.form_box{
+/* .form_box{
     padding: 1rem;
     width: 100%;
     
@@ -50,18 +50,24 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+} */
+.form_box{
+    padding: 1rem;
 }
-
+.form_head{
+    padding: 0.8rem 0;
+    font-family: monospace,serif;
+}
 .form{
     width: 70%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     gap: 25px;
 }
-.form div{
+.form .input input{
     width: 90%;
 }
 
@@ -73,4 +79,9 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+
+.setting_error , .setting_success{
+    text-align: left;
 }

@@ -14,7 +14,6 @@ import Logout from './components/Common/Logout';
 import AdminAccount from './components/Admin/Account/AdminAccount';
 import EmpDetails from './components/Admin/Employers/Details/EmpDetails';
 import Home from './components/Common/Home/Home';
-import EmployerHome from './components/Employer/Home/EmployerHome';
 import Posts from './components/Employer/Posts/Posts';
 import AddPost from './components/Employer/PostsForm/AddPost';
 import PostDetail from './components/Employer/PostsDetails/PostDetail';
@@ -23,6 +22,9 @@ import EditPost from './components/Employer/PostsForm/EditPost';
 import JobsPage from './components/User/JobsPage/JobsPage';
 import Applications from './components/User/Applications/Applications';
 import UserAccount from './components/User/Account/UserAccount';
+import UserHome from './components/User/Home/UserHome';
+import EmpHomeLayout from './components/Employer/Home/EmpHomeLayout';
+import Find from './components/Employer/Find/Find';
 
 
 
@@ -52,7 +54,7 @@ const router = createBrowserRouter([
         [
           {
             path:'',
-            element: <div>USER HOME</div>,
+            element: <UserHome/>,
           },
           {
             path:'jobs',
@@ -75,7 +77,7 @@ const router = createBrowserRouter([
         [
           {
             path:'',
-            element: <EmployerHome/>,
+            element: <EmpHomeLayout/>,
           },
           {
             path:'posts',
@@ -92,6 +94,10 @@ const router = createBrowserRouter([
           {
             path:'posts/edit/:id',
             element: <EditPost/>,
+          },
+          {
+            path:'find',
+            element: <Find/>,
           },
           {
             path:'account',

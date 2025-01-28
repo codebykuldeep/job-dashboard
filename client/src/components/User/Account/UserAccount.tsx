@@ -7,11 +7,12 @@ import Profile from './Profile';
 import EditPage from './EditPage/EditPage';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
+import Settings from './Settings';
 
 function UserAccount() {
     const user = useSelector((state:RootState)=>state.userSlice.user);
     const [ query,setQuery] = useSearchParams();
-    const [selected,setSelected] = useState('profile')
+    const [selected,setSelected] = useState(query.get('view') || 'profile')
     const view = query.get('view');
     function handleView(event:React.MouseEvent<HTMLInputElement>){
         let value = (event.target as HTMLInputElement).value ;
@@ -40,7 +41,7 @@ function UserAccount() {
             </div>
             <div className={classes.view}>
                 {view  !== 'update' && view  !== 'setting' && <Profile user={user!}/>}
-                {view  === 'setting' && <div>Setting</div>}
+                {view  === 'setting' && <Settings/>}
                 {view  === 'update' && <EditPage/>}
             </div>
         </Container>

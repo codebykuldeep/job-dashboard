@@ -1,3 +1,4 @@
+
 export interface IUser {
     user_id:string;
     email:string;
@@ -53,4 +54,19 @@ export interface  IApplications extends IPost{
   user_data:string;
 }
 
+
+export type UserCountData = {count:string,app_status:null|boolean,company_name:string};
+
+export type AppStatusCount = {pending:number,rejected:number,accepted:number,total:number};
+
+
+export interface DetailsData{
+  [index:string]:string;
+}
+export interface AnalyticCardLabel{
+  id:string;
+  title:string;
+}
+
+export type AnalyticLabelList = AnalyticCardLabel[];
 

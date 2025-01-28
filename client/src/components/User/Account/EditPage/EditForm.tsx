@@ -9,6 +9,7 @@ import { userServerConnect } from '../../../../utils/http-methods/userMethods';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../store/store';
 import { updateUser } from '../../../../store/userSlice';
+import SkillField from './SkillField';
 
 interface EditFormProps{
   user:IUser;
@@ -40,6 +41,7 @@ function EditForm({user,snackOpen}:EditFormProps) {
         if (checkValidFormState(formState)) {
           const formData = new FormData(event.target as HTMLFormElement);
           const body = Object.fromEntries(formData.entries());
+          body.skill = formState.skill.value;
           const result  = await userServerConnect('POST','users/update',undefined,body as ReqBody);
           if(Boolean(result.success)){
              dispatch(updateUser());
@@ -62,8 +64,10 @@ function EditForm({user,snackOpen}:EditFormProps) {
       <InputField label='Email' name='email' type='text' formState={formState} onChange={handleChange}>Enter email</InputField>
       <InputField label='Education' name='education' type='text' formState={formState} onChange={handleChange}>Enter education detail</InputField>
       <InputField label='About Yourself' name='summary' type='text' formState={formState} onChange={handleChange}>Enter about yourself</InputField>
+      <InputField label='Experience' name='experience' type='number' formState={formState} onChange={handleChange}>Enter experience</InputField>
+      <SkillField label='Skills' name='skill' formState={formState} onChange={handleChange}/>
       <div>
-        <Button variant='contained' type='submit' disabled={submit}>{submit ? 'Updating' : 'Update'}</Button>
+        <Button variant='contained' type='submit' loading={submit} loadingPosition='end'>{submit ? 'Updating' : 'Update'}</Button>
       </div>
     </form>
     
@@ -109,5 +113,14 @@ export const initialformState={
       status:false,
       message:''
   },
-  
+  skill:{
+    value:'',
+    status:false,
+    message:''
+  },
+  experience:{
+    value:'',
+    status:false,
+    message:''
+  }
 }
