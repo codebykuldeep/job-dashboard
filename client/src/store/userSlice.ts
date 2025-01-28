@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { IUser } from '../types/dataTypes';
+import { UserVerify } from '../utils/authMethods';
 
 
 
@@ -11,6 +12,16 @@ export interface UserState {
 const initialState: UserState  = {
   user:null
 }
+
+export const updateUser = createAsyncThunk('/user/updateUser',async()=>{
+  const response = await UserVerify();
+  if(Boolean(response.success)){
+    return response.data;
+  }
+  else{
+    throw new Error('failed to update user data')
+  }
+})
 
 export const userSlice = createSlice({
   name: 'user',
@@ -23,6 +34,11 @@ export const userSlice = createSlice({
     removeState: (state) => {
       state.user = null;
     },
+  },
+  extraReducers(builder) {
+    builder.addCase(updateUser.fulfilled,(state,action)=>{
+      state.user = action.payload;
+    })
   },
 })
 

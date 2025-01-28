@@ -23,10 +23,10 @@ function UserAccount() {
   return (
     <div className={classes.container}>
         <Container maxWidth={'md'}  className={classes.profile}>
-            <div className={classes.image}><img src={defaultUser} alt="default user" /></div>
+            <div className={classes.image}><img src={user!.image || defaultUser} alt="default user" /></div>
             <div className={classes.detail}>
-                <h2>User Name</h2>
-                <p>email@email.com</p>
+                <h2>{user!.name}</h2>
+                <p>{user!.email}</p>
             </div>
         </Container>
         <Container maxWidth={'md'} className={classes.content}>
@@ -39,7 +39,7 @@ function UserAccount() {
                 }
             </div>
             <div className={classes.view}>
-                {view  === 'profile' && <Profile user={user!}/>}
+                {view  !== 'update' && view  !== 'setting' && <Profile user={user!}/>}
                 {view  === 'setting' && <div>Setting</div>}
                 {view  === 'update' && <EditPage/>}
             </div>

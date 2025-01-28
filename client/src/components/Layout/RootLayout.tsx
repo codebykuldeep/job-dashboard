@@ -5,6 +5,7 @@ import { AppDispatch } from '../../store/store';
 import { UserVerify } from '../../utils/authMethods';
 import {  getTokenString, removeToken, setToken } from '../../utils/utilsFunctions';
 import { userActions } from '../../store/userSlice';
+import HomeLoader from '../Common/HomeLoader';
 
 function RootLayout() {
   const [loading,setLoading] =useState(true);
@@ -35,6 +36,10 @@ function RootLayout() {
       setLoading(false);
     }
   },[dispatch])
+
+  if(loading){
+    return <HomeLoader/>
+  }
   
   return (
     <>

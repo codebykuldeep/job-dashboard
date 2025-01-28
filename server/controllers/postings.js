@@ -1,5 +1,5 @@
-import { getApplicantsForPost } from "../lib/applications.js";
-import { createPost, deletePost, getAllPostsByEmp, getPost, updatePost } from "../lib/postings.js";
+import { applyApplication, getApplicantsForPost, updateApplicationStatus } from "../lib/applications.js";
+import { createPost, deletePost, getAllPostsByEmp, getPost, searchAvailablePostForUser, updatePost } from "../lib/postings.js";
 import { ApiResponse } from "../utils/response.js";
 
 export async function handleNewPost(req, res) {
@@ -76,4 +76,50 @@ export async function handleDeletePost(req,res) {
     } catch (error) {
         return res.json(new ApiResponse(500, { message: `Post ${id} deletion failed`,error }, false));
     }
+}
+
+
+
+export async function handlePostSearch(req,res) {
+  const {query} = req.query;
+  console.log(query);
+  
+  try {
+    const {user_id} = req.user;
+    const data  = await searchAvailablePostForUser(query,user_id);
+    return res.json(new ApiResponse(200,data, true));
+  } catch (error) {
+    console.log(error);
+    
+    return res.status(500).json(new ApiResponse(500,{ message:`Search failed query`,error }, false));
+  }
+}
+
+
+export async function handlePostApply(req,res) {
+    const {user_id} = req.user;
+    const {post_id} = req.query;
+  try {
+    const data = await applyApplication(user_id,post_id);
+    return res.json(new ApiResponse(200,{message:`Applied successfully for post - ${post_id}`,data}, true));
+  } catch (error) {
+    return res.json(new ApiResponse(500,{message:`Application failed for post - ${post_id}`,error}, false));
+  }
+}
+
+
+
+
+export async function  handleApplicationStatus(req,res) {
+  const {id,status} = req.body;
+  if(!id && !status){
+    return res.status(400).json(new ApiResponse(400,{message:`Application id and status missing`}, false));
+  }
+  
+  try {
+    const data = await updateApplicationStatus(status,id);
+    return res.json(new ApiResponse(200,{message:`Application status updated - ${id}`,data}, true));
+  } catch (error) {
+    return res.json(new ApiResponse(500,{message:`Application status failed  - ${id}`,error}, false));
+  }
 }

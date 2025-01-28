@@ -1,6 +1,5 @@
 import { DB_CRED } from '../constant.js';
 import db from './db.js';
-import process from 'node:process';
 
 
 async function adminsSchema() {

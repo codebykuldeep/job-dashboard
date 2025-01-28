@@ -18,7 +18,7 @@ interface EditingFormProps{
 
 function EditingForm({post,formStateFromData}:EditingFormProps) {
   const [snackState,setSnackState] = useState({open:false,status:false,message:''})
-
+  const [submit,setSubmit] = useState(false);
   const [formState,setFormState] = useState<FormStateType>(formStateFromData);
 
 
@@ -44,6 +44,7 @@ function EditingForm({post,formStateFromData}:EditingFormProps) {
 
   async function handleSubmit(event:FormEvent<HTMLFormElement>){
     event.preventDefault()
+    setSubmit(true);
     if (checkValidFormState(formState)) {
       const formData = new FormData(event.target as HTMLFormElement);
       const body = Object.fromEntries(formData.entries());
@@ -59,25 +60,24 @@ function EditingForm({post,formStateFromData}:EditingFormProps) {
     } else {
       setFormState(populateFormState(formState));
     }
-    
+    setSubmit(false);
   }
   function handleReset(event:FormEvent<HTMLFormElement>){
     (event.target as HTMLFormElement).reset();
-    console.log('running');
     setFormState(initialformState)
     
   }
   return (
     <>
-    <Box component={'h1'}>Update job Details</Box>
+    <Box component={'h1'} className={classes.heading}>Update job Details</Box>
         <form className={classes.form_container} onSubmit={handleSubmit} onReset={handleReset}>
             <div className={classes.form}>
                 <LeftForm formState={formState} onChange={handleChange}/>
                 <RightForm formState={formState} onChange={handleChange}/>
             </div>
             <div className={classes.btn}>
-                <Button type='submit' variant='contained'>Submit</Button>
-                <Button type='reset' variant='contained'>Reset</Button>
+                <Button type='submit' variant='contained' disabled={submit}>Update</Button>
+                <Button type='reset' variant='contained' disabled={submit}>Reset</Button>
             </div>
         </form>
         <SnackBar state={snackState} handleClose={snackClose}/>

@@ -1,0 +1,43 @@
+.search_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.search_box input{
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--grey);
+    width: 400px;
+}
+
+.search_box input:focus{
+    outline: none;
+}
+.search_btn{
+    border-radius: 10px;
+    width: 80px;
+    padding: 5px;
+}
+
+
+/* FILTER BOX */
+.filter{
+    background-color: var(--grey);
+    max-width: 300px;
+    padding: 1rem;
+    border-radius: 15px;
+    margin: 1rem 0;
+}
+
+.filter_head{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.filter_apply{
+    text-align: center;
+}

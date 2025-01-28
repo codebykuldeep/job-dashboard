@@ -2,6 +2,10 @@
     padding: 2rem;
     width: 100%;
 }
+
+.heading{
+    margin: 1rem 0;
+}
 .form{
     width: 100%;
     display: flex;

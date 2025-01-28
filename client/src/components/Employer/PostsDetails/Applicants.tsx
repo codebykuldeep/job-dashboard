@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useFetch } from '../../../utils/custom-hooks/useFetch';
-import { IApplicant, IUser } from '../../../types/dataTypes';
+import { IApplicant } from '../../../types/dataTypes';
 import Loading from '../../Common/Loading';
 import { ColumnType } from '../../../types/tableTypes';
 import ApplicantTable from './ApplicantTable';
@@ -9,11 +9,11 @@ import { Button } from '@mui/material';
 import AppModal from './AppModal';
 
 function Applicants({ id }: { id: string }) {
-  const [data, loading, error] = useFetch<IApplicant[]>(`posts/data/${id}`);
-  const [selectedRow, setSelectedRow] = useState<IUser | null>(null);
+  const [data, loading, error,update] = useFetch<IApplicant[]>(`posts/data/${id}`);
+  const [selectedRow, setSelectedRow] = useState<IApplicant | null>(null);
   const [open, setOpen] = useState(false);
 
-  const handleOpen = (row: IUser) => {
+  const handleOpen = (row: IApplicant) => {
     setSelectedRow(row);
     setOpen(true);
   };
@@ -33,7 +33,7 @@ function Applicants({ id }: { id: string }) {
         <div className={classes.table}>
             <ApplicantTable columns={EmployerColumn} rows={data!}  openModal={handleOpen}/>
         </div>
-        {selectedRow && <AppModal data={data![0].user_data as unknown as IUser} open={open} handleClose={handleClose}/>}
+        {selectedRow && <AppModal data={selectedRow} open={open} handleClose={handleClose} update={update}/>}
     </div>
   )
 }

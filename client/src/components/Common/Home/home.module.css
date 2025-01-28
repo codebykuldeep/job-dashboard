@@ -33,7 +33,8 @@
   text-align: center;
 }
 .button button {
-  background-color: #00a264;
+  /* background-color: #00a264; */
+  background-color: #7747ff;
   height: 50px;
   width: 160px;
   border-radius: 3rem;

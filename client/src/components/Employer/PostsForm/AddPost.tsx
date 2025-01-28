@@ -13,7 +13,7 @@ import SnackBar from '../../Common/AuthPage/SnackBar';
 function AddPost() {
   const user = useSelector((state:RootState)=>state.userSlice.user);
   const [snackState,setSnackState] = useState({open:false,status:false,message:''})
-
+  const [submit,setSubmit] = useState(false);
   const [formState,setFormState] = useState<FormStateType>(initialformState);
 
 
@@ -39,12 +39,15 @@ function AddPost() {
 
   async function handleSubmit(event:FormEvent<HTMLFormElement>){
     event.preventDefault()
+    setSubmit(true);
     if (checkValidFormState(formState)) {
       const formData = new FormData(event.target as HTMLFormElement);
       const body = Object.fromEntries(formData.entries());
       const result = await postsMethod('add',{...body,emp_id:user!.emp_id} as ReqBody);
       if(result){
         setSnackState(({open:true,status:true,message:'Job post added successful'}));
+        (event.target as HTMLFormElement).reset();
+        setFormState(initialformState)
       }
       else{
         setSnackState(({open:true,status:false,message:'Failed to add Job post'}));
@@ -54,7 +57,7 @@ function AddPost() {
     } else {
       setFormState(populateFormState(formState));
     }
-    
+    setSubmit(false);
   }
   function handleReset(event:FormEvent<HTMLFormElement>){
     (event.target as HTMLFormElement).reset();
@@ -64,15 +67,15 @@ function AddPost() {
   }
   return (
     <Box className={classes.container}>
-        <Box component={'h1'}>Post a job</Box>
+        <Box component={'h1'} className={classes.heading}>Post a job</Box>
         <form className={classes.form_container} onSubmit={handleSubmit} onReset={handleReset}>
             <div className={classes.form}>
                 <LeftForm formState={formState} onChange={handleChange}/>
                 <RightForm formState={formState} onChange={handleChange}/>
             </div>
             <div className={classes.btn}>
-                <Button type='submit' variant='contained'>Submit</Button>
-                <Button type='reset' variant='contained'>Reset</Button>
+                <Button type='submit' variant='contained' disabled={submit}>Submit</Button>
+                <Button type='reset' variant='contained' disabled={submit}>Reset</Button>
             </div>
         </form>
         <SnackBar state={snackState} handleClose={snackClose}/>
