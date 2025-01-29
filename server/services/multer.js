@@ -1,7 +1,7 @@
 import multer from "multer";
 import path from 'node:path'
 
-const pathToResume = path.resolve('public','resume');
+const pathToResume = path.resolve('public','data');
 
 
 const storage = multer.diskStorage({

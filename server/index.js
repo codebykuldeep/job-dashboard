@@ -12,6 +12,7 @@ import employersRouter from './routes/employers.js'
 import userRouter from './routes/users.js'
 import adminRouter from './routes/admin.js'
 import postingsRouter from './routes/postings.js'
+import { createDirForData } from './utils/utils.js';
 
 const app = express();
 const PORT  = constant.PORT || 8000 ;
@@ -40,6 +41,6 @@ app.get('/',(req,res)=>{
 
 app.listen(PORT,()=>{
     console.log(`SERVER IS RUNNING AT ${PORT}`);
-    
     connectDb()
+    createDirForData();
 })
