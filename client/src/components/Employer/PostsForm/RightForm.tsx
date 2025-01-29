@@ -110,13 +110,13 @@ export default RightForm
 
 
 const location = [
-    { title: 'noida'},
-    { title: 'gurugram' },
-    { title: 'delhi' },
-    { title: 'banglore' },
-    { title: 'pune' },
-    { title: "mumbai" },
-    { title: 'kolkata' },
+    { title: 'Noida'},
+    { title: 'Gurugram' },
+    { title: 'Delhi' },
+    { title: 'Banglore' },
+    { title: 'Pune' },
+    { title: "Mumbai" },
+    { title: 'Kolkata' },
 ]
 
 const jobType = [
@@ -130,46 +130,3 @@ const educationType = [
     {id:3, title: 'Graduate' },
 ]
 
-
-/*
-
-
-
-<FormLabel htmlFor={'job_type'} error={false}>Job Type</FormLabel>
-            <Autocomplete
-            disablePortal
-            id="job_type"
-            options={jobType.map((option) => option.title)}
-            value={formState['job_type'].value}
-            inputValue={formState['job_type'].value}
-            onInputChange={(event,value)=>handleDropdown(value,'job_type')}
-            onChange={(event,value)=>handleDropdown(value,'job_type')}
-            renderInput={(params) =>
-                 <TextField name='job_type' 
-                 error={formState['job_type'].status}
-                 helperText={formState['job_type'].message}
-                  {...params} />
-                }
-            />
-
-
-
-
-            <FormLabel htmlFor={'education'} error={false}>Education</FormLabel>
-            <Autocomplete
-            disablePortal
-            id="education"
-            value={formState['education'].value}
-            inputValue={formState['education'].value}
-            onInputChange={(event,value)=>handleDropdown(value,'education')}
-            onChange={(event,value)=>handleDropdown(value,'education')}
-            options={educationType.map((option) => option.title)}
-            renderInput={(params) =>
-                 <TextField  name='education' 
-                 error={formState['education'].status}
-                 helperText={formState['education'].message}
-                 {...params} />
-                }
-            />
-
-*/

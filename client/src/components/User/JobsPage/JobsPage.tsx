@@ -6,15 +6,17 @@ import JobResult from './JobResult';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../store/store';
 import { searchPost } from '../../../store/searchSlice';
+import { Box, useColorScheme } from '@mui/material';
 
 function JobsPage() {
+  const {mode} =useColorScheme()
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(()=>{
     dispatch(searchPost(''));
   },[dispatch])
   return (
-    <div className={classes.container}>
+    <Box className={classes.container} sx={{bgcolor: mode === 'dark' ? '#202020': ''}}>
       <div className={classes.search}>
         <SearchBar/>
       </div>
@@ -26,7 +28,7 @@ function JobsPage() {
           <JobResult/>
         </div>
       </div>
-    </div>
+    </Box>
   )
 }
 

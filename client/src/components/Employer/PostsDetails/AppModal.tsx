@@ -16,6 +16,7 @@ const style = {
   minWidth: 800,
 //   maxWidth:600,
   minHeight:400,
+  color:'text.primary',
   bgcolor: 'background.paper',
 //   border: '2px solid #000',
   boxShadow: 24,
@@ -36,7 +37,6 @@ export default function AppModal({data,open,handleClose,update}:EmpModalProps) {
     
     async function handleStatusUpdate(status:boolean){
       setSubmit(true);
-      console.log(data.app_id);
       
       const result = await userServerConnect('POST','posts/status',undefined,{status:String(status),id:data.app_id});
       if(Boolean(result.success)){

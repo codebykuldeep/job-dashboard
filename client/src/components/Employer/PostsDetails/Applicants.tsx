@@ -25,7 +25,7 @@ function Applicants({ id }: { id: string }) {
   if (error && !data) {
     return <p>Error while loading page.Please try later</p>;
   }
-  console.log(data);
+  
   
   
   return (

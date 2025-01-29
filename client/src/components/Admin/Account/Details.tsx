@@ -5,6 +5,7 @@ import { nameFormatter } from '../../../helper/helperFunctions';
 import nameImage from '../../../assets/admin/name.png';
 import emailImage from '../../../assets/admin/email.png';
 import roleImage from '../../../assets/admin/role.png';
+import { Box } from '@mui/material';
 
 const imageArr = [nameImage,roleImage,emailImage,roleImage];
 const itemArr = ['admin_id','name','email','role'];
@@ -15,9 +16,9 @@ interface DetailsProps{
 function Details({user}:DetailsProps) {
     
   return (
-    <div className={classes.container}>
-      <div className={classes.heading}>ACCOUNT DETAILS</div>
-      <div className={classes.detail}>
+    <Box className={classes.container} sx={{bgcolor:'action.selected',borderRadius:'15px'}}>
+      <Box className={classes.heading} >ACCOUNT DETAILS</Box>
+      <Box className={classes.detail} >
         {itemArr.map((key, index) => (
           <div key={index} className={classes.card}>
             <div><img src={imageArr[index]} alt="img for title" /></div>
@@ -27,8 +28,8 @@ function Details({user}:DetailsProps) {
             </div>
           </div>
         ))}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 

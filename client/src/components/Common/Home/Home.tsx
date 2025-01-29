@@ -1,4 +1,4 @@
-import React from 'react'
+import React  from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { RootState } from '../../../store/store'
@@ -6,8 +6,11 @@ import { getTokenString, redirectToDashboard } from '../../../utils/utilsFunctio
 import classes from './home.module.css';
 import { Button } from '@mui/material';
 
+
 function Home() {
   const user  = useSelector((state:RootState)=>state.userSlice.user);
+  
+  
   const navigate = useNavigate();
   const userStatus = getTokenString() && user;
  

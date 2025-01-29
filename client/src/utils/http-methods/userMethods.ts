@@ -20,8 +20,6 @@ export async function userServerConnect(method:methodType,url:string,params?:Par
             }
         }
         case 'POST':{
-            console.log('here');
-            
             try {
                 const data = await sendToServer(reqURL,body);
                 return data;

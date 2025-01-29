@@ -52,7 +52,7 @@ function Register({handleFormChange}:RegisterProps) {
             }
             else{
                 setSnackBar({open:true,
-                    message:result.message || 'Registration failed',
+                    message:result.data.message || 'Registration failed',
                     status:false});
             }
         }
@@ -64,10 +64,10 @@ function Register({handleFormChange}:RegisterProps) {
     
   return (
     <>
-        <Box className={classes.heading}><h1>Registration Page</h1></Box>
+        <Box sx={{color:'text.primary'}} className={classes.heading}><h1>Registration Page</h1></Box>
         <SnackBar state={snackBar} handleClose={handleSnackClose}/>
         <Box className={classes.container}>
-            <form className={classes.form} onSubmit={handleSubmit}>
+            <form className={classes.form_register} onSubmit={handleSubmit}>
                 <InputField label='Name' type='text' name='name' formState={formState} onChange={handleChange}/>
                 <InputField label='Email' type='text' name='email' formState={formState} onChange={handleChange}/>
                 <InputField label='Phone Number' type='text' name='phone' formState={formState} onChange={handleChange}/>
@@ -80,15 +80,15 @@ function Register({handleFormChange}:RegisterProps) {
                         sx={{display:'flex',flexDirection:'row'}}
                         onChange={handleChange}
                     >
-                        <FormControlLabel  value="employer" control={<Radio />} label="Employer" />
-                        <FormControlLabel value="user" control={<Radio />} label="Jobseeker" />
+                        <FormControlLabel sx={{color:'text.primary'}}  value="employer" control={<Radio />} label="Employer" />
+                        <FormControlLabel sx={{color:'text.primary'}} value="user" control={<Radio />} label="Jobseeker" />
                     </RadioGroup>
                 </Box>
                 <div className={classes.auth_btn}>
                     <Button loading={submit} loadingPosition='end' type='submit' variant='contained'>Register</Button>
                 </div>
             </form>
-            <Box className={classes.switch}>Already registered ! Click <button onClick={()=>handleFormChange('login')}>here</button></Box>
+            <Box sx={{color:'text.primary'}} className={classes.switch}>Already registered ! Click <button onClick={()=>handleFormChange('login')}>here</button></Box>
         </Box>
     </>
   )

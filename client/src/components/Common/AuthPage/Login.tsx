@@ -56,9 +56,9 @@ function Login({handleFormChange}:LoginProps) {
         }
   return (
     <>
-        <Box className={classes.heading}><h1>Login Page</h1></Box>
+        <Box className={classes.heading} sx={{color:'text.primary'}}><h1>Login Page</h1></Box>
         <Box className={classes.container}>
-            <form className={classes.form} onSubmit={handleSubmit}>
+            <form className={classes.form_login} onSubmit={handleSubmit}>
                 <InputField label='Email' type='text' name='email' formState={formState} onChange={handleChange}/>
                 <InputField label='Password' type='password' name='password' formState={formState} onChange={handleChange}/>
                 {
@@ -72,7 +72,7 @@ function Login({handleFormChange}:LoginProps) {
                     </Button>
                 </div>
             </form>
-            <Box className={classes.switch}>New to our platform ! Click <button onClick={()=>handleFormChange('register')}>here</button></Box>
+            <Box  sx={{color:'text.primary'}} className={classes.switch}>New to our platform ! Click <button onClick={()=>handleFormChange('register')}>here</button></Box>
         </Box>
     </>
   )

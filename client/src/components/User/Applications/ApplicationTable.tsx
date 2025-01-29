@@ -36,10 +36,9 @@ export default function ApplicationTable({columns,rows,openModal}:DataTableProps
     if(openModal){
       openModal(row);
     }
-    else{
-      console.log(row);
-      alert(JSON.stringify(row.user_data))
-    }
+    // else{
+    //   alert(JSON.stringify(row.user_data))
+    // }
     
   }
 

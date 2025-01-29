@@ -5,12 +5,13 @@ import { RootState } from '../../../store/store';
 import PendingHome from './PendingHome';
 import RejectedHome from './RejectedHome';
 import EmployerHome from './EmployerHome';
+import { Box } from '@mui/material';
 
 function EmpHomeLayout() {
     const user = useSelector((state:RootState)=>state.userSlice.user);
     const accountStatus = user?.status === null ? 'pending' : Boolean(user?.status) === true ? 'accepted' : 'rejected'
   return (
-    <div className={classes.container}>
+    <Box className={classes.container} sx={{color:'text.primary',bgcolor:"background.default"}} >
         
         {accountStatus === 'pending' && <PendingHome/>}
         {accountStatus === 'rejected' && <RejectedHome/>}
@@ -20,7 +21,7 @@ function EmpHomeLayout() {
             <EmployerHome/>
             </>
         )}
-    </div>
+    </Box>
   )
 }
 

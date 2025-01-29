@@ -3,14 +3,9 @@ import { createPost, deletePost, getAllPostsByEmp, getPost, searchAvailablePostF
 import { ApiResponse } from "../utils/response.js";
 
 export async function handleNewPost(req, res) {
-  console.log(req.body);
+  
   const body = req.body;
-  //  const { emp_id,title,experience,description,
-  //     location,
-  //     job_type,
-  //     education,
-  //     date
-  //   } = req.body;
+  
     body.company_name = req.user.company_name || req.user.name;
   try {
     await createPost(body);
@@ -21,7 +16,7 @@ export async function handleNewPost(req, res) {
 }
 
 export async function handleUpdatePost(req, res) {
-    console.log(req.body);
+    
     const body = req.body;
   
     try {
@@ -82,14 +77,14 @@ export async function handleDeletePost(req,res) {
 
 export async function handlePostSearch(req,res) {
   const {query} = req.query;
-  console.log(query);
+  
   
   try {
     const {user_id} = req.user;
     const data  = await searchAvailablePostForUser(query,user_id);
     return res.json(new ApiResponse(200,data, true));
   } catch (error) {
-    console.log(error);
+   
     
     return res.status(500).json(new ApiResponse(500,{ message:`Search failed query`,error }, false));
   }

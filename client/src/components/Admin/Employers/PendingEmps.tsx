@@ -6,6 +6,7 @@ import { useFetch } from '../../../utils/custom-hooks/useFetch';
 import { EmployerColumn } from './Employers';
 import { IEmployer } from '../../../types/dataTypes';
 import EmpModal from './EmpModal';
+import { Box } from '@mui/material';
 
 function PendingEmps() {
   const [data,loading,error,update] = useFetch('employers',{
@@ -30,11 +31,11 @@ function PendingEmps() {
   }
   
   return (
-    <div className={classes.container}>
+    <Box className={classes.container} sx={{color:'text.primary',bgcolor:"background.default"}}>
       <div className={classes.heading}><h1>Pending Employers</h1></div>
       {selectedRow && <EmpModal data={selectedRow} open={open} handleClose={handleClose} update={update}/>}
       {!!data && <DataTable columns={EmployerColumn} rows={data as IEmployer[]} openModal={handleOpen}/>}
-    </div>
+    </Box>
   )
 }
 

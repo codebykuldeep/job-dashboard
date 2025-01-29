@@ -61,12 +61,12 @@ function AddPost() {
   }
   function handleReset(event:FormEvent<HTMLFormElement>){
     (event.target as HTMLFormElement).reset();
-    console.log('running');
+    
     setFormState(initialformState)
     
   }
   return (
-    <Box className={classes.container}>
+    <Box className={classes.container} sx={{color:'text.primary',bgcolor:"background.default"}} >
         <Box component={'h1'} className={classes.heading}>Post a job</Box>
         <form className={classes.form_container} onSubmit={handleSubmit} onReset={handleReset}>
             <div className={classes.form}>

@@ -8,3 +8,7 @@ a{
   all: unset;
   cursor: pointer;
 }
+
+body{
+  position: relative;
+}

@@ -6,6 +6,7 @@ import { UserVerify } from '../../utils/authMethods';
 import {  getTokenString, removeToken, setToken } from '../../utils/utilsFunctions';
 import { userActions } from '../../store/userSlice';
 import HomeLoader from '../Common/HomeLoader';
+import ModeButton from '../Common/Home/ModeButton';
 
 function RootLayout() {
   const [loading,setLoading] =useState(true);
@@ -43,7 +44,7 @@ function RootLayout() {
   
   return (
     <>
-    {!loading && <Outlet/>}
+    {!loading && <><Outlet/><ModeButton/></>}
     </>
   )
 }

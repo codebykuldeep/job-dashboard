@@ -2,7 +2,7 @@ import multer from "multer";
 import path from 'node:path'
 
 const pathToResume = path.resolve('public','resume');
-console.log(pathToResume);
+
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

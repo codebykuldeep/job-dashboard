@@ -16,9 +16,10 @@ const style = {
   minWidth: 800,
 //   maxWidth:600,
   minHeight:400,
-  bgcolor: 'background.paper',
+  bgcolor: 'background.default',
 //   border: '2px solid #000',
   boxShadow: 24,
+  color:'text.primary'
 };
 
 interface EmpModalProps{

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import classes from './user-account.module.css';
 import defaultUser from '../../../assets/dummy-user.jpg'
-import { Container } from '@mui/material';
+import { Box, Container, useColorScheme } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 import Profile from './Profile';
 import EditPage from './EditPage/EditPage';
@@ -10,6 +10,7 @@ import { RootState } from '../../../store/store';
 import Settings from './Settings';
 
 function UserAccount() {
+    const {mode} =useColorScheme()
     const user = useSelector((state:RootState)=>state.userSlice.user);
     const [ query,setQuery] = useSearchParams();
     const [selected,setSelected] = useState(query.get('view') || 'profile')
@@ -22,15 +23,15 @@ function UserAccount() {
         }
     }
   return (
-    <div className={classes.container}>
-        <Container maxWidth={'md'}  className={classes.profile}>
+    <Box className={classes.container} sx={{bgcolor: 'background.default'}}>
+        <Container maxWidth={'md'}  className={classes.profile} sx={{color:'text.primary'}}>
             <div className={classes.image}><img src={user!.image || defaultUser} alt="default user" /></div>
             <div className={classes.detail}>
                 <h2>{user!.name}</h2>
                 <p>{user!.email}</p>
             </div>
         </Container>
-        <Container maxWidth={'md'} className={classes.content}>
+        <Container maxWidth={'md'} className={classes.content} sx={{color:'text.primary',bgcolor:mode === 'dark' ? '#202020': ''}}>
             <div className={classes.btn} onClick={handleView}>
                 
                 {
@@ -39,13 +40,13 @@ function UserAccount() {
                     ))
                 }
             </div>
-            <div className={classes.view}>
+            <Box className={classes.view}>
                 {view  !== 'update' && view  !== 'setting' && <Profile user={user!}/>}
                 {view  === 'setting' && <Settings/>}
                 {view  === 'update' && <EditPage/>}
-            </div>
+            </Box>
         </Container>
-    </div>
+    </Box>
   )
 }
 

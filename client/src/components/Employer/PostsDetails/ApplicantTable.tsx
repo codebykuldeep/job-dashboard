@@ -35,9 +35,9 @@ export default function ApplicantTable({columns,rows,openModal}:DataTableProps) 
     if(openModal){
       openModal(row);
     }
-    else{
-      console.log(row);
-    }
+    // else{
+    //   console.log(row);
+    // }
     
   }
 

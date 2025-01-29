@@ -41,7 +41,7 @@ function UploadResume({snackOpen}:Props) {
     event.preventDefault();
     const file = event!.target!.files![0];
     if(file.size === 0) return;
-    console.log(file);
+    
     
     setFile(file);  
   }

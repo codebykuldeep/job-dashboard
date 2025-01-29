@@ -35,7 +35,6 @@ app.use('/posts',auth,postingsRouter);
 
 
 app.get('/',(req,res)=>{
-    // const data = await db.query('SELECT * FROM employers;')
     return res.json({message:"SERVER IS RUNNING"});
 })
 

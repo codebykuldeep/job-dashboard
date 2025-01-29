@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 import Register from './Register';
 import Login from './Login';
 import classes from './auth-page.module.css';
-import authImage from '../../../assets/authImage.jpg'
+import authImage from '../../../assets/authImage-bg.png'
 
 function AuthPage() {
     const [ seachParams,setSeachParams]= useSearchParams();
@@ -14,7 +14,7 @@ function AuthPage() {
         setSeachParams({auth:query})
     }
   return (
-    <Box className={classes.container}>
+    <Box className={classes.container} sx={{bgcolor:"background.default"}}>
         <Box className={classes.image}>
           <img src={authImage} alt="auth side img" />
         </Box>
