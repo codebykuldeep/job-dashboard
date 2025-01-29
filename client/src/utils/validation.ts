@@ -48,6 +48,23 @@ export function dateValidation(value:string):[string,boolean]{
         return ['Select a valid date',true]
     }
     return ['',false];
+    
+    
+}
+function skillValidation(value:string):[string,boolean]{
+    if(!value){
+        return ['This field is required',true];
+    }
+    
+    if(String(value).trim() ===''){
+        return ['This field is required',true];
+    }
+    const skillArr = value.split(',');
+    if(skillArr.length > 3){
+        return ['Select your three best skill',true];
+    }
+    
+    return ['',false];
 }
 
 
@@ -84,6 +101,9 @@ export function validation(title:string,value:string):[string,boolean]{
 
     if(title === 'date'){
         return dateValidation(value);
+    }
+    if(title === 'skill'){
+        return skillValidation(value);
     }
     
     return fieldValidation(value);

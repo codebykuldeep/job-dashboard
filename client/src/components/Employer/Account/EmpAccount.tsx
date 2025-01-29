@@ -7,6 +7,7 @@ import Profile from './Profile';
 import EditPage from './EditPage/EditPage';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
+import Settings from '../../User/Account/Settings';
 
 function EmpAccount() {
     const user = useSelector((state:RootState)=>state.userSlice.user);
@@ -40,7 +41,7 @@ function EmpAccount() {
             </div>
             <div className={classes.view}>
                 {view  !== 'update' && view  !== 'setting' && <Profile user={user!}/>}
-                {view  === 'setting' && <div>Setting</div>}
+                {view  === 'setting' && <Settings/>}
                 {view  === 'update' && <EditPage/>}
             </div>
         </Container>

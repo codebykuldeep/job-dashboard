@@ -17,9 +17,10 @@ function SearchBar() {
 
   function handleSearch(event:FormEvent<HTMLFormElement>){
     event.preventDefault();
-    if(value.trim()!==''){
-      dispatch(searchPost(value));
-    }
+    // if(value.trim()!==''){
+    //   dispatch(searchPost(value));
+    // }
+    dispatch(searchPost(value));
   }
   return (
     <form className={classes.search_form} onSubmit={handleSearch}>

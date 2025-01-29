@@ -15,3 +15,25 @@
 .table{
     margin: 1rem 0;
 }
+
+.rejected{
+    padding: 5px;
+    background-color: var(--errorColor);
+    color: white;
+    border-radius: 2px;
+    text-transform: capitalize;
+}
+.selected{
+    padding: 5px;
+    color: white;
+    background-color: rgb(127, 245, 73);
+    border-radius: 2px;
+    text-transform: capitalize;
+}
+.pending{
+    padding: 5px;
+    color: white;
+    background-color: rgb(248, 246, 120);
+    border-radius: 2px;
+    text-transform: capitalize;
+}

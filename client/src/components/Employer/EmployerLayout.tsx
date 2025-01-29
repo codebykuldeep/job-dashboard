@@ -12,6 +12,7 @@ import AccountIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ArticleIcon from '@mui/icons-material/Article';
 import AddIcon from '@mui/icons-material/Add';
+import SearchIcon from '@mui/icons-material/Search';
 
 function EmployerLayout() {
   const user = useSelector((state:RootState)=>state.userSlice.user);
@@ -74,6 +75,11 @@ const list=[
       icon:<AddIcon fontSize='large'/>,
       name:'Add Posts',
       link:'add-post'
+  },
+  {
+    icon:<SearchIcon fontSize='large'/>,
+    name:'Find',
+    link:'find'
   },
   {
       icon:<AccountIcon fontSize='large'/>,

@@ -69,7 +69,7 @@ function UploadPhoto({snackOpen}:Props) {
               )
             }
             <div className={classes.upload_btn}>
-                <Button variant='contained' type='submit' disabled={submit}>{submit ? 'Updating' : 'Update'}</Button>
+                <Button variant='contained' type='submit' loading={submit} loadingPosition='end'>{submit ? 'Updating' : 'Update'}</Button>
             </div>
             
         </form>

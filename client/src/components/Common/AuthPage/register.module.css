@@ -4,7 +4,6 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
-
 }
 
 .radio{
@@ -26,9 +25,16 @@
 .switch button{
     all:unset;
     cursor: pointer;
-    color: blue;
+    color: #7747ff;
 }
 
 .error{
     color: var(--errorColor);
+}
+
+.auth_btn button{
+    background-color: #7747ff;
+    border-radius: 3rem;
+    padding: 12px 16px;
+    line-height: 16px;
 }
