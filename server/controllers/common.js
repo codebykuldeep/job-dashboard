@@ -49,7 +49,7 @@ export async function handleLogin(req,res) {
         const user = await findUser(email);
         
         if(!user){
-            return res.json(new UserResponse(404,{message:'Users donot exists'},false));
+            return res.json(new UserResponse(404,{message:'User do not exists'},false));
         }
 
         const passwordCheck = await bcrypt.compare(password, user.password);
@@ -60,7 +60,7 @@ export async function handleLogin(req,res) {
         }
 
        
-        return res.json(new UserResponse(401,{message:'Crendentials are incorrect'},false));
+        return res.json(new UserResponse(401,{message:'Credentials are incorrect'},false));
        
     } catch (error) {
         return res.json(new UserResponse(500,error,false))

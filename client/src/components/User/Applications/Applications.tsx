@@ -8,12 +8,14 @@ import { IApplications } from '../../../types/dataTypes';
 import ApplicationTable from './ApplicationTable';
 import DetailModal from './DetailModal';
 import { Box, useColorScheme } from '@mui/material';
+import { dateFormatter } from '../../../helper/helperFunctions';
 
 function Applications() {
   const {mode} =useColorScheme()
   const [data,loading,error] = useFetch<IApplications[]>('users/applications');
   const [selectedRow, setSelectedRow] = useState<IApplications | null>(null);
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  
   
     const handleOpen = (row: IApplications) => {
       setSelectedRow(row);
@@ -82,6 +84,13 @@ export const ApplicationsColumn:ColumnType[] = [
         output = 'rejected'
       }
       return <span className={classes[output]}>{output}</span>;
-    }
-  }
+    },
+  },
+  {
+    id:'applied_date',
+    label:'Applied Date',
+    format:(value)=>{
+      return dateFormatter(value);
+    },
+  },
 ]
