@@ -7,18 +7,19 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { ColumnType } from '../../../types/tableTypes';
-import { IApplicant, IUser } from '../../../types/dataTypes';
+import { IApplicant, IEmployer, IUser } from '../../types/dataTypes';
+import { ColumnType } from '../../types/tableTypes';
+
 
 
 
 interface DataTableProps{
   columns:ColumnType[],
-  rows:IApplicant[] | IUser[],
+  rows:IApplicant[] | IUser[] | IEmployer[],
   openModal?:(row:IApplicant)=>void;
 }
 
-export default function ApplicantTable({columns,rows,openModal}:DataTableProps) {
+export default function DataShowTable({columns,rows,openModal}:DataTableProps) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   
@@ -35,7 +36,6 @@ export default function ApplicantTable({columns,rows,openModal}:DataTableProps) 
     if(openModal){
       openModal(row);
     }
-    
   }
 
   return (
