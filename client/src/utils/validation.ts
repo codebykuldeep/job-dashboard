@@ -88,13 +88,22 @@ export function validation(title:string,value:string):[string,boolean]{
     if(title === 'number' || title === 'phone'){
         
         if(Number(value) <  0 || value.length !== 10){
-            return [`Please enter valid number`,true];
+            return [`Please enter valid number of 10 digits`,true];
         }
         return ['',false];
     }
-    if(title === 'amount' || title === 'experience'){
+    if(title === 'amount'){
         if(value === null || value === '' || Number(value) < 0){
             return [`Please enter valid amount`,true];
+        }
+        return ['',false];
+    }
+    if(title === 'experience'){
+        if(value === null || value === ''){
+            return [`Please enter valid experience years`,true];
+        }
+        else if( Number(value) < 0 || Number(value) > 15){
+            return [`Please enter valid experience years ranging (0 - 15)`,true];
         }
         return ['',false];
     }

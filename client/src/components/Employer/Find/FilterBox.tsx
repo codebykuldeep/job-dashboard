@@ -14,7 +14,10 @@ function FilterBox({experience,skill,updateExp,updateSkill}:FilterBoxProps) {
 
     function handleChange(event:React.ChangeEvent<HTMLInputElement>){
         const value = event.target.value;
-        if(Number(value) >= 0){
+        if(Number(value) >= 15 ){
+            updateExp(Number(15));
+        }
+        else if(Number(value) >= 0){
             updateExp(Number(value));
         }
         else{

@@ -59,8 +59,8 @@ function Login({handleFormChange}:LoginProps) {
         <Box className={classes.heading} sx={{color:'text.primary'}}><h1>Login Page</h1></Box>
         <Box className={classes.container}>
             <form className={classes.form_login} onSubmit={handleSubmit}>
-                <InputField label='Email' type='text' name='email' formState={formState} onChange={handleChange}/>
-                <InputField label='Password' type='password' name='password' formState={formState} onChange={handleChange}/>
+                <InputField label='Email' type='text' name='email' formState={formState} onChange={handleChange}>Enter your email</InputField>
+                <InputField label='Password' type='password' name='password' formState={formState} onChange={handleChange}>Enter your password</InputField>
                 {
                     submit.status && (
                         <p className={classes.error}>{submit.message}</p>

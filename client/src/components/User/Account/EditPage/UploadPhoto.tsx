@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from 'react'
 import classes from './upload-photo.module.css';
-import { Button } from '@mui/material';
+import { Button, FormHelperText } from '@mui/material';
 import { uploadFile } from '../../../../utils/http-methods/userMethods';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../store/store';
@@ -13,8 +13,8 @@ interface Props{
 function UploadPhoto({snackOpen}:Props) {
   const dispatch = useDispatch<AppDispatch>();
   const [submit,setSubmit] = useState(false);
-    const [file,setFile] = useState<File | null>(null);
-  
+  const [file,setFile] = useState<File | null>(null);
+  const [error,setError] = useState(false);
   
   
     async function handleSubmit(event:FormEvent<HTMLFormElement>){
@@ -44,6 +44,18 @@ function UploadPhoto({snackOpen}:Props) {
       const file = event!.target!.files![0];
       
       if(file && file.size === 0) return;
+      console.log(file);
+      
+      const type = file.type.split('/')[0];
+      if(type !== 'image'){
+        setError(true);
+        return;
+      }
+      else{
+        setError(false);
+      }
+      
+      setFile(file);
       
       setFile(file);  
     }
@@ -64,6 +76,13 @@ function UploadPhoto({snackOpen}:Props) {
                 <div className={classes.upload_file}>
                   {file.name}
                 </div>
+              )
+            }
+            {
+              error && (
+                <FormHelperText error>
+                  Select a valid image format.
+                </FormHelperText>
               )
             }
             <div className={classes.upload_btn}>

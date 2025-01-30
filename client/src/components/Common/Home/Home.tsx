@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { RootState } from '../../../store/store'
 import { getTokenString, redirectToDashboard } from '../../../utils/utilsFunctions';
 import classes from './home.module.css';
-import { Button } from '@mui/material';
+import { Box, Button, useColorScheme } from '@mui/material';
 
 
 function Home() {
   const user  = useSelector((state:RootState)=>state.userSlice.user);
-  
+  const {mode} = useColorScheme();
   
   const navigate = useNavigate();
   const userStatus = getTokenString() && user;
@@ -25,13 +25,19 @@ function Home() {
   }
   
   return (
-    <div className={classes.container}>
+    <Box className={classes.container} sx={{bgcolor:'background.default'}}>
       <div>
-        <div className={classes.text}>Unlock Your Future: Find Your <br /><strong>Perfect Job</strong> Today!</div>
+        <Box className={classes.text} sx={{color:mode === 'dark' ? 'text.secondary' : ''}}>
+          Unlock Your Future: Find Your <br /><strong>Perfect Job</strong> Today!
+        </Box>
         <p className={classes.para}>Welcome to findJob, where your dream job awaits! Browse thousands of job listings.</p>
-        <div className={classes.button}><Button variant='contained' onClick={handleClick}>{userStatus ? "DashBoard" :'Login'}</Button></div>
+        <div className={classes.button}>
+          <Button variant='contained' onClick={handleClick} sx={{color:'white'}}>
+            {userStatus ? "DashBoard" :'Login'}
+          </Button>
+        </div>
       </div>
-    </div>
+    </Box>
   )
 }
 

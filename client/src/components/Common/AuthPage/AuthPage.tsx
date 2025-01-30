@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 import Register from './Register';
 import Login from './Login';
 import classes from './auth-page.module.css';
-import authImage from '../../../assets/authImage-bg.png'
+//import authImage from '../../../assets/authImage-bg.png'
 
 function AuthPage() {
     const [ seachParams,setSeachParams]= useSearchParams();
@@ -16,7 +16,7 @@ function AuthPage() {
   return (
     <Box className={classes.container} sx={{bgcolor:"background.default"}}>
         <Box className={classes.image}>
-          <img src={authImage} alt="auth side img" />
+          <img src={'https://res.cloudinary.com/dhnzclvra/image/upload/v1738215052/job-dashboard/cuwdu9yufmvblgnvinjv.png'} alt="auth side img" />
         </Box>
         <Box className={classes.form}>
             {auth === 'register' ? <Register handleFormChange={handleFormChange}/> : <Login handleFormChange={handleFormChange}/>}

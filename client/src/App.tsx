@@ -7,7 +7,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
-
 declare module '@mui/material/styles' {
   interface Palette {
     custom: Palette['primary'];
@@ -20,9 +19,8 @@ declare module '@mui/material/styles' {
 
 const theme = createTheme({
   palette:{
-    mode:'light',
-    custom:{
-    }
+    mode:'dark',
+    //custom:''
   },
   colorSchemes: {
     dark: {

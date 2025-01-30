@@ -68,10 +68,10 @@ function Register({handleFormChange}:RegisterProps) {
         <SnackBar state={snackBar} handleClose={handleSnackClose}/>
         <Box className={classes.container}>
             <form className={classes.form_register} onSubmit={handleSubmit}>
-                <InputField label='Name' type='text' name='name' formState={formState} onChange={handleChange}/>
-                <InputField label='Email' type='text' name='email' formState={formState} onChange={handleChange}/>
-                <InputField label='Phone Number' type='text' name='phone' formState={formState} onChange={handleChange}/>
-                <InputField label='Password' type='text' name='password' formState={formState} onChange={handleChange}/>
+                <InputField label='Name' type='text' name='name' formState={formState} onChange={handleChange}>Enter your name</InputField>
+                <InputField label='Email' type='text' name='email' formState={formState} onChange={handleChange}>Enter your email</InputField>
+                <InputField label='Phone Number' type='number' name='phone' formState={formState} onChange={handleChange}>Enter your phone number</InputField>
+                <InputField label='Password' type='text' name='password' formState={formState} onChange={handleChange}>Enter your password</InputField>
                 <Box>
                 <FormLabel htmlFor='role' id="role" error={formState['role'].status}>Register as</FormLabel>
                     <RadioGroup

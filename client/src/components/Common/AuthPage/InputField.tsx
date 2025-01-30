@@ -8,16 +8,17 @@ interface InputFieldProps{
     label:string;
     type:string;
     formState:FormStateType,
+    children:string;
     onChange:(event:React.ChangeEvent<HTMLInputElement>)=>void;
 }
 
-function InputField({label,type,name,formState,onChange}:InputFieldProps) {
+function InputField({label,type,name,children,formState,onChange}:InputFieldProps) {
   return (
     <Box className={classes.input}>
       <FormLabel htmlFor={name} error={formState[name].status}>{label}</FormLabel>
       <TextField
           fullWidth
-          placeholder='Enter your email'
+          placeholder={children}
           id={name}
           name={name}
           type={type}
