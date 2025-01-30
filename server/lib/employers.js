@@ -21,7 +21,7 @@ export async function getEmployerByEmail(email) {
 }
 
 export async function registerEmployer(body){
-    console.log(body);
+    
     
     const {name,email,password,phone} = body;
     const result = await db.query(`INSERT INTO employers (name , email , password , phone ) VALUES( $1 , $2 , $3 , $4 ) RETURNING * ;`,[name,email,password,phone])

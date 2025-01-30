@@ -6,6 +6,7 @@ import Loading from '../../Common/Loading';
 import DetailCard from './DetailCard';
 import { IPost } from '../../../types/dataTypes';
 import Applicants from './Applicants';
+import { Box } from '@mui/material';
 
 function PostDetail() {
   const {id} =useParams();
@@ -19,7 +20,7 @@ function PostDetail() {
 
 
   return (
-    <div className={classes.container}>
+    <Box className={classes.container} sx={{color:'text.primary',bgcolor:"background.default"}}>
       <div>
         <h1>Post Details</h1>
         <DetailCard data={data!}/>
@@ -28,7 +29,7 @@ function PostDetail() {
         <h2>Applicants for this Post</h2>
         <Applicants id={id!}/>
       </div>
-    </div>
+    </Box>
   )
 }
 

@@ -7,11 +7,15 @@ import { ColumnType } from '../../../types/tableTypes';
 import { IApplications } from '../../../types/dataTypes';
 import ApplicationTable from './ApplicationTable';
 import DetailModal from './DetailModal';
+import { Box, useColorScheme } from '@mui/material';
+import { dateFormatter } from '../../../helper/helperFunctions';
 
 function Applications() {
+  const {mode} =useColorScheme()
   const [data,loading,error] = useFetch<IApplications[]>('users/applications');
   const [selectedRow, setSelectedRow] = useState<IApplications | null>(null);
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  
   
     const handleOpen = (row: IApplications) => {
       setSelectedRow(row);
@@ -25,10 +29,10 @@ function Applications() {
   if(error && !data){
     return <p>Error while loading page.Please try later</p>
   }
-  console.log(data);
+  
   
   return (
-    <div className={classes.container}>
+    <Box className={classes.container} sx={{bgcolor: mode === 'dark' ? '#202020': '',color:'text.primary'}}>
       <div className={classes.header}>Applications</div>
       <div className={classes.table}>
         <ApplicationTable columns={ApplicationsColumn} rows={data!} openModal={handleOpen}/>
@@ -40,7 +44,7 @@ function Applications() {
         </div>
         )
       }
-    </div>
+    </Box>
   )
 }
 
@@ -80,6 +84,13 @@ export const ApplicationsColumn:ColumnType[] = [
         output = 'rejected'
       }
       return <span className={classes[output]}>{output}</span>;
-    }
-  }
+    },
+  },
+  {
+    id:'applied_date',
+    label:'Applied Date',
+    format:(value)=>{
+      return dateFormatter(value);
+    },
+  },
 ]

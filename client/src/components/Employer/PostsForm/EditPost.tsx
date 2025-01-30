@@ -7,7 +7,7 @@ import { initialformState } from './AddPost';
 import { FormStateType } from '../../../types/formTypes';
 import { IPost } from '../../../types/dataTypes';
 import EditingForm from './EditingForm';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 
 function EditPost() {
     const navigate = useNavigate();
@@ -25,10 +25,10 @@ function EditPost() {
 
 
   return (
-    <div className={classes.container}>
+    <Box className={classes.container} sx={{color:'text.primary',bgcolor:"background.default"}} >
         <Button variant='contained' className={classes.back_btn} onClick={()=>navigate(-1)}>{'< Back'}</Button>
         <EditingForm formStateFromData={formState} post={data}/>
-    </div>
+    </Box>
   )
 }
 

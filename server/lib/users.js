@@ -103,6 +103,6 @@ export async function searchJobseekersByEmp(experience,skill){
         }
     })
     
-    const res = await db.query(`SELECT * FROM users WHERE experience > $1 AND ( ${matchingStr} );`,[experience])
+    const res = await db.query(`SELECT * FROM users WHERE experience >= $1 AND ( ${matchingStr} );`,[experience])
     return res.rows;
 }

@@ -43,7 +43,7 @@ function UpdatePassword() {
         setSubmit(false);
       }
   return (
-    <div className={classes.container}>
+    <Box className={classes.container} sx={{bgcolor:'action.selected',borderRadius:'15px'}}>
       <div className={classes.heading}>Update Password</div>
       <div className={classes.form_box}>
         <div className={classes.form_head}>Update your account password.Please fill below details</div>
@@ -82,11 +82,11 @@ function UpdatePassword() {
             )}
             </div>
           <div>
-            <Button variant='contained' type='submit' disabled={submit}>Update</Button>
+            <Button variant='contained' type='submit' loading={submit} loadingPosition='end'>Update</Button>
           </div>
         </form>
       </div>
-    </div>
+    </Box>
   );
 }
 

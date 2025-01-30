@@ -1,9 +1,13 @@
 import React from 'react'
 import classes from './home-loader.module.css'
+import { Box, useColorScheme } from '@mui/material';
 
 function HomeLoader() {
+  const {mode} =useColorScheme();
+  console.log(mode);
+  
   return (
-    <div className={classes.container}>
+    <Box className={classes.container}sx={{bgcolor:mode === 'dark' ? 'background.default' : ''}}>
       <div className={classes.spinnerContainer}>
         <div className={classes.spinner}></div>
         <div className={classes.loader}>
@@ -17,7 +21,7 @@ function HomeLoader() {
           </div>
         </div>
       </div>
-    </div>
+    </Box>
   );
 }
 

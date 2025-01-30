@@ -79,7 +79,7 @@ export async function handleGetUser(req, res) {
 export async function handleUserDataUpdate(req,res) {
   try {
     const {user_id} = req.user;
-    console.log(req.body);
+    
     
     const body = req.body;
     const data = await updateUser(body,user_id);

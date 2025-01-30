@@ -3,6 +3,7 @@ import { IPost } from '../../../types/dataTypes'
 import classes from './post-detail.module.css'
 import { dateFormatter, nameFormatter } from '../../../helper/helperFunctions';
 import { dateValidation } from '../../../utils/validation';
+import { Box } from '@mui/material';
 
 
 
@@ -10,7 +11,7 @@ function DetailCard({data}:{data:IPost}) {
     const postData = Object.entries(data);
     const [,valid] = dateValidation(data.date);
   return (
-    <div className={classes.detail}>
+    <Box className={classes.detail} sx={{bgcolor:'action.selected'}}>
         <div>
             {
                 postData.map(([key,val],index)=>{
@@ -26,7 +27,7 @@ function DetailCard({data}:{data:IPost}) {
             <p><span>Validity</span> : <span>{valid ? 'Expired' : 'Active'}</span></p>
 
         </div>
-    </div>
+    </Box>
   )
 }
 

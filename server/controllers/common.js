@@ -1,5 +1,6 @@
 import { generateToken, verifyToken } from "../auth/auth.js";
 import { getAdmin } from "../lib/admins.js";
+import { checkForExistingEmail } from "../lib/common.js";
 import { getEmployerByEmail, registerEmployer } from "../lib/employers.js";
 import { findUser, getUserByEmail, registerUser, updatePassword } from "../lib/users.js";
 import { ApiResponse, UserResponse } from "../utils/response.js";
@@ -7,10 +8,14 @@ import bcrypt from 'bcrypt';
 
 export async function handleRegistration(req,res) {
     const body = req.body;
-    const {role} = body;
-    console.log(body);
+    const {email,role} = body;
+    
     
     try {
+        const emailCheck = await checkForExistingEmail(email);
+        if(emailCheck){
+            return res.json(new ApiResponse(401,{message:'Email already exists'},false))
+        }
         const hashedPassword = await bcrypt.hash(body.password,3); 
         body.password = hashedPassword;
         if(role === 'user'){
@@ -25,7 +30,6 @@ export async function handleRegistration(req,res) {
             return res.json(new ApiResponse(401,{message:'Unknown role registration failed'},false))
         }
     } catch (error) {
-        console.log(error);
         
         return res.json(new ApiResponse(500,error,false))
     }
@@ -45,7 +49,7 @@ export async function handleLogin(req,res) {
         const user = await findUser(email);
         
         if(!user){
-            return res.json(new UserResponse(404,{message:'Users donot exists'},false));
+            return res.json(new UserResponse(404,{message:'User do not exists'},false));
         }
 
         const passwordCheck = await bcrypt.compare(password, user.password);
@@ -56,7 +60,7 @@ export async function handleLogin(req,res) {
         }
 
        
-        return res.json(new UserResponse(401,{message:'Crendentials are incorrect'},false));
+        return res.json(new UserResponse(401,{message:'Credentials are incorrect'},false));
        
     } catch (error) {
         return res.json(new UserResponse(500,error,false))
@@ -76,7 +80,7 @@ export async function handleUserVerification(req,res) {
     try {
         const data = verifyToken(JWT_TOKEN);
         const {email,role} = data;
-        console.log(data);
+        
         
         let user;
         if(role === "admin"){
@@ -113,11 +117,9 @@ export async function handleResetPassword(req,res) {
         password = await bcrypt.hash(password,3);
         const result = await findUser(email);
         const db_password = result.password;
-        console.log(result);
-        console.log(req.body);
         
         const passwordCheck = await bcrypt.compare(old_password, db_password);
-        console.log(old_password,db_password,passwordCheck,password);
+        
         
         if(passwordCheck){
             await updatePassword(role,email,password);

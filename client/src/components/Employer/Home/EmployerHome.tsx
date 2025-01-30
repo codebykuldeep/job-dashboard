@@ -10,7 +10,7 @@ function EmployerHome() {
     if(error){
       return <p>Failed to load page.Try later </p>
     }
-    console.log(data);
+    
   return (
     <div>
       {!data || loading ? <Loading/> : (

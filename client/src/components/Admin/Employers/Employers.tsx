@@ -6,6 +6,7 @@ import { ColumnType } from '../../../types/tableTypes'
 import { IEmployer } from '../../../types/dataTypes'
 import Loading from '../../Common/Loading'
 import OptionButton from './OptionButton'
+import { Box } from '@mui/material'
 
 
 
@@ -30,17 +31,17 @@ function Employers() {
       newRows = newRows.filter((entry)=>Boolean(entry.status));
     }
     else if(option === 'rejected'){
-      newRows = newRows.filter((entry)=>!Boolean(entry.status));
+      newRows = newRows.filter((entry)=>entry.status !== null &&!Boolean(entry.status));
     }
     setRows(newRows);
   }
   
   return (
-    <div className={classes.container}>
+    <Box className={classes.container} sx={{color:'text.primary',bgcolor:"background.default"}}>
       <div className={classes.heading}><h1>Employers</h1></div>
       <OptionButton handleFilter={handleFilter} />
       {!!data && rows && <DataTable columns={EmployerColumn} rows={rows}/>}
-    </div>
+    </Box>
   )
 }
 
@@ -81,13 +82,27 @@ export const EmployerColumn:ColumnType[] = [
     id:'status',
     label:'Current Status',
     format:(value)=>{
+      let name = 'approved'
+      let output = "Approved"
       if(value === null){
-        return 'Not Approved'
+        name = 'pending';
+        output='Not approved';
       }
-      if(Boolean(value) === false){
-        return 'Rejected'
+      else if(Boolean(value) === false){
+        name = 'rejected';
+        output='Rejected';
       }
-      return "Approved";
+      return <span className={classes[name]}>{output}</span>;
+    }
+  },
+  {
+    id:'summary',
+    label:'Summary',
+    format:(value)=>{
+      if(value === null || value === ''){
+        return 'Not available'
+      }
+      return value;
     }
   }
 ]

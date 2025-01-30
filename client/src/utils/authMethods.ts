@@ -12,7 +12,7 @@ export async function UserRegistration(body:ReqBody){
             }
          })
          const data = await response.json();
-         console.log(data);
+         
          return data
     } catch (error) {
         return {success:false,data:error}
@@ -30,7 +30,7 @@ export async function UserLogin(body:ReqBody) {
            }
         })
         const data = await response.json();
-        console.log(data);
+        
         return data
    } catch (error) {
        return {success:false,data:error}
@@ -47,7 +47,7 @@ export async function UserVerify() {
            }
         })
         const data = await response.json();
-        console.log(data);
+        
         return data
    } catch (error) {
        return {success:false,data:error}

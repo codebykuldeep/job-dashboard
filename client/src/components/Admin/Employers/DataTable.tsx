@@ -9,7 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { ColumnType } from '../../../types/tableTypes';
 import { IEmployer } from '../../../types/dataTypes';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
 
 interface DataTableProps{
@@ -21,7 +21,7 @@ interface DataTableProps{
 export default function DataTable({columns,rows,openModal}:DataTableProps) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -35,10 +35,6 @@ export default function DataTable({columns,rows,openModal}:DataTableProps) {
   function handleRow(row:any){
     if(openModal){
       openModal(row);
-    }
-    else{
-      console.log(row);
-      navigate(`${row.emp_id}`)
     }
     
   }

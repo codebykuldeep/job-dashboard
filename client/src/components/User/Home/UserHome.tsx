@@ -7,6 +7,7 @@ import Chart from './Chart';
 import { useFetch } from '../../../utils/custom-hooks/useFetch';
 import Loading from '../../Common/Loading';
 import { AppStatusCount, UserCountData } from '../../../types/dataTypes';
+import { Box } from '@mui/material';
 
 type ApiRespone ={appStatusData:UserCountData[],companyData:UserCountData[]}
 
@@ -24,7 +25,7 @@ function UserHome() {
         setCompData(companyData.length);
     }
    },[data])
-   console.log(data?.appStatusData);
+   
 
    if(error){
     return <p>Error loading page.Please try later</p>
@@ -32,24 +33,24 @@ function UserHome() {
    
     
   return (
-    <div className={classes.container}>
-        <div className={classes.greeting}>
+    <Box sx={{color:'text.primary',bgcolor:"background.default"}} className={classes.container}>
+        <Box className={classes.greeting}>
             Hello, <span>{user!.name}</span>
-        </div>
+        </Box>
         {
             !data || loading ? <Loading/> : (
                 <>
                 {applicationData && <Analytics dataArr={[applicationData.total,compData,applicationData.accepted]}/>}
                 <div className={classes.chart}>
-                    <div className={classes.header}>Chart</div>
+                    <Box className={classes.header}>Chart</Box>
                     <div className={classes.pie_chart}>
-                        {applicationData && <Chart data={applicationData}/>}
+                        {applicationData && applicationData.total > 0 && <Chart data={applicationData}/>}
                     </div>
                 </div>
                 </>
             )
         }
-    </div>
+    </Box>
   )
 }
 

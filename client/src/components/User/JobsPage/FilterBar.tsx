@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classes from './jobs-main.module.css'
-import { Button, Checkbox, FormControlLabel, FormGroup, Slider } from '@mui/material';
+import { Box, Button, Checkbox, FormControlLabel, FormGroup, Slider } from '@mui/material';
 import FilterIcon from '@mui/icons-material/FilterAlt';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../store/store';
@@ -35,7 +35,7 @@ function FilterBar() {
     }
     
   return (
-    <div className={classes.filter}>
+    <Box className={classes.filter} sx={{color:'text.primary',bgcolor:'action.hover'}}>
         <div className={classes.filter_head}>
            <span> <FilterIcon/></span><span>Filters</span>
         </div>
@@ -63,9 +63,9 @@ function FilterBar() {
             </div>
         </div>
         <div className={classes.filter_apply}>
-            <Button onClick={handleFilter}>Apply</Button>
+            <Button variant='contained' onClick={handleFilter}>Apply</Button>
         </div>
-    </div>
+    </Box>
   )
 }
 

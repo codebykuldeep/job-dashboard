@@ -52,7 +52,7 @@ function Register({handleFormChange}:RegisterProps) {
             }
             else{
                 setSnackBar({open:true,
-                    message:result.message || 'Registration failed',
+                    message:result.data.message || 'Registration failed',
                     status:false});
             }
         }
@@ -64,14 +64,14 @@ function Register({handleFormChange}:RegisterProps) {
     
   return (
     <>
-        <Box className={classes.heading}><h1>Registration Page</h1></Box>
+        <Box sx={{color:'text.primary'}} className={classes.heading}><h1>Registration Page</h1></Box>
         <SnackBar state={snackBar} handleClose={handleSnackClose}/>
         <Box className={classes.container}>
-            <form className={classes.form} onSubmit={handleSubmit}>
-                <InputField label='Name' type='text' name='name' formState={formState} onChange={handleChange}/>
-                <InputField label='Email' type='text' name='email' formState={formState} onChange={handleChange}/>
-                <InputField label='Phone Number' type='text' name='phone' formState={formState} onChange={handleChange}/>
-                <InputField label='Password' type='text' name='password' formState={formState} onChange={handleChange}/>
+            <form className={classes.form_register} onSubmit={handleSubmit}>
+                <InputField label='Name' type='text' name='name' formState={formState} onChange={handleChange}>Enter your name</InputField>
+                <InputField label='Email' type='text' name='email' formState={formState} onChange={handleChange}>Enter your email</InputField>
+                <InputField label='Phone Number' type='number' name='phone' formState={formState} onChange={handleChange}>Enter your phone number</InputField>
+                <InputField label='Password' type='text' name='password' formState={formState} onChange={handleChange}>Enter your password</InputField>
                 <Box>
                 <FormLabel htmlFor='role' id="role" error={formState['role'].status}>Register as</FormLabel>
                     <RadioGroup
@@ -80,15 +80,15 @@ function Register({handleFormChange}:RegisterProps) {
                         sx={{display:'flex',flexDirection:'row'}}
                         onChange={handleChange}
                     >
-                        <FormControlLabel  value="employer" control={<Radio />} label="Employer" />
-                        <FormControlLabel value="user" control={<Radio />} label="Jobseeker" />
+                        <FormControlLabel sx={{color:'text.primary'}}  value="employer" control={<Radio />} label="Employer" />
+                        <FormControlLabel sx={{color:'text.primary'}} value="user" control={<Radio />} label="Jobseeker" />
                     </RadioGroup>
                 </Box>
                 <div className={classes.auth_btn}>
                     <Button loading={submit} loadingPosition='end' type='submit' variant='contained'>Register</Button>
                 </div>
             </form>
-            <Box className={classes.switch}>Already registered ! Click <button onClick={()=>handleFormChange('login')}>here</button></Box>
+            <Box sx={{color:'text.primary'}} className={classes.switch}>Already registered ! Click <button onClick={()=>handleFormChange('login')}>here</button></Box>
         </Box>
     </>
   )

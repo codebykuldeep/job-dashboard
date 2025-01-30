@@ -15,7 +15,7 @@ function Analytics({dataArr}:analyticsProps) {
             {
                 (CardArr.map(({title,id},ind)=>(
                     <Grid  key={id} size={12/3}>
-                        <Card className={classes.card}>
+                        <Card className={classes.card} sx={{bgcolor:'action.hover'}}>
                             <CardHeader title={title}/>
                             <CardContent className={classes.count}>
                                 {dataArr[id]}

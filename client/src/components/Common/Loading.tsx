@@ -4,7 +4,7 @@ import classes from './loading.module.css'
 
 function Loading() {
   return (
-    <Box className={classes.loader}>
+    <Box className={classes.loader} sx={{bgcolor:"background.default"}}>
       <CircularProgress size={60} />
     </Box>
   )

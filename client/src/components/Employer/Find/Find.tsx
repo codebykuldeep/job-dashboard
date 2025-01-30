@@ -24,7 +24,6 @@ function Find() {
       const response = await userServerConnect('GET','employers/search',{skill,experience:String(experience)})
       if(Boolean(response.success)){
         setData(response.data)
-        console.log(response.data);
         
       }
       else{
@@ -33,21 +32,17 @@ function Find() {
       setLoading(false);
     }
   return (
-    <Box className={classes.container}>
+    <Box className={classes.container} sx={{color:'text.primary',bgcolor:"background.default"}}>
         <Box className={classes.header}>Find jobseekers</Box>
-        <Box className={classes.filter_box}>
-        <FilterBox skill={skill} experience={experience} updateSkill={handleSkill} updateExp={handleExp}/>
-        <Box>
-          <Button variant='contained' onClick={handleSearch}>Search</Button>
+        <Box className={classes.filter_box} sx={{bgcolor:"action.selected"}}>
+          <FilterBox skill={skill} experience={experience} updateSkill={handleSkill} updateExp={handleExp}/>
+        <Box className={classes.search_btn}>
+          <Button variant='contained' loading={loading}  loadingPosition='end' onClick={handleSearch}>Search</Button>
         </Box>
         </Box>
         <Box>
-          <Box className={classes.result_head}>JobSeekers List</Box>
-          {
-            loading && (
-              <Box>Loading....</Box>
-            )
-          }
+          {<Box className={classes.result_head}>JobSeekers List</Box>}
+          
           {!loading && data && data.length!==0 && (
             <Box className={classes.result}>
             <Box className={classes.count}>
@@ -59,7 +54,7 @@ function Find() {
             </Box>
           )}
           {
-            data && data.length === 0 &&(<Box  className={classes.no_result}>No result founds</Box>)
+            !loading && data && data.length === 0 &&(<Box  className={classes.no_result}>No result founds</Box>)
           }
         </Box>
     </Box>

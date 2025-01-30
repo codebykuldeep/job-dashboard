@@ -11,10 +11,10 @@ function AdminHome() {
   if(error){
     return <p>Failed to load page.Try later </p>
   }
-  console.log(data);
+  
   
   return (
-    <Box className={classes.container}>
+    <Box className={classes.container} sx={{color:'text.primary',bgcolor:"background.default"}}>
       <Box className={classes.welcome}>
         Hello, Admin
       </Box>

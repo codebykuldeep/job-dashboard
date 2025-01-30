@@ -92,7 +92,6 @@ async function setupDb(){
         await applicationSchema();
     } catch (error) {
         console.log(error);
-        
         throw new Error('DB SETUP FAILED !')
     }
 }

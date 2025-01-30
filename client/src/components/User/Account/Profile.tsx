@@ -20,7 +20,7 @@ function Profile({user}:ProfileProps) {
         {views.map((view) => (
           <p key={view} className={classes.line}>
             <span>{nameFormatter(view)}</span> :{" "}
-            <span>{user[view]}</span>
+            <span>{user[view] || 'Not Available'}</span>
           </p>
         ))}
         <p className={classes.line}>

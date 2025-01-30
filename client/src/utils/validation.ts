@@ -1,6 +1,19 @@
 import { FormStateType } from "../types/formTypes";
 
+function nameValidation(value:string):[string,boolean]{
+    if(value.trim()===''){
+        return ['This field is required',true];
+    }
 
+    const pattern = /^[a-zA-Z ]*$/;
+    if(!pattern.test(value)){
+        return ['Enter a valid name',true];
+    }
+    else if(value.length <3){
+        return ['Enter a name of valid length',true];
+    }
+    return ['',false];
+}
 function emailValidation(value:string):[string,boolean]{
     if(value.trim()===''){
         return ['This field is required',true];
@@ -32,6 +45,9 @@ function fieldValidation(value:string):[string,boolean]{
     
     if(String(value).trim() ===''){
         return ['This field is required',true];
+    }
+    else if(String(value).length < 3){
+        return ['Please enter valid data',true];
     }
     
     return ['',false];
@@ -88,15 +104,27 @@ export function validation(title:string,value:string):[string,boolean]{
     if(title === 'number' || title === 'phone'){
         
         if(Number(value) <  0 || value.length !== 10){
-            return [`Please enter valid number`,true];
+            return [`Please enter valid number of 10 digits`,true];
         }
         return ['',false];
     }
-    if(title === 'amount' || title === 'experience'){
+    if(title === 'amount'){
         if(value === null || value === '' || Number(value) < 0){
             return [`Please enter valid amount`,true];
         }
         return ['',false];
+    }
+    if(title === 'experience'){
+        if(value === null || value === ''){
+            return [`Please enter valid experience years`,true];
+        }
+        else if( Number(value) < 0 || Number(value) > 15){
+            return [`Please enter valid experience years ranging (0 - 15)`,true];
+        }
+        return ['',false];
+    }
+    if(title === 'name' ){
+        return nameValidation(value);
     }
 
     if(title === 'date'){
@@ -111,9 +139,13 @@ export function validation(title:string,value:string):[string,boolean]{
 
 export function checkValidFormState(formState:FormStateType){
     for(const key in formState){
-     if(formState[key].status || !formState[key].value){
+    const [,state] = validation(key,formState[key].value)
+    if(state === true){
         return false;
-     }  
+    }
+    if(formState[key].status || !formState[key].value){
+        return false;
+    }  
     }
     return true;
 }

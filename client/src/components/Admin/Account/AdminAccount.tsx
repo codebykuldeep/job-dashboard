@@ -17,9 +17,9 @@ function AdminAccount() {
     setSearchParams({view:view});
   }
   return (
-    <Box className={classes.container}>
+    <Box className={classes.container} sx={{color:'text.primary',bgcolor:"background.default"}}>
       <Box className={classes.account}>
-      <Box className={classes.left}>
+      <Box className={classes.left} sx={{bgcolor:"action.selected"}}>
         <Box className={classes.show_box}>
           <Box className={classes.image}><img src={AdminImage} alt='admin icon'/></Box>
           <Box>{user!.name}</Box>

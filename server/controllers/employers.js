@@ -30,7 +30,7 @@ export async function handleGetEmployer(req,res) {
 
 export async function handleEmployerStatusUpdate(req,res){
     const {emp_id,status} = req.body;
-    console.log(req.body);
+    
     
     if(!emp_id || status === undefined){
         return res.status(400).json(new ApiResponse(400,{message:'Missing body for request (emp_id ,status).'},false))
@@ -70,7 +70,7 @@ export async function handleReportForEmployerDashboard(req,res) {
 
 export async function handleJobSeekerSearch(req,res) {
     const {experience,skill} = req.query;
-    console.log(req.query);
+    
     
     try {
         const data = await searchJobseekersByEmp(experience,skill);

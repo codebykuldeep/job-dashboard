@@ -12,17 +12,12 @@ interface FilterBoxProps{
 
 function FilterBox({experience,skill,updateExp,updateSkill}:FilterBoxProps) {
 
-    // function handleSlider(event: Event, value: number | number[], activeThumb: number){
-    //     if(Array.isArray(value)){
-    //         updateExp(value[0])
-    //     }
-    //     else{
-    //         updateExp(value);
-    //     }
-    // }
     function handleChange(event:React.ChangeEvent<HTMLInputElement>){
         const value = event.target.value;
-        if(Number(value) >= 0){
+        if(Number(value) >= 15 ){
+            updateExp(Number(15));
+        }
+        else if(Number(value) >= 0){
             updateExp(Number(value));
         }
         else{
@@ -38,19 +33,7 @@ function FilterBox({experience,skill,updateExp,updateSkill}:FilterBoxProps) {
                 <SkillField skill={skill} onChange={updateSkill}/>
             </div>
             <div className={classes.slider}>
-            <FormLabel htmlFor='experience'>Experience</FormLabel>
-            {/* <Slider
-                id='experience'
-                name='experience'
-                value={experience}
-                valueLabelDisplay="auto"
-                shiftStep={1}
-                step={1}
-                marks
-                min={0}
-                max={10}
-                onChange={handleSlider}
-                /> */}
+                <FormLabel htmlFor='experience'>Experience</FormLabel>
                 <TextField value={experience} id="experience" name='experience' type='number'  variant="outlined"  onChange={handleChange}/>
             </div>
         </div>

@@ -29,10 +29,10 @@ function Posts() {
     return <p>Failed to load page</p>
   }
 
-  console.log('posts',posts);
+  
   
   async function deletePost(id:string) {
-    console.log(id);
+    
     const oldPosts = posts;
     setPosts(prev=>prev!.filter((post)=>post.post_id !== id))
     const result = await deletePostMethod(id);
@@ -43,7 +43,7 @@ function Posts() {
   
 
   return (
-    <Box className={classes.container}>
+    <Box className={classes.container} sx={{color:'text.primary',bgcolor:"background.default"}}>
       <Box className={classes.heading}>
         <h1>All Jobs </h1>
       </Box>
@@ -55,6 +55,7 @@ function Posts() {
             <PostCard  data={post} deletePost={deletePost}/>
           </Grid>))
         }
+        
       </Grid>
         </Container>
       </Box>

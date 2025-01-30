@@ -7,22 +7,22 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { ColumnType } from '../../../types/tableTypes';
-import { IApplications } from '../../../types/dataTypes';
+import { IApplicant, IEmployer, IUser } from '../../types/dataTypes';
+import { ColumnType } from '../../types/tableTypes';
+
 
 
 
 interface DataTableProps{
   columns:ColumnType[],
-  rows:IApplications[],
-  openModal?:(row:IApplications)=>void;
+  rows:IApplicant[] | IUser[] | IEmployer[],
+  openModal?:(row:IApplicant)=>void;
 }
 
-export default function ApplicationTable({columns,rows,openModal}:DataTableProps) {
+export default function DataShowTable({columns,rows,openModal}:DataTableProps) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-    
-
+  
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -36,10 +36,6 @@ export default function ApplicationTable({columns,rows,openModal}:DataTableProps
     if(openModal){
       openModal(row);
     }
-    // else{
-    //   alert(JSON.stringify(row.user_data))
-    // }
-    
   }
 
   return (
@@ -47,12 +43,12 @@ export default function ApplicationTable({columns,rows,openModal}:DataTableProps
       <TableContainer sx={{ maxHeight: 440,width:'100%', }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
-            <TableRow >
+            <TableRow>
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth,fontWeight:'600' }}
+                  style={{ minWidth: column.minWidth }}
                 >
                   {column.label}
                 </TableCell>
@@ -66,7 +62,7 @@ export default function ApplicationTable({columns,rows,openModal}:DataTableProps
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={ind} onClick={()=>handleRow(row)}>
                     {columns.map((column) => {
-                      const value = row[column.id as keyof IApplications];
+                      const value = row[column.id];
                       return (
                         <TableCell key={column.id} id={column.id} align={column.align}>
                           {column.format

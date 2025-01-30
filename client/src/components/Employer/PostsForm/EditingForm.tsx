@@ -67,7 +67,7 @@ function EditingForm({post,formStateFromData}:EditingFormProps) {
     setFormState(initialformState)
     
   }
-  console.log(formState);
+  
   
   return (
     <>
