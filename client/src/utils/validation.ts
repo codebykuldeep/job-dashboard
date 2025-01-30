@@ -139,9 +139,13 @@ export function validation(title:string,value:string):[string,boolean]{
 
 export function checkValidFormState(formState:FormStateType){
     for(const key in formState){
-     if(formState[key].status || !formState[key].value){
+    const [,state] = validation(key,formState[key].value)
+    if(state === true){
         return false;
-     }  
+    }
+    if(formState[key].status || !formState[key].value){
+        return false;
+    }  
     }
     return true;
 }
