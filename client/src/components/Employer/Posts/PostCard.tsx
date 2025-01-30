@@ -20,7 +20,7 @@ function PostCard({data,deletePost}:PostCardPros) {
   const jobStatus = dateValidation(data.date)[1];
   const statusLabel = jobStatus ? 'expired' : 'active';
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} >
         <div>
             <div className={classes.date}>{dateFormatter(data.created_at)}</div>
             <div className={classes.heading}><h3>{data.title}</h3>

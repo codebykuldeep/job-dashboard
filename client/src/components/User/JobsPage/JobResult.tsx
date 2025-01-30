@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@mui/material/Grid2';
 import JobCard from './JobCard';
 import { Box, CircularProgress } from '@mui/material';
 import classes from './job-result.module.css'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
+import SnackBar from '../../Common/AuthPage/SnackBar';
 
 
 function JobResult() {
+  const user =useSelector((state:RootState)=>state.userSlice.user);
   const {posts,loading} =useSelector((state:RootState)=>state.searchSlice)
+  const [snackState,setsnackState] = useState({open:false,status:false,message:''})
+
+  function handleSnackClose(){
+    setsnackState(prev=>({...prev,open:false}));
+  }
+  function handleSnackOpen(){
+    setsnackState({
+      open:true,
+      status:false,
+      message:'Please complete your profile first !'
+    });
+  }
 
   if(loading){
     return  (
@@ -29,10 +43,11 @@ function JobResult() {
       <Grid container spacing={2} direction="row" sx={{alignItems:'stretch'}}>
         {posts.map((post, ind) => (
           <Grid size={12 / 2} key={ind}>
-            <JobCard key={post.post_id} post={post} />
+            <JobCard key={post.post_id} post={post} user={user!} handleOpen={handleSnackOpen} />
           </Grid>
         ))}
       </Grid>
+      <SnackBar state={snackState} handleClose={handleSnackClose}/>
     </>
   );
 }

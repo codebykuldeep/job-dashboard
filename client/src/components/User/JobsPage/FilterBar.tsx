@@ -6,7 +6,11 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../store/store';
 import { searchActions } from '../../../store/searchSlice';
 
-function FilterBar() {
+interface FilterBarProps{
+    mode: "light" | "dark" | "system" | undefined
+}
+
+function FilterBar({mode}:FilterBarProps) {
     const dispatch = useDispatch<AppDispatch>();
     const [locationArr,setLocationArr] = useState<string[]>([])
     const [experience,setExperience] = useState<number>(0)
@@ -33,9 +37,14 @@ function FilterBar() {
     function handleFilter(){
         dispatch(searchActions.applyFilter({location:locationArr,experience}));
     }
+    function handleReset(){
+        setExperience(0);
+        setLocationArr([]);
+        dispatch(searchActions.applyFilter({location:[],experience:-1}));
+    }
     
   return (
-    <Box className={classes.filter} sx={{color:'text.primary',bgcolor:'action.hover'}}>
+    <Box className={classes.filter} sx={{color:'text.primary',bgcolor:mode === 'dark'? 'action.hover' : 'var(--grey)'}}>
         <div className={classes.filter_head}>
            <span> <FilterIcon/></span><span>Filters</span>
         </div>
@@ -43,16 +52,11 @@ function FilterBar() {
             <div>Locations</div>
             <FormGroup onChange={handleLocation} className={classes.location}>
                 <div>
-                <FormControlLabel control={<Checkbox value={'Noida'} />} label="Noida" />
-                <FormControlLabel control={<Checkbox  value={"Gurugram"}/>} label="Gurugram" />
-                </div>
-                <div>
-                <FormControlLabel control={<Checkbox  value={'Banglore'}/>} label="Banglore" />
-                <FormControlLabel control={<Checkbox  value={'Delhi'}/>} label="Delhi" />
-                </div>
-                <div>
-                <FormControlLabel control={<Checkbox value={'Pune'} />} label="Pune" />
-                <FormControlLabel control={<Checkbox  value={"Gurugram"}/>} label="Kolkata" />
+                    {
+                        checkboxList.map((value)=>(
+                            <FormControlLabel key={value} control={<Checkbox value={value}  />} label={value} checked={locationArr.includes(value.toLowerCase())}/>
+                        ))
+                    }
                 </div>
             </FormGroup>
         </div>
@@ -64,9 +68,13 @@ function FilterBar() {
         </div>
         <div className={classes.filter_apply}>
             <Button variant='contained' onClick={handleFilter}>Apply</Button>
+            <Button variant='contained' onClick={handleReset}>Reset</Button>
         </div>
     </Box>
   )
 }
 
 export default FilterBar
+
+
+const checkboxList = ['Noida','Gurugram','Banglore','Delhi','Pune','Kolkata']

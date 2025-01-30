@@ -53,7 +53,7 @@ export const searchSlice = createSlice({
     },
     applyFilter:(state,action:PayloadAction<{location:string[],experience:number}>)=>{
       const {location,experience} = action.payload; 
-      if(location.length === 0 && experience === 0){
+      if(location.length === 0 && experience === -1){
         state.posts = state.data;
       }
       else if(state.data){
@@ -61,7 +61,7 @@ export const searchSlice = createSlice({
           if(location.includes(post.location.toLowerCase()) && Number(post.experience) >= experience){
             return true;
           }
-          if(location.length === 0 && Number(post.experience) >= experience){
+          if(location.length === 0 && Number(post.experience) <= experience){
             return true;
           }
           return false;

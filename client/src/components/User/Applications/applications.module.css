@@ -33,7 +33,7 @@
 .pending{
     padding: 5px;
     color: white;
-    background-color: rgb(248, 246, 120);
+    background-color: #F29339;
     border-radius: 2px;
     text-transform: capitalize;
 }

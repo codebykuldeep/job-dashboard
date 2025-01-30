@@ -44,7 +44,6 @@ function UploadPhoto({snackOpen}:Props) {
       const file = event!.target!.files![0];
       
       if(file && file.size === 0) return;
-      console.log(file);
       
       const type = file.type.split('/')[0];
       if(type !== 'image'){

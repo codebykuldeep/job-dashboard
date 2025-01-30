@@ -3,11 +3,11 @@ import { useFetch } from '../../../utils/custom-hooks/useFetch';
 import { IApplicant } from '../../../types/dataTypes';
 import Loading from '../../Common/Loading';
 import { ColumnType } from '../../../types/tableTypes';
-import ApplicantTable from './ApplicantTable';
 import classes from './applicants.module.css'
 import { Button } from '@mui/material';
 import AppModal from './AppModal';
 import ApplicantOption from './ApplicantOption';
+import DataShowTable from '../../Common/DataShowTable';
 
 function Applicants({ id }: { id: string }) {
   const [data, loading, error,update] = useFetch<IApplicant[]>(`posts/data/${id}`);
@@ -18,7 +18,6 @@ function Applicants({ id }: { id: string }) {
 
   useEffect(()=>{
     if(data){
-      console.log('done');
       
       setRows(data);
     }
@@ -63,7 +62,7 @@ function Applicants({ id }: { id: string }) {
         <ApplicantOption handleFilter={handleFilter}/>
         </div>
         <div className={classes.table}>
-            <ApplicantTable columns={EmployerColumn} rows={rows!}  openModal={handleOpen}/>
+            <DataShowTable<IApplicant> columns={EmployerColumn} rows={rows!}  openModal={handleOpen}/>
         </div>
         {selectedRow && <AppModal data={selectedRow} open={open} handleClose={handleClose} update={update}/>}
     </div>

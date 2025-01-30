@@ -16,13 +16,13 @@ function JobsPage() {
     dispatch(searchPost(''));
   },[dispatch])
   return (
-    <Box className={classes.container} sx={{bgcolor: mode === 'dark' ? '#202020': ''}}>
+    <Box className={classes.container} sx={{bgcolor: mode === 'dark' ? '#202020': 'var(--dull-bg)'}}>
       <div className={classes.search}>
         <SearchBar/>
       </div>
       <div className={classes.content}>
         <div className={classes.filter}>
-          <FilterBar/>
+          <FilterBar mode={mode}/>
         </div>
         <div className={classes.result}>
           <JobResult/>

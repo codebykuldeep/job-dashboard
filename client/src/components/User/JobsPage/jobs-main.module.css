@@ -2,14 +2,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 0px;
+    background-color: white;
+    border: 1px solid var(--grey);
+    border-radius: 20px;
+    padding: 8px;
 }
 
 .search_box input{
     padding: 10px;
-    border-radius: 6px;
-    border: 1px solid var(--grey);
     width: 400px;
+    border: none;
+    font-size: 1rem;
 }
 
 .search_box input:focus{
@@ -24,7 +28,6 @@
 
 /* FILTER BOX */
 .filter{
-    background-color: var(--grey);
     max-width: 300px;
     padding: 1rem;
     border-radius: 15px;
@@ -39,7 +42,10 @@
 
 
 .filter_apply{
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 /* .location{

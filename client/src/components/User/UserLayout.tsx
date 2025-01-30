@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { RootState } from '../../store/store'
@@ -13,10 +13,12 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ArticleIcon from '@mui/icons-material/Article';
 import WorkIcon from '@mui/icons-material/Work';
 import Sidebar from '../Common/SideBar';
+import { Box } from '@mui/material';
 
 
 
 function UserLayout() {
+  
   const user = useSelector((state:RootState)=>state.userSlice.user);
   const [loading,setLoading]= useState(true);
   const navigate = useNavigate();
@@ -34,10 +36,12 @@ function UserLayout() {
     return <Loading/>
   }
   return (
-    <div className={classes.container}>
+    <Box className={classes.container} >
     <Sidebar list={list}/>
-    <Outlet/>
-    </div>
+    <Suspense fallback={<Loading/>}>
+      <Outlet/>
+    </Suspense>
+    </Box>
   )
 }
 

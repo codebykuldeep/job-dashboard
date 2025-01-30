@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import classes from './sidebar.module.css'
 import ArrowBack from '@mui/icons-material/ArrowBackIos';
 import ArrowForward from '@mui/icons-material/ArrowForwardIos';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { SidebarListType } from '../../types/tableTypes';
 
 
@@ -11,10 +11,17 @@ interface SideBarProps{
 }
 
 function Sidebar({list}:SideBarProps) {
-    const [open,setOpen]= useState(false);
-    function handleSideBar(){
-        setOpen(prev=>!prev);
-    }
+  const {pathname} = useLocation();
+  const [open, setOpen] = useState(false);
+  function handleSideBar() {
+    setOpen((prev) => !prev);
+  }
+  
+  const routeList = pathname.split('/');
+  const route = routeList[routeList.length -1];
+  
+  
+  
   return (
     <div
       className={!open ? classes.sidebar_open : classes.sidebar_close }
@@ -24,17 +31,11 @@ function Sidebar({list}:SideBarProps) {
       </div>
       <div className={classes.item_container}>
         {list.map(({ icon, name,link }) => (
-          <Link to={link!} key={name} className={classes.item}>
+          <Link to={link!} key={name} className={route === link ? classes.item_selected : classes.item} >
             <span className={classes.icon}>{icon}</span>
             {!open && <span>{name}</span>}
           </Link>
         ))}
-        {/* {(new Array(100).fill(0)).map((val,ind) => (
-          <Link to={''} key={ind} className={classes.item}>
-            <span className={classes.icon}>I</span>
-            {!open && <span>{ind}</span>}
-          </Link>
-        ))} */}
       </div>
     </div>
   );

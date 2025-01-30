@@ -23,7 +23,7 @@ function EmpAccount() {
         }
     }
   return (
-    <Box className={classes.container} sx={{bgcolor: 'background.default'}}>
+    <Box className={classes.container} sx={{bgcolor: mode ==='dark' ? 'background.default' : 'var(--dull-bg)'}}>
         <Container maxWidth={'md'}  className={classes.profile} sx={{color:'text.primary'}}>
             <div className={classes.image}><img src={user!.image || defaultUser} alt="default user" /></div>
             <div className={classes.detail}>
@@ -31,7 +31,7 @@ function EmpAccount() {
                 <p>{user!.email}</p>
             </div>
         </Container>
-        <Container maxWidth={'md'} className={classes.content} sx={{color:'text.primary',bgcolor:mode === 'dark' ? '#202020': ''}}>
+        <Container maxWidth={'md'} className={classes.content} sx={{color:'text.primary',bgcolor:mode === 'dark' ? '#202020': 'white'}}>
             <div className={classes.btn} onClick={handleView}>
                 
                 {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { RootState } from '../../store/store'
@@ -13,6 +13,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ArticleIcon from '@mui/icons-material/Article';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { theme } from '../../App';
 
 function EmployerLayout() {
   const user = useSelector((state:RootState)=>state.userSlice.user);
@@ -33,8 +35,17 @@ function EmployerLayout() {
   }
   return (
     <div className={classes.container}>
+      
     <Sidebar list={Boolean(user?.status) ? list : unApprovedList}/>
-    <Outlet/>
+    
+      <Suspense fallback={<Loading/>}>
+      <ThemeProvider theme={theme}>
+      <CssBaseline/>
+        <Outlet/>
+        </ThemeProvider>
+      </Suspense>
+    
+    
     </div>
   )
 }

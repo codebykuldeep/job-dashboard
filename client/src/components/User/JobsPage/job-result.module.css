@@ -66,9 +66,8 @@
     font-weight: 600;
 }
 
-/* .desc{
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-} */
+.desc{
+    height: 120px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}

@@ -13,7 +13,7 @@ function LeftForm({formState,onChange}:LeftFormProps) {
   return (
     <div className={classes.left}>
         <InputField name='title' type='text' label='Title' formState={formState} onChange={onChange}>Enter Job title</InputField>
-        <InputField name='experience' type='number' label='Experience' formState={formState} onChange={onChange}></InputField>
+        <InputField name='experience' type='number' label='Experience' formState={formState} onChange={onChange}>Enter your Experience</InputField>
         <Box className={classes.input}>
             <FormLabel htmlFor={'description'} error={false}>Description</FormLabel>
             <TextField

@@ -5,7 +5,7 @@ import FilterBox from './FilterBox';
 import { IUser } from '../../../types/dataTypes';
 import { userServerConnect } from '../../../utils/http-methods/userMethods';
 import { ColumnType } from '../../../types/tableTypes';
-import ApplicantTable from '../PostsDetails/ApplicantTable';
+import DataShowTable from '../../Common/DataShowTable';
 
 function Find() {
     const [skill,setSkill] = useState('');
@@ -49,7 +49,7 @@ function Find() {
               {data.length} matching jobseekers found
             </Box>
             <Box className={classes.table}>
-              <ApplicantTable columns={UserColumn} rows={data}/>
+              <DataShowTable<IUser> columns={UserColumn} rows={data}/>
             </Box>
             </Box>
           )}

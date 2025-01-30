@@ -14,7 +14,7 @@
 }
 .sidebar_close{
     position: sticky;
-    width: 50px;
+    width: 60px;
     height: 100vh;
     background-color: var(--dashBg);
     color: var(--grey-color);
@@ -58,8 +58,18 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-left: 12px;
+    padding-left: 16px;
     gap: 10px;
+}
+
+.item_selected{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 16px;
+    gap: 10px;
+    background: #393838;
 }
 
 .icon{

@@ -6,11 +6,12 @@ import Loading from '../../Common/Loading';
 import classes from './posts.module.css'
 import { IPost } from '../../../types/dataTypes';
 import PostCard from './PostCard';
-import { Box, Container } from '@mui/material';
+import { Box, Container, CssBaseline } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { deletePostMethod } from '../../../utils/http-methods/employersMethods';
 
 function Posts() {
+  
   const user = useSelector((state:RootState)=>state.userSlice.user)
   const [data,loading,error] = useFetch<IPost[]>('posts',{id:user!.emp_id})
   const [posts,setPosts] = useState<IPost[] | null>(null)
@@ -41,12 +42,15 @@ function Posts() {
     }
   }
   
+  
 
   return (
-    <Box className={classes.container} sx={{color:'text.primary',bgcolor:"background.default"}}>
-      <Box className={classes.heading}>
+    
+    <Box className={classes.container} sx={{color:'text.primary',bgcolor:'background.default'}}>
+      <CssBaseline/>
+      <Container maxWidth='md' className={classes.heading}>
         <h1>All Jobs </h1>
-      </Box>
+      </Container>
       <Box className={classes.post_box}>
       <Container maxWidth='md' className={classes.posts}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -60,6 +64,7 @@ function Posts() {
         </Container>
       </Box>
     </Box>
+    
   )
 }
 

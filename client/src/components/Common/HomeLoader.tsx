@@ -4,7 +4,7 @@ import { Box, useColorScheme } from '@mui/material';
 
 function HomeLoader() {
   const {mode} =useColorScheme();
-  console.log(mode);
+  
   
   return (
     <Box className={classes.container}sx={{bgcolor:mode === 'dark' ? 'background.default' : ''}}>

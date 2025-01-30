@@ -3,7 +3,6 @@ import './App.css';
 import { RouterProvider } from 'react-router-dom';
 import {routerRoutes} from './Router'
 
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
@@ -17,9 +16,9 @@ declare module '@mui/material/styles' {
   }
 }
 
-const theme = createTheme({
+export const theme = createTheme({
   palette:{
-    mode:'dark',
+    mode:'light',
     //custom:''
   },
   colorSchemes: {
@@ -56,8 +55,8 @@ const theme = createTheme({
 
 
 function App() {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  console.log(prefersDarkMode);
+  //const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  
   
   return (
     <ThemeProvider theme={theme}>

@@ -38,7 +38,7 @@ export async function searchAvailablePostForUser(query,user_id){
     const res = await db.query(`SELECT * FROM
          ( SELECT * FROM postings WHERE post_id NOT IN ( SELECT post_id FROM applications WHERE user_id = $1 )) AS postings
            WHERE ( LOWER(postings.title) LIKE $2 OR 
-           LOWER(postings.company_name) LIKE $3 ) AND postings.date::date >= CURRENT_DATE ;`,[user_id,value,value]);
+           LOWER(postings.company_name) LIKE $3 OR LOWER(postings.description) LIKE $4  ) AND postings.date::date >= CURRENT_DATE ;`,[user_id,value,value,value]);
     
     
     return res.rows;

@@ -1,6 +1,12 @@
 .container{
     width: 100%;
+    max-height: 100vh;
+    overflow: scroll;
+    scrollbar-width: none;
     padding: 2rem;
+    /* background-color: var(--dull-bg); */
+    font-family: "Wix Madefor Display", "Wix Madefor Display Fallback", monospace,
+    serif;
 }
 .heading{
     margin: 1rem 0;
@@ -23,7 +29,7 @@
 .pending{
     padding: 5px;
     color: white;
-    background-color: rgb(248, 246, 120);
+    background-color: #F29339;
     border-radius: 2px;
     text-transform: capitalize;
 }

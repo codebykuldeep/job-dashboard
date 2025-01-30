@@ -7,19 +7,18 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { IApplicant, IEmployer, IUser } from '../../types/dataTypes';
 import { ColumnType } from '../../types/tableTypes';
 
 
 
 
-interface DataTableProps{
+interface DataTableProps<T>{
   columns:ColumnType[],
-  rows:IApplicant[] | IUser[] | IEmployer[],
-  openModal?:(row:IApplicant)=>void;
+  rows:T[],
+  openModal?:(row:T)=>void;
 }
 
-export default function DataShowTable({columns,rows,openModal}:DataTableProps) {
+export default function DataShowTable<T>({columns,rows,openModal}:DataTableProps<T>) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   
@@ -62,7 +61,7 @@ export default function DataShowTable({columns,rows,openModal}:DataTableProps) {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={ind} onClick={()=>handleRow(row)}>
                     {columns.map((column) => {
-                      const value = row[column.id];
+                      const value = row[column.id as keyof T] as string;
                       return (
                         <TableCell key={column.id} id={column.id} align={column.align}>
                           {column.format

@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import classes from './applications.module.css'
 import { useFetch } from '../../../utils/custom-hooks/useFetch';
 import Loading from '../../Common/Loading';
 
 import { ColumnType } from '../../../types/tableTypes';
 import { IApplications } from '../../../types/dataTypes';
-import ApplicationTable from './ApplicationTable';
 import DetailModal from './DetailModal';
 import { Box, useColorScheme } from '@mui/material';
 import { dateFormatter } from '../../../helper/helperFunctions';
+import DataShowTable from '../../Common/DataShowTable';
 
 function Applications() {
   const {mode} =useColorScheme()
@@ -24,7 +24,7 @@ function Applications() {
     const handleClose = () => setOpen(false);
 
   if(loading && !data){
-    return <Loading/>
+    return <Loading bgColor={mode === 'dark' ? '#202020': 'var(--dull-bg)'}/>
   }
   if(error && !data){
     return <p>Error while loading page.Please try later</p>
@@ -32,19 +32,21 @@ function Applications() {
   
   
   return (
-    <Box className={classes.container} sx={{bgcolor: mode === 'dark' ? '#202020': '',color:'text.primary'}}>
-      <div className={classes.header}>Applications</div>
-      <div className={classes.table}>
-        <ApplicationTable columns={ApplicationsColumn} rows={data!} openModal={handleOpen}/>
-      </div>
-      {
-        selectedRow && (
-        <div>
-          <DetailModal data={selectedRow!} open={open} handleClose={handleClose}/>
+    <Suspense fallback={<Loading/>}>
+      <Box className={classes.container} sx={{bgcolor: mode === 'dark' ? '#202020': 'var(--dull-bg)',color:'text.primary'}}>
+        <div className={classes.header}>Applications</div>
+        <div className={classes.table}>
+          <DataShowTable<IApplications> columns={ApplicationsColumn} rows={data!} openModal={handleOpen}/>
         </div>
-        )
-      }
-    </Box>
+        {
+          selectedRow && (
+          <div>
+            <DetailModal data={selectedRow!} open={open} handleClose={handleClose}/>
+          </div>
+          )
+        }
+      </Box>
+    </Suspense>
   )
 }
 
@@ -54,15 +56,6 @@ export default Applications
 
 export const ApplicationsColumn:ColumnType[] = [
   {
-    id:'app_id',
-    label:'App ID'
-  },
-  {
-    id:'post_id',
-    label:'Post ID',
-
-  },
-  {
     id:'title',
     label:'Job Title',
     
@@ -70,6 +63,11 @@ export const ApplicationsColumn:ColumnType[] = [
   {
     id:'company_name',
     label:'Company',
+    align:'center',
+  },
+  {
+    id:'experience',
+    label:'Required Exp.',
     align:'center',
   },
   {

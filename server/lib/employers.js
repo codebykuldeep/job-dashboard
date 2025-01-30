@@ -37,7 +37,8 @@ export async function updateEmployerStatus(emp_id,status) {
 export async function updateEmployer(body,id) {
     const {name ,email,summary,company_name,phone} = body;
   
-    const res = await db.query('UPDATE employers SET name = $1 , email = $2 ,company_name = $3, phone =$4 , summary = $5 WHERE emp_id = $6 ;',[name,email,company_name,phone,summary,id])
+    const res = await db.query('UPDATE employers SET name = $1 , email = $2 ,company_name = $3, phone =$4 , summary = $5 WHERE emp_id = $6 ;',[name,email,company_name,phone,summary,id]);
+    await db.query('UPDATE postings SET company_name = $1  WHERE emp_id = $2 ;',[company_name,id]);
     return res.rows;
 }
 

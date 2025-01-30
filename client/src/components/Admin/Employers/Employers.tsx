@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import DataTable from './DataTable'
 import classes from './employers.module.css'
 import { useFetch } from '../../../utils/custom-hooks/useFetch'
 import { ColumnType } from '../../../types/tableTypes'
 import { IEmployer } from '../../../types/dataTypes'
 import Loading from '../../Common/Loading'
 import OptionButton from './OptionButton'
-import { Box } from '@mui/material'
+import { Box, useColorScheme } from '@mui/material'
+import DataShowTable from '../../Common/DataShowTable'
 
 
 
 function Employers() {
+  const {mode} = useColorScheme();
   const [data,loading,error] = useFetch('employers');
   const [rows,setRows] = useState<IEmployer[] | null>(null);
   useEffect(()=>{
@@ -37,10 +38,10 @@ function Employers() {
   }
   
   return (
-    <Box className={classes.container} sx={{color:'text.primary',bgcolor:"background.default"}}>
+    <Box className={classes.container} sx={{color:'text.primary',bgcolor: mode === 'dark' ?"background.default" : 'var(--dull-bg)'}}>
       <div className={classes.heading}><h1>Employers</h1></div>
       <OptionButton handleFilter={handleFilter} />
-      {!!data && rows && <DataTable columns={EmployerColumn} rows={rows}/>}
+      {!!data && rows && <DataShowTable<IEmployer> columns={EmployerColumn} rows={rows}/>}
     </Box>
   )
 }
