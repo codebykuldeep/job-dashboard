@@ -9,6 +9,7 @@ import PostCard from './PostCard';
 import { Box, Container, CssBaseline } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { deletePostMethod } from '../../../utils/http-methods/employersMethods';
+import ErrorPage from '../../Common/ErrorPage';
 
 function Posts() {
   
@@ -27,7 +28,7 @@ function Posts() {
     return <Loading/>
   }
   if(error){
-    return <p>Failed to load page</p>
+    return <ErrorPage/>
   }
 
   

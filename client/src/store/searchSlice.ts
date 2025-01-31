@@ -9,22 +9,20 @@ export interface searchState {
   data: IPost[] | null;
   posts:IPost[] | null;
   loading:boolean;
+  error:boolean;
 }
 
 const initialState: searchState  = {
   data:null,
   posts:null,
-  loading:false,
+  loading:true,
+  error:false,
 }
 
 export const searchPost = createAsyncThunk('/search/searchPost',async(query:string)=>{
   const response = await userServerConnect('GET','posts/search',{query:query});
-  if(Boolean(response.success)){
-    return response.data;
-  }
-  else{
-    throw new Error('failed to update user data')
-  }
+  
+  return {data:response.data,status:Boolean(response.success)};
 })
 
 export const searchSlice = createSlice({
@@ -73,15 +71,23 @@ export const searchSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(searchPost.pending,(state,action)=>{
+      state.error = false;
       state.loading = true;
     })
     builder.addCase(searchPost.fulfilled,(state,action)=>{
-      state.data = action.payload;
-      state.posts = action.payload;
+    
+      if(action.payload.status){
+        state.data = action.payload.data;
+        state.posts = action.payload.data;
+      }
+      else{
+        state.error = true;
+      }
       state.loading = false;
     })
     builder.addCase(searchPost.rejected,(state,action)=>{
       state.loading = false;
+      state.error = true;
     })
   },
 })

@@ -9,6 +9,7 @@ import DetailModal from './DetailModal';
 import { Box, useColorScheme } from '@mui/material';
 import { dateFormatter } from '../../../helper/helperFunctions';
 import DataShowTable from '../../Common/DataShowTable';
+import ErrorPage from '../../Common/ErrorPage';
 
 function Applications() {
   const {mode} =useColorScheme()
@@ -27,7 +28,7 @@ function Applications() {
     return <Loading bgColor={mode === 'dark' ? '#202020': 'var(--dull-bg)'}/>
   }
   if(error && !data){
-    return <p>Error while loading page.Please try later</p>
+    return <ErrorPage/>
   }
   
   

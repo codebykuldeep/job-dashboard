@@ -10,7 +10,7 @@ import SnackBar from '../../Common/AuthPage/SnackBar';
 
 function JobResult() {
   const user =useSelector((state:RootState)=>state.userSlice.user);
-  const {posts,loading} =useSelector((state:RootState)=>state.searchSlice)
+  const {posts,loading,error} =useSelector((state:RootState)=>state.searchSlice)
   const [snackState,setsnackState] = useState({open:false,status:false,message:''})
 
   function handleSnackClose(){
@@ -31,7 +31,15 @@ function JobResult() {
       </Box>
     )
   }
+  debugger;
+  if(error){
+    return <Box className={classes.empty} sx={{color:'text.primary'}}>
+      Cannot get lastest jobs right now . 
+    </Box>
+  }
 
+  console.log(posts,loading,error);
+  
   if(!posts || posts.length === 0){
     return <Box className={classes.empty} sx={{color:'text.primary'}}>
       No result jobs for given query 

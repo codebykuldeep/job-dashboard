@@ -8,6 +8,7 @@ import { useFetch } from '../../../utils/custom-hooks/useFetch';
 import Loading from '../../Common/Loading';
 import { AppStatusCount, UserCountData } from '../../../types/dataTypes';
 import { Box, useColorScheme } from '@mui/material';
+import ErrorPage from '../../Common/ErrorPage';
 
 type ApiRespone ={appStatusData:UserCountData[],companyData:UserCountData[]}
 
@@ -29,7 +30,7 @@ function UserHome() {
    
 
    if(error){
-    return <p>Error loading page.Please try later</p>
+    return <ErrorPage/>
    }
    
     

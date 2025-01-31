@@ -27,6 +27,7 @@ import UserHome from './components/User/Home/UserHome';
 import EmpHomeLayout from './components/Employer/Home/EmpHomeLayout';
 //import Find from './components/Employer/Find/Find';
 import { lazy } from "react";
+import NotFound from "./components/Common/NotFound";
 
 //USER ROUTES
 const Applications = lazy(()=>import('./components/User/Applications/Applications'))
@@ -49,7 +50,7 @@ const AdminAccount = lazy(()=>import('./components/Admin/Account/AdminAccount'))
 export const routerRoutes = createBrowserRouter([
     {
       path: "/",
-      errorElement:<div><h1>404 NOT FOUND</h1></div>,
+      errorElement:<NotFound/>,
       element:<RootLayout/>,
       children:[
         {
