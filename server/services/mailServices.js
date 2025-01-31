@@ -20,7 +20,8 @@ export async function sendOTPMail(email,otp){
         to: email,
         subject: "Email Verification - FindJob ",
         text: "This is a email for OTP verification",
-        html:`<h1>VERIFICATION CODE - ${otp}</h1>`
+        html:`<h1>VERIFICATION CODE - ${otp}</h1>
+              <p>Note : This Code is valid for 5 mins only</p>`
     };
     try {
         const info = await transporter.sendMail(mailOptions)
