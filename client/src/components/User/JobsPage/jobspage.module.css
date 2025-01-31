@@ -4,7 +4,6 @@
     max-height: 100vh;
     overflow: scroll;
     scrollbar-width: none;;
-    background-color: var(--dull-bg);
     font-family: "Wix Madefor Display", "Wix Madefor Display Fallback", monospace,
     serif;
 }

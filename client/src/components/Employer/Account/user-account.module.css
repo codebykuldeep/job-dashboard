@@ -5,7 +5,7 @@
     scrollbar-width: none;
     padding: 2rem;
     /* font-family: "Poppins",monospace,serif; */
-    background-color: var(--dull-bg);
+    /* background-color: var(--dull-bg); */
     font-family: "Wix Madefor Display", "Wix Madefor Display Fallback", monospace,
     serif;
 }
@@ -33,7 +33,7 @@
     width: 100%;
     border: 1px solid var(--grey);
     border-radius: 10px;
-    background-color: white;
+    /* background-color: white; */
 }
 
 .btn{

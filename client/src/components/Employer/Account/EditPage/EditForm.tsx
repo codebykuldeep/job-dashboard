@@ -65,7 +65,7 @@ function EditForm({user,snackOpen}:EditFormProps) {
       <InputField label='Company Name' name='company_name' type='text' formState={formState} onChange={handleChange}>Enter company name</InputField>
       <InputField label='Summary' name='summary' type='text' formState={formState} onChange={handleChange}>Enter about yourself</InputField>
       <div>
-        <Button variant='contained' type='submit' disabled={submit}>{submit ? 'Updating' : 'Update'}</Button>
+        <Button variant='contained' type='submit' loading={submit} loadingPosition='end'>{submit ? 'Updating' : 'Update'}</Button>
       </div>
     </form>
     

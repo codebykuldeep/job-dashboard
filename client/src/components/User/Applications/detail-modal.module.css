@@ -51,7 +51,7 @@
 } */
 
 .pending{
-    background-color: rgb(250, 250, 76);
+    background-color: #F29339;
     color: white;
     text-transform: capitalize;
     font-size: 18px;

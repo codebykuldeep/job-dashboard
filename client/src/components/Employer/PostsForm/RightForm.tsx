@@ -36,6 +36,7 @@ function RightForm({formState,onChange}:RightFormProps) {
           renderInput={(params) => (
             <TextField
               name="location"
+              placeholder='Enter company location'
               error={formState["location"].status}
               helperText={formState["location"].message}
               {...params}

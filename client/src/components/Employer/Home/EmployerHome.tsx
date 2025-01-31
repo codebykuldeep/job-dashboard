@@ -4,11 +4,12 @@ import { AnalyticLabelList, DetailsData } from '../../../types/dataTypes';
 import { useFetch } from '../../../utils/custom-hooks/useFetch';
 import { Box } from '@mui/material';
 import Loading from '../../Common/Loading';
+import ErrorPage from '../../Common/ErrorPage';
 
 function EmployerHome() {
   const [data,loading,error] = useFetch<DetailsData>('employers/detail');
     if(error){
-      return <p>Failed to load page.Try later </p>
+      return <ErrorPage/>
     }
     
   return (

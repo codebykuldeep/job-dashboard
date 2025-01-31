@@ -43,7 +43,7 @@ export async function handleGetSinglePost(req,res) {
         const data = await getPost(id);
         return res.json(new ApiResponse(200,data, true));
     } catch (error) {
-        return res.json(new ApiResponse(200, { message: "posts data fetch failed",error }, true));
+        return res.json(new ApiResponse(200, { message: "posts data fetch failed",error }, false));
     }
 }
 

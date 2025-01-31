@@ -13,7 +13,7 @@ export default function Chart({data}:ChartProps) {
       series={[
         {
           data: [
-            { id: 0, value: data.pending, label: 'Pending' },
+            { id: 0, value: data.pending, label: `Pending` },
             { id: 1, value: data.accepted, label: 'Accepted' },
             { id: 2, value: data.rejected, label: 'Rejected' },
           ],

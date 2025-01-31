@@ -39,6 +39,15 @@ function AddPost() {
 
   async function handleSubmit(event:FormEvent<HTMLFormElement>){
     event.preventDefault()
+    if(!user!?.company_name || !user?.summary){
+      setSnackState({
+        open:true,
+        status:false,
+        message:'Please complete your profile !'
+      })
+      return;
+    }
+   
     setSubmit(true);
     if (checkValidFormState(formState)) {
       const formData = new FormData(event.target as HTMLFormElement);

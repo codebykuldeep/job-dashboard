@@ -4,7 +4,7 @@ import classes from './job-result.module.css';
 import LocationIcon from '@mui/icons-material/LocationOn';
 import CalendarIcon from '@mui/icons-material/CalendarMonth';
 import SchoolIcon from '@mui/icons-material/School';
-import { IPost } from '../../../types/dataTypes';
+import { IPost, IUser } from '../../../types/dataTypes';
 import { dateFormatter } from '../../../helper/helperFunctions';
 import { userServerConnect } from '../../../utils/http-methods/userMethods';
 import { useDispatch } from 'react-redux';
@@ -15,13 +15,21 @@ import { searchActions } from '../../../store/searchSlice';
 
 interface JobCardProps{
   post:IPost;
+  user:IUser;
+  handleOpen:()=>void;
 }
 
-function JobCard({post}:JobCardProps) {
+function JobCard({post,user,handleOpen}:JobCardProps) {
   const dispatch = useDispatch<AppDispatch>();
   const [submit,setSubmit] = useState(false);
   const applied = Boolean(post.applied);
+
+
   async function handleApply(){
+    if(!user?.resume || !user?.experience || !user?.summary || !user?.education ){
+      handleOpen();
+      return;
+    }
     setSubmit(true);
     const result = await userServerConnect('GET','posts/apply',{post_id:post.post_id});
     if(Boolean(result.success)){
@@ -44,6 +52,7 @@ function JobCard({post}:JobCardProps) {
             <div className={classes.info}><span><SchoolIcon/></span><span>{post.education}</span></div>
         </Box>
         <Box className={classes.desc}>
+            {post.description}
             {post.description}
         </Box>
         <Box className={classes.experience}>

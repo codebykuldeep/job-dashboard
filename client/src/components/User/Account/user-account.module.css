@@ -4,8 +4,6 @@
     overflow: scroll;
     scrollbar-width: none;
     padding: 2rem;
-    /* font-family: "Poppins",monospace,serif; */
-    background-color: var(--dull-bg);
     font-family: "Wix Madefor Display", "Wix Madefor Display Fallback", monospace,
     serif;
 }
@@ -24,7 +22,7 @@
 .image img{
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: fill;
     border-radius: 50%;
 }
 
@@ -33,7 +31,6 @@
     width: 100%;
     border: 1px solid var(--grey);
     border-radius: 10px;
-    background-color: white;
 }
 
 .btn{

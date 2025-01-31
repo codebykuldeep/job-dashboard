@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import DataTable from './DataTable'
 import classes from './employers.module.css'
 import Loading from '../../Common/Loading';
 import { useFetch } from '../../../utils/custom-hooks/useFetch';
@@ -7,9 +6,10 @@ import { EmployerColumn } from './Employers';
 import { IEmployer } from '../../../types/dataTypes';
 import EmpModal from './EmpModal';
 import { Box } from '@mui/material';
+import DataShowTable from '../../Common/DataShowTable';
 
 function PendingEmps() {
-  const [data,loading,error,update] = useFetch('employers',{
+  const [data,loading,error,update] = useFetch<IEmployer[]>('employers',{
     type:'pending'
   });
   const [selectedRow,setSelectedRow] = useState<IEmployer | null>(null)
@@ -34,7 +34,7 @@ function PendingEmps() {
     <Box className={classes.container} sx={{color:'text.primary',bgcolor:"background.default"}}>
       <div className={classes.heading}><h1>Pending Employers</h1></div>
       {selectedRow && <EmpModal data={selectedRow} open={open} handleClose={handleClose} update={update}/>}
-      {!!data && <DataTable columns={EmployerColumn} rows={data as IEmployer[]} openModal={handleOpen}/>}
+      {!!data && <DataShowTable<IEmployer> columns={EmployerColumn} rows={data} openModal={handleOpen}/>}
     </Box>
   )
 }

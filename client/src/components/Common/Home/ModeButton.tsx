@@ -22,6 +22,7 @@ function ModeButton() {
             setMode('light')
         }
         setChecked(checked);
+        handleOpen();
     }
 
     function handleOpen(){

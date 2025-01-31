@@ -7,11 +7,13 @@ import Chart from './Chart';
 import { useFetch } from '../../../utils/custom-hooks/useFetch';
 import Loading from '../../Common/Loading';
 import { AppStatusCount, UserCountData } from '../../../types/dataTypes';
-import { Box } from '@mui/material';
+import { Box, useColorScheme } from '@mui/material';
+import ErrorPage from '../../Common/ErrorPage';
 
 type ApiRespone ={appStatusData:UserCountData[],companyData:UserCountData[]}
 
 function UserHome() {
+    const {mode} = useColorScheme();
     const user = useSelector((state:RootState)=>state.userSlice.user)
     const [data,loading,error] = useFetch<ApiRespone>('users/detail');
     const [applicationData,setApplicationData] = useState<AppStatusCount | null>(null)
@@ -28,17 +30,17 @@ function UserHome() {
    
 
    if(error){
-    return <p>Error loading page.Please try later</p>
+    return <ErrorPage/>
    }
    
     
   return (
-    <Box sx={{color:'text.primary',bgcolor:"background.default"}} className={classes.container}>
+    <Box className={classes.container} sx={{color:'text.primary',bgcolor: mode === 'dark' ? '#202020': 'var(--dull-bg)'}} >
         <Box className={classes.greeting}>
             Hello, <span>{user!.name}</span>
         </Box>
         {
-            !data || loading ? <Loading/> : (
+            !data || loading ? <Loading bgColor={mode === 'dark' ? '#202020': 'var(--dull-bg)'}/> : (
                 <>
                 {applicationData && <Analytics dataArr={[applicationData.total,compData,applicationData.accepted]}/>}
                 <div className={classes.chart}>

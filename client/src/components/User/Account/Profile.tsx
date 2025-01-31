@@ -20,26 +20,28 @@ function Profile({user}:ProfileProps) {
         {views.map((view) => (
           <p key={view} className={classes.line}>
             <span>{nameFormatter(view)}</span> :{" "}
-            <span>{user[view] || 'Not Available'}</span>
+            <span>{user[view] || "Not Available"}</span>
           </p>
         ))}
         <p className={classes.line}>
-            <span>{nameFormatter('experience')}</span> :{" "}
-            <span>{user['experience']} years</span>
-          </p>
+          <span>{nameFormatter("experience")}</span> :{" "}
+          <span>{user["experience"]} years</span>
+        </p>
       </div>
-      {user?.resume && (
-        <div>
-          <p className={classes.line}>
-            <span>Resume</span> :{" "}
-            <span>
-              <a href={user.resume} target='_blank' rel="noreferrer">
-                <Button variant='outlined'>Open</Button>
-              </a>
-            </span>
-          </p>
-        </div>
-      )}
+      <div>
+        <p className={classes.line}>
+          <span>Resume</span> :{" "}
+          <span>
+            {
+              user?.resume ? (
+                <a href={user.resume} target="_blank" rel="noreferrer">
+                  <Button variant="outlined">Open</Button>
+                </a>
+              ):'Not Available'
+            }
+          </span>
+        </p>
+      </div>
     </div>
   );
 }

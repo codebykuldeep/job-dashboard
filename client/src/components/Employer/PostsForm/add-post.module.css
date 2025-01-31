@@ -1,6 +1,11 @@
 .container{
-    padding: 2rem;
     width: 100%;
+    max-height: 100vh;
+    overflow: scroll;
+    scrollbar-width: none;
+    padding: 2rem;
+    font-family: "Wix Madefor Display", "Wix Madefor Display Fallback", monospace,
+    serif;
 }
 
 .heading{
