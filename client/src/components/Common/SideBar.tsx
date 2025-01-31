@@ -20,6 +20,7 @@ function Sidebar({list}:SideBarProps) {
   const routeList = pathname.split('/');
   const route = routeList[routeList.length -1];
   
+  console.log(routeList);
   
   
   return (

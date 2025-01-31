@@ -58,7 +58,7 @@ export const searchSlice = createSlice({
       }
       else if(state.data){
         const filterData = state.data.filter((post)=>{
-          if(location.includes(post.location.toLowerCase()) && Number(post.experience) >= experience){
+          if(location.includes(post.location.toLowerCase()) && Number(post.experience) <= experience){
             return true;
           }
           if(location.length === 0 && Number(post.experience) <= experience){

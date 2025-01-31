@@ -63,7 +63,7 @@ function FilterBar({mode}:FilterBarProps) {
         <div>
             <div>Experience</div>
             <div>
-            <Slider defaultValue={0}  max={10} aria-label="Default" valueLabelDisplay="auto" onChange={handleExp}/>
+            <Slider defaultValue={0}   max={10} aria-label="Default" valueLabelDisplay="auto" value={experience} onChange={handleExp}/>
             </div>
         </div>
         <div className={classes.filter_apply}>

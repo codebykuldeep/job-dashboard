@@ -23,7 +23,7 @@ function UserAccount() {
         }
     }
   return (
-    <Box className={classes.container} sx={{bgcolor: mode==='dark' ? 'background.default' : 'var(--dull-bg)'}}>
+    <Box className={classes.container} sx={{bgcolor: mode==='dark' ? '#202020' : 'var(--dull-bg)'}}>
         <Container maxWidth={'md'}  className={classes.profile} sx={{color:'text.primary'}}>
             <div className={classes.image}><img src={user!.image || defaultUser} alt="default user" /></div>
             <div className={classes.detail}>

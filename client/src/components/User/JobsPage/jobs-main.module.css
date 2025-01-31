@@ -28,6 +28,8 @@
 
 /* FILTER BOX */
 .filter{
+    position: sticky;
+    top: 0;
     max-width: 300px;
     padding: 1rem;
     border-radius: 15px;
