@@ -38,13 +38,15 @@ function EditForm({user,snackOpen}:EditFormProps) {
     async function handleSubmit(event:FormEvent<HTMLFormElement>){
         event.preventDefault()
         setsubmit(true);
+        
+        
         if (checkValidFormState(formState)) {
           const formData = new FormData(event.target as HTMLFormElement);
           const body = Object.fromEntries(formData.entries());
           body.skill = formState.skill.value;
           const result  = await userServerConnect('POST','users/update',undefined,body as ReqBody);
           if(Boolean(result.success)){
-             dispatch(updateUser());
+            dispatch(updateUser());
             snackOpen(true,'Details updated')
           }
           else{
@@ -56,7 +58,7 @@ function EditForm({user,snackOpen}:EditFormProps) {
         }
         setsubmit(false);
       }
-    
+      
   return (
     <>
     <form className={classes.form} onSubmit={handleSubmit}>

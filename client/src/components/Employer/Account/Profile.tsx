@@ -27,6 +27,11 @@ function Profile({user}:ProfileProps) {
             <span>{'Phone number'}</span> :{" "}
             <span>{user['phone']}</span>
           </p>
+
+          <p className={classes.line}>
+            <span>{'Email verified'}</span> :{" "}
+            <span>{Boolean(user?.verified) ? 'Verified' : "Not Verified"}</span>
+          </p>
       </div>
       
     </div>

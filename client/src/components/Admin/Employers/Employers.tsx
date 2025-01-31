@@ -82,6 +82,8 @@ export const EmployerColumn:ColumnType[] = [
   {
     id:'status',
     label:'Current Status',
+    minWidth:200,
+    align:'center',
     format:(value)=>{
       let name = 'approved'
       let output = "Approved"
@@ -94,6 +96,16 @@ export const EmployerColumn:ColumnType[] = [
         output='Rejected';
       }
       return <span className={classes[name]}>{output}</span>;
+    }
+  },
+  {
+    id:'verified',
+    label:'Email Verified',
+    format:(value)=>{
+      if(Boolean(value)){
+        return 'Verified'
+      }
+      return "Not Verified";
     }
   },
   {

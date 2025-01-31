@@ -20,9 +20,6 @@ function Sidebar({list}:SideBarProps) {
   const routeList = pathname.split('/');
   const route = routeList[routeList.length -1];
   
-  console.log(routeList);
-  
-  
   return (
     <div
       className={!open ? classes.sidebar_open : classes.sidebar_close }
