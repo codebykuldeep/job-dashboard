@@ -65,8 +65,10 @@ export async function updatePassword(role,email,password){
 
 export async function updateUser(body,id) {
     const {name ,email,education,summary,skill,experience} = body;
-  
+
+    await db.query(`UPDATE users SET status = 'false' WHERE user_id = $1 AND LOWER(email) != LOWER( $2 ) ;`,[id,email])
     const res = await db.query('UPDATE users SET name = $1 ,email = $2 ,education = $3, summary =$4 , skill = $5 ,experience = $6  WHERE user_id = $7 ;',[name,email,education,summary,skill,experience,id])
+    
     return res.rows;
 }
 
@@ -104,5 +106,12 @@ export async function searchJobseekersByEmp(experience,skill){
     })
     
     const res = await db.query(`SELECT * FROM users WHERE experience >= $1 AND ( ${matchingStr} );`,[experience])
+    return res.rows;
+}
+
+
+
+export async function setUserStatus(email,status){
+    const res = await db.query('UPDATE users SET status = $1 where email = $2 ;',[status,email]);
     return res.rows;
 }

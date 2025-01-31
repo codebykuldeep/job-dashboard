@@ -21,6 +21,7 @@ async function employersSchema() {
         email VARCHAR NOT NULL UNIQUE,
         summary TEXT,
         password VARCHAR,
+        verified BOOLEAN DEFAULT false,
         phone VARCHAR,
         company_name VARCHAR,
         status BOOLEAN DEFAULT NULL,
@@ -42,7 +43,7 @@ async function usersSchema() {
         skill TEXT DEFAULT '',
         image VARCHAR,
         resume VARCHAR,
-        status BOOLEAN DEFAULT true,
+        status BOOLEAN DEFAULT false,
         created_at VARCHAR DEFAULT CURRENT_TIMESTAMP
       )`)
     

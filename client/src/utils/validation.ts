@@ -115,6 +115,8 @@ export function validation(title:string,value:string):[string,boolean]{
         return ['',false];
     }
     if(title === 'experience'){
+        console.log('exp',value);
+        
         if(value === null || value === ''){
             return [`Please enter valid experience years`,true];
         }
@@ -141,9 +143,10 @@ export function checkValidFormState(formState:FormStateType){
     for(const key in formState){
     const [,state] = validation(key,formState[key].value)
     if(state === true){
+        
         return false;
     }
-    if(formState[key].status || !formState[key].value){
+    if(formState[key].status || !String(formState[key].value)){
         return false;
     }  
     }
@@ -162,6 +165,7 @@ export function populateFormState(formState:FormStateType){
             }
          }
     }
+    
     return formState;
 }
 

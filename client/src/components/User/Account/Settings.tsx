@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import classes from './user-account.module.css'
 import { Alert, Box, Button, FormLabel, TextField } from '@mui/material';
 import { userServerConnect } from '../../../utils/http-methods/userMethods';
+import VerifyEmail from './VerifyEmail/VerifyEmail';
 
 function Settings() {
   const [state,setState] = useState({password:'',old_password:''});
@@ -93,6 +94,7 @@ function Settings() {
           <Button variant='contained' type='submit' disabled={submit}>Update</Button>
         </Box>
       </form>
+      <VerifyEmail/>
     </div>
   );
 }

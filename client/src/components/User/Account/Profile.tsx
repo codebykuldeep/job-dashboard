@@ -42,6 +42,16 @@ function Profile({user}:ProfileProps) {
           </span>
         </p>
       </div>
+      <div>
+        <p className={classes.line}>
+          <span>Email Verified</span> :{" "}
+          <span>
+            {
+              Boolean(user?.status) ? 'Verifed': 'Not Verified'
+            }
+          </span>
+        </p>
+      </div>
     </div>
   );
 }

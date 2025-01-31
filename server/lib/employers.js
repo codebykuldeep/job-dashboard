@@ -12,7 +12,7 @@ export async function getAllEmployers(type) {
 
 export async function getEmployer(id) {
     const res = await db.query(`SELECT * FROM employers WHERE emp_id = $1 ;`,[id]);
-    return res.rows;
+    return res.rows[0];
 }
 
 export async function getEmployerByEmail(email) {
@@ -37,6 +37,7 @@ export async function updateEmployerStatus(emp_id,status) {
 export async function updateEmployer(body,id) {
     const {name ,email,summary,company_name,phone} = body;
   
+    await db.query(`UPDATE employers SET verified = 'false' WHERE emp_id = $1 AND LOWER(email) != LOWER( $2 ) ;`,[id,email])
     const res = await db.query('UPDATE employers SET name = $1 , email = $2 ,company_name = $3, phone =$4 , summary = $5 WHERE emp_id = $6 ;',[name,email,company_name,phone,summary,id]);
     await db.query('UPDATE postings SET company_name = $1  WHERE emp_id = $2 ;',[company_name,id]);
     return res.rows;
@@ -56,4 +57,9 @@ export async function getReportForEmployer(emp_id){
         ;
         `,[emp_id,emp_id,emp_id,emp_id,emp_id,emp_id,emp_id]);
     return res.rows[0];
+}
+
+export async function setEmployerEmailStatus(email,status){
+    const res = await db.query('UPDATE employers SET verified = $1 where email = $2 ;',[status,email]);
+    return res.rows;
 }

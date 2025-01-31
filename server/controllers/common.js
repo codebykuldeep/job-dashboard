@@ -1,8 +1,8 @@
 import { generateToken, verifyToken } from "../auth/auth.js";
 import { getAdmin } from "../lib/admins.js";
 import { checkForExistingEmail } from "../lib/common.js";
-import { getEmployerByEmail, registerEmployer } from "../lib/employers.js";
-import { findUser, getUserByEmail, registerUser, updatePassword } from "../lib/users.js";
+import { getEmployer, getEmployerByEmail, registerEmployer } from "../lib/employers.js";
+import { findUser, getUserByEmail, getUserById, registerUser, updatePassword } from "../lib/users.js";
 import { ApiResponse, UserResponse } from "../utils/response.js";
 import bcrypt from 'bcrypt';
 
@@ -90,13 +90,17 @@ export async function handleUserVerification(req,res) {
         }
     
         if(role === 'employer'){
-            user = await getEmployerByEmail(email);
+            const {emp_id} = data;
+            user = await getEmployer(emp_id);
+            //user = await getEmployerByEmail(email);
             user.role = 'employer';
             delete user.password;
         }
 
         if(role === 'user'){
-            user = await getUserByEmail(email);
+            const {user_id} = data;
+            user = await getUserById(user_id);
+            //user = await getUserByEmail(email);
             user.role = 'user';
             delete user.password;
         }
@@ -106,6 +110,8 @@ export async function handleUserVerification(req,res) {
         return res.json(new UserResponse(200,user,true,token));
        
     } catch (error) {
+        console.log(error);
+        
         return res.json(new UserResponse(500,error,false))
     }
 }

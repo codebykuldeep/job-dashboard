@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { IUser } from '../types/dataTypes';
 import { UserVerify } from '../utils/authMethods';
+import { setToken } from '../utils/utilsFunctions';
 
 
 
@@ -16,6 +17,8 @@ const initialState: UserState  = {
 export const updateUser = createAsyncThunk('/user/updateUser',async()=>{
   const response = await UserVerify();
   if(Boolean(response.success)){
+    const token = response.token;
+    setToken(token);
     return response.data;
   }
   else{
