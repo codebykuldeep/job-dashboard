@@ -31,7 +31,7 @@ function JobResult() {
       </Box>
     )
   }
-  debugger;
+  
   if(error){
     return <Box className={classes.empty} sx={{color:'text.primary'}}>
       Cannot get lastest jobs right now . 
