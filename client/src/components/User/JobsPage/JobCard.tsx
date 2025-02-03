@@ -26,7 +26,8 @@ function JobCard({post,user,handleOpen}:JobCardProps) {
 
 
   async function handleApply(){
-    if(!user?.resume || !user?.experience || !user?.summary || !user?.education ){
+    
+    if(!user?.resume || user?.experience === '' || !user?.summary || !user?.education ){
       handleOpen();
       return;
     }

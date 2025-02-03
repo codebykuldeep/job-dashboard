@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 import Register from './Register';
 import Login from './Login';
 import classes from './auth-page.module.css';
-//import authImage from '../../../assets/authImage-bg.png'
+
 
 function AuthPage() {
     const [ seachParams,setSeachParams]= useSearchParams();

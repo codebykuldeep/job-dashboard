@@ -38,7 +38,6 @@ function JobResult() {
     </Box>
   }
 
-  console.log(posts,loading,error);
   
   if(!posts || posts.length === 0){
     return <Box className={classes.empty} sx={{color:'text.primary'}}>

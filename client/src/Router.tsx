@@ -13,7 +13,6 @@ import AdminHome from './components/Admin/Home/AdminHome';
 //import PendingEmps from './components/Admin/Employers/PendingEmps';
 import Logout from './components/Common/Logout';
 //import AdminAccount from './components/Admin/Account/AdminAccount';
-import EmpDetails from './components/Admin/Employers/Details/EmpDetails';
 import Home from './components/Common/Home/Home';
 //import Posts from './components/Employer/Posts/Posts';
 import AddPost from './components/Employer/PostsForm/AddPost';
@@ -136,10 +135,6 @@ export const routerRoutes = createBrowserRouter([
             {
               path:'employers',
               element: <Employers/>,
-            },
-            {
-              path:'employers/:id',
-              element: <EmpDetails/>,
             },
             {
               path:'pendings',
