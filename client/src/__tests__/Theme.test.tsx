@@ -13,14 +13,5 @@ describe('THEME TEST CASES',()=>{
  
     })
 
-    // test('check dark theme on default',async()=>{
-        
-    //     renderWithProviders(<ModeButton/>)
-
-    //     const btnElement = screen.
-    //     expect(btnElement).toBeInTheDocument();
-    //     //const HomeElement = screen.getByTestId('home-bg')
-    //     //expect(HomeElement).toHaveStyle({backgroundColor:'#121212'});
- 
-    // })
+    
 })

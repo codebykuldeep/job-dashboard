@@ -2,29 +2,12 @@ import React, { PropsWithChildren } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 
 import { Provider } from "react-redux";
-
-import { AppStore, RootState, setupStore } from "./store-init";
+//import {  setupStore } from "./store-init";
 import { BrowserRouter } from "react-router-dom";
-
-// export function renderWithProviders(
-//   ui,
-//   {
-//     preloadedState = {},
-//     // Automatically create a store instance if no store was passed in
-//     store = configureStore({
-//       reducer: { listReducers: ListSlice.reducer },
-//       preloadedState,
-//     }),
-//     ...renderOptions
-//   } = {}
-// ) {
-//   function Wrapper({ children }) {
-//     return <Provider store={store}>{children}</Provider>;
-//   }
-
-//   // Return an object with the store and all of RTL's query functions
-//   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
-//}
+import { configureStore, Reducer, UnknownAction } from "@reduxjs/toolkit";
+import userSlice, { UserState } from "../store/userSlice";
+import searchSlice, { searchState } from "../store/searchSlice";
+import { AppStore, RootState } from "../store/store";
 
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
@@ -39,7 +22,14 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
     const {
         preloadedState = {},
         // Automatically create a store instance if no store was passed in
-        store = setupStore(preloadedState),
+        //store = setupStore(preloadedState),
+        store = configureStore({
+          reducer: {
+            userSlice:userSlice.reducer as Reducer<UserState, UnknownAction, UserState | undefined>,
+            searchSlice:searchSlice.reducer as Reducer<searchState, UnknownAction, searchState | undefined>,
+          },
+            preloadedState,
+        }),
         ...renderOptions
       } = extendedRenderOptions
   
