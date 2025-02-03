@@ -33,6 +33,7 @@
 }
 
 .arrow_mode_button{
+  all: unset;
   margin-top: 4px;
   cursor: pointer;
   color: black !important;

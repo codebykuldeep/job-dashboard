@@ -8,7 +8,7 @@ import { Box, Button, useColorScheme } from '@mui/material';
 
 
 function Home() {
-  const user  = useSelector((state:RootState)=>state.userSlice.user);
+  const user  = useSelector((state:RootState)=>state?.userSlice?.user);
   const {mode} = useColorScheme();
   
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ function Home() {
   }
   
   return (
-    <Box className={classes.container} sx={{bgcolor:'background.default'}}>
+    <Box className={classes.container} sx={{bgcolor:'background.default'}} data-testid='home-bg'>
       <div>
         <Box className={classes.text} sx={{color:mode === 'dark' ? 'text.secondary' : ''}}>
           Unlock Your Future: Find Your <br /><strong>Perfect Job</strong> Today!

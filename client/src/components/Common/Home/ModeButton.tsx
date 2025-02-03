@@ -2,7 +2,7 @@ import { Stack, Switch, useColorScheme } from '@mui/material';
 import React, { useState } from 'react'
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import { createPortal } from 'react-dom';
+
 import ArrowBackIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForwardIos';
 
@@ -30,12 +30,11 @@ function ModeButton() {
     }
   return (
     <>
-        {createPortal(
             <div className='mode-button'>
                 <Stack direction={'row'} alignItems={'center'} className='change-mode'>
-                    <div onClick={handleOpen} className='arrow_mode_button'>
+                    <button onClick={handleOpen} className='arrow_mode_button' data-testid='mode-button'>
                         {open ? (<ArrowForwardIcon />) : (<ArrowBackIcon/>)}
-                    </div>
+                    </button>
                     {
                         open && (
                             <>
@@ -46,9 +45,7 @@ function ModeButton() {
                         )
                     }
                 </Stack>
-            </div>,
-            document.getElementById('mode')!
-        )}
+            </div>
     </>
   );
 }
