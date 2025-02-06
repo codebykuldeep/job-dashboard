@@ -54,6 +54,25 @@ export interface  IApplications extends IPost{
   user_data:string;
 }
 
+export interface ICHATROOM{
+  room_id:string;
+  user_id:string;
+  emp_id:string;
+}
+
+export interface IMessage {
+  content: string;
+  created_at: string;
+  emp_id?: string;
+  message_id?: string;
+  room_id?: string;
+  seen?: string;
+  sender: string;
+  user_id?: string;
+}
+
+export interface IUserWithRoom extends IUser,ICHATROOM{}
+
 
 export type UserCountData = {count:string,app_status:null|boolean,company_name:string};
 

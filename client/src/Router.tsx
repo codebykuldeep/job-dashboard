@@ -27,6 +27,7 @@ import EmpHomeLayout from './components/Employer/Home/EmpHomeLayout';
 //import Find from './components/Employer/Find/Find';
 import { lazy } from "react";
 import NotFound from "./components/Common/NotFound";
+import UserMessage from "./components/User/Message/UserMessage";
 
 //USER ROUTES
 const Applications = lazy(()=>import('./components/User/Applications/Applications'))
@@ -83,6 +84,10 @@ export const routerRoutes = createBrowserRouter([
               element: <Applications/>,
             },
             {
+              path:'messages',
+              element: <UserMessage/>,
+            },
+            {
               path:'account',
               element: <UserAccount/>,
             }
@@ -116,6 +121,10 @@ export const routerRoutes = createBrowserRouter([
             {
               path:'find',
               element: <Find/>,
+            },
+            {
+              path:'messages',
+              element: <UserMessage/>,
             },
             {
               path:'account',

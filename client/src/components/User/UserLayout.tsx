@@ -12,6 +12,7 @@ import AccountIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ArticleIcon from '@mui/icons-material/Article';
 import WorkIcon from '@mui/icons-material/Work';
+import MessageIcon from '@mui/icons-material/Message';
 import Sidebar from '../Common/SideBar';
 import { Box } from '@mui/material';
 
@@ -64,6 +65,11 @@ const list=[
       icon:<ArticleIcon fontSize='large'/>,
       name:'Applications',
       link:'applications'
+  },
+  {
+    icon:<MessageIcon fontSize='large'/>,
+    name:'Messages',
+    link:'messages'
   },
   {
       icon:<AccountIcon fontSize='large'/>,

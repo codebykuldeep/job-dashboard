@@ -13,6 +13,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ArticleIcon from '@mui/icons-material/Article';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
+import MessageIcon from '@mui/icons-material/Message';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { theme } from '../../App';
 
@@ -91,6 +92,11 @@ const list=[
     icon:<SearchIcon fontSize='large'/>,
     name:'Find',
     link:'find'
+  },
+  {
+    icon:<MessageIcon fontSize='large'/>,
+    name:'Messages',
+    link:'messages'
   },
   {
       icon:<AccountIcon fontSize='large'/>,
