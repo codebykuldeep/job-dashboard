@@ -82,6 +82,30 @@ async function applicationSchema() {
     
 }
 
+async function messageSchema() {
+    await db.query(`CREATE TABLE IF NOT EXISTS chat_room (
+        room_id SERIAL PRIMARY KEY,
+        user_id INTEGER NOT NULL,
+        emp_id INTEGER NOT NULL, 
+        created_at VARCHAR DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+        FOREIGN KEY(emp_id) REFERENCES employers(emp_id) ON DELETE CASCADE
+      );`)
+      await db.query(`CREATE TABLE IF NOT EXISTS messages (
+        message_id SERIAL PRIMARY KEY,
+        user_id INTEGER NOT NULL,
+        emp_id INTEGER NOT NULL,
+        room_id INTEGER NOT NULL, 
+        sender TEXT NOT NULL,
+        content TEXT NOT NULL,
+        seen BOOLEAN DEFAULT false,
+        created_at VARCHAR DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY(room_id) REFERENCES chat_room(room_id) ON DELETE CASCADE,
+        FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+        FOREIGN KEY(emp_id) REFERENCES employers(emp_id) ON DELETE CASCADE
+      );`)
+}
+
 
 
 async function setupDb(){
@@ -91,6 +115,7 @@ async function setupDb(){
         await usersSchema() ;
         await postingSchema();
         await applicationSchema();
+        await messageSchema();
     } catch (error) {
         console.log(error);
         throw new Error('DB SETUP FAILED !')
